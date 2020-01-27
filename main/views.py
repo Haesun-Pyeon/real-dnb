@@ -10,7 +10,22 @@ import os
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            profile=Profile.objects.get(user=user)
+            return render(request, 'social.html')
+        except:
+            if request.user.is_superuser:
+                return render(request, 'home.html')
+            email = user.email
+            nick = user.username
+            # img = user.socialaccount_set.all.first.get_avatar_url
+            profile = Profile(user=user, email=email, nickname=nick)
+            profile.save()
+            return render(request, 'social.html')
+    else:
+        return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -128,3 +143,6 @@ def mypage(request):
                         'profile': profile,
                         'commnets': comments,
                         })
+
+def social(request):
+    return render(request, 'social.html')
