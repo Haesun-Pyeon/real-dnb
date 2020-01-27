@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     {% extends 'base.html' %}
+    {% load socialaccount %}
+    {% providers_media_js %}
     {% block content %}
     {% load staticfiles %}
     <head>
@@ -29,8 +31,6 @@
         <div class="gotosignup">
         아직 회원이 아니신가요? <a href="{% url 'signup' %}"><u>회원가입</u></a> 하기
         </div>
-
-
 
         <div id="fb-root"></div>
         <script>
@@ -97,6 +97,10 @@
           
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=1809774232496065&autoLogAppEvents=1"></script>
         <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+
+        <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
+        
+
     </body>
 
     {% endblock %}
