@@ -3,11 +3,11 @@
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'SangSangFlowerRoad'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangFlowerRoad.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
-
+@font-face { font-family: 'stencil'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/stencil.woff') format('woff'); font-weight: normal; font-style: normal; }
 header .openmenu {
-  background-color: #EBDDCA;
+  background-color: #E29B78;
   position: fixed;
-  z-index:1000;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,7 +17,7 @@ header .openmenu {
   transition: all 0.3s ease-in-out;
 }
 header .openmenu-pc {
-  background-color: #EBDDCA;
+  background-color: #E29B78;
   position: absolute;
   z-index:1000;
   width: 100%;
@@ -32,7 +32,7 @@ header .openmenu-pc {
 }
 .items {
     font-family: 'BBTreeGL';
-    color: #402719;
+    color: #FFFFFF;
     list-style-type: none;
     position: absolute;
     z-index:999;
@@ -52,12 +52,12 @@ li.items{
   font-size: 48px;
   text-decoration: none;
   padding: 15px 0;
-  color: #402719;
+  color: #FFFFFF;
   transition: all 0.2s ease-in-out;
 }
 .items li a:hover {
   text-decoration: none;
-  color: #402719;
+  color: #FFFFFF;
   background-color: white;
   border-radius: 200px;
   width: 500px;
@@ -78,7 +78,7 @@ li.items{
 .items-pc li a {
   display: inline-block;
   text-decoration: none;
-  color: #402719;
+  color: #FFFFFF;
   transition: all 0.2s ease-in-out;
 }
 .signbox{
@@ -90,7 +90,7 @@ li.items{
 .signbox a{
     font-family: 'BBTreeGL';
     font-size: 30px;
-    color: #402719;
+    color: #FFFFFF;
 }
 #toggle:checked ~ nav.openmenu{
   opacity: 1;
@@ -135,12 +135,12 @@ li.items{
     transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.7s;
 }
 #toggle:checked + label.toggle-btn .bar { 
-  background-color: #402719;
+  background-color: #FFFFFF;
 }
 .top-nav {
     width: 100%;
-    background-color: #EBDDCA;
-    color: #402719;
+    background-color: #E29B78;
+    color: #FFFFFF;
     text-align:center;
     /* margin-bottom: 10px; */
 }
@@ -148,9 +148,9 @@ li.items{
     padding: 1.3rem;
     display: inline-block;
     width:100%;
-    font-family: 'SangSangFlowerRoad';
-    font-size: 4rem;
-    color: #402719;
+    font-family: 'stencil';
+    font-size: 3rem;
+    color: #FFFFFF;
     letter-spacing: 0.5rem;
 }
 @media (min-width: 1025px){
@@ -176,7 +176,7 @@ li.items{
   width: 70px;
   height: 5px;
   margin: 15px auto;
-  background-color: #402719;
+  background-color: #FFFFFF;
   transition: all 0.3s ease-in-out;
 }
 .toggle-btn .bar:nth-child(2) {
