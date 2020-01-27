@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% load staticfiles %}
+    <body>
+        <form method="POST" action="{% url 'addthema' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <span>책방 선택</span><br>
+            <select name='store' multiple>
+                {% for store in stores %}
+                    <option value='{{store.name}}'>{{store.name}}</option>
+                {% endfor %}
+            </select>
+            <!--아니면 여기선 테마만 만들고 책방디테일페이지에서 내 태그에 담기 추가할까-->
+            <input type="submit" value="등록"/>
+        </form>
+    </body>
+
+    {% endblock %}
+</html>

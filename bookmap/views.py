@@ -4,7 +4,7 @@ from .models import BookStore, Scrap, Review, Tag, Crawling, Stamp
 from main.models import Profile
 from django.core import serializers
 import simplejson
-from .forms import ReviewForm
+from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg
 import os
 from datetime import datetime
@@ -99,31 +99,6 @@ def realmap(request):
         'bsaddr' : addrlist, 
         'bsname' : namelist,
         'pklist' : pklist})
-
-def themamap(request):
-    thema = Tag.objects.all()
-    return render(request, 'themamap.html',{'thema':thema})
-
-def themadetail(request, tag_id):
-    thema = get_object_or_404(Tag, pk=tag_id)
-    stores = BookStore.objects.filter(tag_set=thema)
-    addr = []
-    name = []
-    storepk = []
-    for a in stores:
-        addr.append(a.addr)
-        name.append(a.name)
-        storepk.append(a.bookstore_id)
-    addrlist = simplejson.dumps(addr)
-    namelist = simplejson.dumps(name)
-    pklist = simplejson.dumps(storepk)
-    content = {'thema':thema,
-            'stores':stores,
-            'bsaddr':addrlist,
-            'bsname':namelist,
-            'pklist':pklist}
-
-    return render(request, 'themadetail.html', content)
 
 def scrap(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
@@ -284,4 +259,46 @@ def ranking(request):
             t[key_arr[idx + 2]] = count_tot[i]
             t[key_arr[idx + 4]] = img_tot[i]
 
-    return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
+    return render(request, 'ranking.html', {'first': res_first, 'second': res_second, 'third': res_third})
+    
+def my_thema(request):
+    thema = Tag.objects.filter(user=request.user)
+    return render(request, 'themamap.html', {'thema': thema})
+    
+def themamap(request):
+    thema = Tag.objects.filter(private=False)
+    return render(request, 'themamap.html',{'thema':thema})
+
+def themadetail(request, tag_id):
+    thema = get_object_or_404(Tag, pk=tag_id)
+    stores = BookStore.objects.filter(tag_set=thema)
+    addr = []
+    name = []
+    storepk = []
+    for a in stores:
+        addr.append(a.addr)
+        name.append(a.name)
+        storepk.append(a.bookstore_id)
+    addrlist = simplejson.dumps(addr)
+    namelist = simplejson.dumps(name)
+    pklist = simplejson.dumps(storepk)
+    content = {'thema':thema,
+            'stores':stores,
+            'bsaddr':addrlist,
+            'bsname':namelist,
+            'pklist':pklist}
+
+    return render(request, 'themadetail.html', content)
+
+def addthema(request):
+    if request.method == 'POST':
+        form = StoreEditForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            return redirect('my_thema')
+        else:
+            pass #폼이 유효하지 않은 경우,,
+    else:
+        form = AddThemaForm()
+        stores = BookStore.objects.all()
+        return render(request, 'addthema.html', {'form': form, 'stores': stores})

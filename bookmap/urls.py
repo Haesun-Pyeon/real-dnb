@@ -10,6 +10,8 @@ urlpatterns = [
     path('mapsearch/', views.mapsearch, name='mapsearch'),
     path('themamap/', views.themamap, name='themamap'),
     path('themadetail/<int:tag_id>', views.themadetail, name='themadetail'),
+    path('addthema', views.addthema, name='addthema'),
+    path('my_thema', views.my_thema, name='my_thema'),
     path('stamp/<int:bookstore_id>', views.stamp, name='stamp'),
     path('ranking/', views.ranking, name='ranking'),
 ]
