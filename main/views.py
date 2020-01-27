@@ -6,11 +6,28 @@ from .models import Profile
 from bookmap.models import BookStore, Scrap, Stamp
 from culture.models import Comment ##
 import os
+from urllib.parse import urlparse
+import requests
+from django.core.files.base import ContentFile
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            profile=Profile.objects.get(user=user)
+            return render(request, 'home.html')
+        except:
+            if request.user.is_superuser:
+                return render(request, 'home.html')
+            email = user.email
+            nick = user.username
+            profile = Profile(user=user, email=email, nickname=nick)
+            profile.save()
+            return render(request, 'social.html')
+    else:
+        return render(request, 'home.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -131,3 +148,14 @@ def mypage(request):
 
 def test(request):
     return render(request, 'test.html')
+
+def social(request):
+    if request.method == 'POST':
+        img_url = request.POST['img_url']
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        name = urlparse(img_url).path.split('/')[-1]
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            profile.profileimg.save(name, ContentFile(response.content), save=True)
+    return redirect('home')
