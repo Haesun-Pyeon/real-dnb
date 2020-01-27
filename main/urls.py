@@ -10,4 +10,5 @@ urlpatterns = [
     path('del_user/', views.del_user, name='del_user'),
     path('user_change/', views.user_change, name='user_change'),
     path('social/', views.social, name='social'),
+
 ]
