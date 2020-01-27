@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body>
+
+    <div class="storename">
+        <div class="square"></div>
+        <span id='name'>{{store.name}}</span>
+        {% if request.PC %}
+            <div class="introduce"><i class="fas fa-quote-left"></i>
+                <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
+                <i class="fas fa-quote-right"></i>
+            </div>
+        {% endif %}
+    </div>
+    <div class="scrap_count">
+        {% if user.is_authenticated %}
+            {% if scrap %}
+                <a href="{% url 'scrap' store.bookstore_id %}"><img src="" class="heart"></a>
+            {% else %}
+                <a href="{% url 'scrap' store.bookstore_id %}"><img src="" class="heart"></a>
+            {% endif %}
+        {% else %}
+            <img src="" class="heart">
+        {% endif %}
+        <div class="count-num">{{store.like_count}}</div>
+    </div><br>
+
+<div class="contents">  
+    <!-- 아이폰기준 -->
+    {% if not request.PC %}
+    <div class="infotext">
+        <div class="introduce"><i class="fas fa-quote-left"></i>
+            <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
+            <i class="fas fa-quote-right"></i>
+        </div>
+    {% endif %}
+
+    <table class="table">
+        <tr>
+            <td class="icon"><i class="fas fa-mobile-alt"></i> </td>
+            <td class="colname">연락처</td>
+            <td class="data">{{store.phone_number}}</td>
+        </tr>
+        {% if store.site %}
+        <tr>
+            <td class="icon"><i class="fas fa-globe-asia"></i></td>
+            <td class="colname">홈페이지</td>
+            <td class="data">
+            {% if 'http' in store.site %}
+                <a href="{{store.site}}"><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i></a>
+            {% else %}
+                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a>
+            {% endif %}</td>
+        {% else %}
+            <td class="icon"><i class="fas fa-globe-asia"></i></td>
+            <td class="colname">홈페이지</td>
+            <td class="data">없음</td>
+        {% endif %}
+        </tr>
+        {% if store.openhour %}
+        <tr>
+            <td class="icon"><i class="fas fa-clock"></i></td>
+            <td class="colname">영업시간</td>
+            <td class="data">{{store.openhour}}</td>
+        {% endif %}
+        </tr>
+        <tr>
+            <td class="icon"><i class="fas fa-map-marker-alt"></i> </td>
+            <td class="colname">주소</td>
+            <td class="data"><span id='addr'>{{store.addr}}</span></td>
+        </tr>
+        {% if store.insta %}
+        <tr>
+            <td class="icon"><i class="fab fa-instagram"></i></td>
+            <td class="colname">인스타그램</td>
+            <td><a href="https://www.instagram.com/{{store.insta}}">
+            <i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a></td>
+        </tr>
+        {% endif %}
+        {% if store.email %}
+        <tr>
+            <td class="icon"><i class="fas fa-envelope"></i></td>
+            <td class="colname">이메일</td>
+            <td class="data"><span id='addr'>{{store.email}}</span></td>
+        </tr>
+        {% endif %}
+    </table>
+    {% if user.is_authenticated %}
+        <button onclick="get_stamp();">도장찍기</button>
+    {% endif %}
+    <details>
+        <summary>단골리스트</summary>
+        <div>
+            <span>1위 </span>
+            {% if first.name != '없음' %}
+                <span>닉네임: {{first.name}}</span>
+                <span>갯수: {{first.count}}개</span>
+            {% else %}
+                <span>없음</span>
+            {% endif %}
+        </div>
+        <div>
+            <span>2위 </span>
+            {% if second.name != '없음' %}
+                <span>닉네임: {{second.name}}</span>
+                <span>갯수: {{second.count}}개</span>
+            {% else %}
+                <span>없음</span>
+            {% endif %}
+        </div>
+        <div>
+            <span>3위 </span>
+            {% if third.name != '없음' %}
+                <span>닉네임: {{third.name}}</span>
+                <span>갯수: {{third.count}}개</span>
+            {% else %}
+                <span>없음</span>
+            {% endif %}
+        </div>
+    </details>
+</div>
+    
+    <br>
+    <!--해당서점 지도 표시-->
+    <div id="map"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
+    <script type="text/javascript">
+    
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
+            level: 4, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            //draggable: false
+        };  
+     
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    var geocoder = new kakao.maps.services.Geocoder();
+    map.setZoomable(true);
+    let addr = document.getElementById('addr').innerHTML;
+    let name = document.getElementById('name').innerHTML;
+
+    function get_stamp(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(position){
+                let lat=position.coords.latitude;
+                let lon=position.coords.longitude;
+                let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
+                let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
+                var stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
+                geocoder.addressSearch(addr,function(result, status){
+                    if (status === kakao.maps.services.Status.OK){
+                        let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                        if (stamp_bounds.contain(coords)){
+                            location.href="{%url 'stamp' store.bookstore_id %}";
+                        }
+                        else{
+                            alert("책방 근처에서 적립 가능합니다.");
+                        }
+                    };
+
+                });
+            });
+        }
+    };
+
+    function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
+        geocoder.addressSearch(address,function(result, status){
+            if (status === kakao.maps.services.Status.OK){
+                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                let marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords,
+                    clickable: false,
+                    title: title
+                });
+                map.setCenter(coords);
+            };
+        });
+    }
+    addrStoN(addr,name);
+    </script>
+    
+    <br>
+    <div class="img-container">
+    {% if store.img %}
+        <img src='{{store.img.url}}' class="storeimg">
+    {% endif %}
+    </div>
+    <br>
+
+    <div class="review-container">
+    <div class="review">REVIEW | 
+            <i class="fas fa-star"></i> {{star_avg}}</div>
+    
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
+        {% csrf_token %}
+        <div class="radio_star">
+
+        <input type="radio" name="star" id="shipadd1" value="1" checked/>
+        <label for="shipadd1"></label>
+        <input type="radio" name="star" id="shipadd2" value="2" />
+        <label for="shipadd2"></label>
+        <input type="radio" name="star" id="shipadd3" value="3" />
+        <label for="shipadd3"></label>
+        <input type="radio" name="star" id="shipadd4" value="4" />
+        <label for="shipadd4"></label>
+        <input type="radio" name="star" id="shipadd5" value="5" />
+        <label for="shipadd5"></label>
+    </div>
+
+        <div class="rev_write">
+        {{form.as_table}}
+        <button type='submit'>등록</button>
+    </form> </div>
+    {% endif %}
+    <hr>
+
+    
+    {% for review in reviews %}
+    <div class="user_review">
+        <div class="uname">{{review.user}} |</div>
+        <div class="ustar">
+        <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
+        {{ review.star }}</div>
+        <div class="ucontent">{{ review.content }}</div>
+        
+        {% if review.user == user %}
+        <div class="delete">
+            <a href="{% url 'reviewdelete' review.id %}">삭제</a>
+        </div>
+    </div>
+        {% endif %} 
+        <hr>
+    {% endfor %}
+</div>
+
+
+    <br><br>
+
+    <div class="clawling-container">
+    </div>
+    <br>
+    <div class="review_hs">
+        {%for review in rev%}
+        <div class="cr_review_ct">
+        <h3><a href={{review.link}}>{{review.title}}</a></h3>
+        <h4>{{review.content}}</h4>
+        </div>
+        <hr>
+        {%endfor%}
+    </div>
+</div>
+
+</body>
+{% endblock %}
+</html>

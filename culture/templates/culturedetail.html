@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/culturedetail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body>
+<div class="board-detail">
+<div class="square"></div>
+<h1 class="title">{{culture.title}}</h1>
+</div>
+<div class="topinfo">
+<a href="{% url 'storedetail' culture.store.bookstore_id %}">
+    {% if writer_img %}
+        <img src="{{writer_img.url}}" alt="" class="myprofile_img">
+    {% else %}
+        <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+    {% endif %} </a>
+    <div class="postinfo">
+        <div class="writer">작성자
+            <a href="{% url 'storedetail' culture.store.bookstore_id %}">{{culture.store.name}}</a>
+        </div>
+
+        <div class="period">
+            <span class="span1">행사기간</span> 
+            <span class="span2">{{culture.start_time}} ~ {{culture.finish_time}}</span>
+        </div>
+    </div>
+</div>
+<!-- <p> 작성한 날짜: {{culture.write_date}}</p> -->
+
+    {% if request.user.is_authenticated %}
+    <div class="sendmessage" style="text-align: center;margin-right:80px;">
+    {% if culture.store.boss != request.user %}
+        <a href="{% url 'chat' culture.store.boss.id %}">
+    {% else %}
+        <a href="{% url 'listMessage' %}">
+    {% endif %}
+        <img src="{% static 'img/logomsg.jpg' %}" style="width: 80px;">
+    </a>
+        {% if culture.store.boss != request.user %}
+        <div style="text-align:center;">{{culture.store.name}}에게<br>쪽지 보내기</div>
+        {% else %}
+        <div style="text-align:center;">나의 쪽지함<br>확인하기</div>
+        {% endif %}
+    {% endif %}
+    </div>
+
+<div class="contents">
+{% if culture.picture %}
+<img src="{{culture.picture.url}}" alt="" class="center-img">
+{% endif %}
+
+<p>{{culture.content|linebreaks}}</p>
+<div class="update_delete">
+{% if culture.store.boss == request.user %}
+    <a href="{% url 'boardupdate' culture.id %}">
+    <i class="far fa-edit"></i> 수정</a>
+    &nbsp;&nbsp;
+    <a href="{% url 'boarddelete' culture.id %}">
+    <i class="far fa-trash-alt"></i> 삭제</a>
+{% endif %}
+</div>
+</div>
+
+  
+  
+<div class="content-comment">
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'commentcreate' culture.id %}">
+        {% csrf_token %}
+        {{form}}
+        <button type='submit' class="commentbtn">등록</button>
+    </form>
+    {% endif %}
+
+    {% for comment in comments %}
+        <div class="comment-body row">
+        <div class="col-3 my-auto">
+            {% if comment.img %}
+                <img src="{{comment.img.url}}" alt="" class="comment_img">
+            {% else %}
+                <img src="{% static 'images/basic-profile-img.png' %}" class="comment_img">
+            {% endif %}
+        <br>
+        <span class="comment-writer">{{comment.user}}</span>
+        {%if comment.user != request.user%}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'chat' comment.user.id %}">
+        <span style="color:#F2C60C;font-size:25px;"><i class="far fa-comments"></i></span></a>
+        {% endif %}
+        {% endif %}
+        </div>
+        <div class="col my-auto">
+            <div class="row">
+                {{ comment.content }}
+            </div>
+            <div class="row date_delete">
+                {{ comment.created_at }}
+                {% if comment.user == user %}
+                    <a href="{% url 'commentdelete' comment.id %}">
+                    &nbsp;<i class="far fa-trash-alt"></i>&nbsp;삭제</a>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+
+
+<!--이화꺼
+<hr style="background-color: black;">
+<div class="comments">
+{% for comment in comments %}
+    <div class="comment1">
+    {{img}}
+    {{comment.user}}  {{ comment.created_at }}
+    <br>
+    {{ comment.content }}
+    
+    
+    {% if comment.user == user %}
+    <a href="{% url 'commentdelete' comment.id %}" class="delete">삭제</a>
+    {% endif %}
+    </div>
+    <hr>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'commentcreate' culture.id %}">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button type='submit'>등록</button>
+</form>
+{% endif %}
+</div>
+
+</div>-->
+ 
+<p class="listlink">
+    <a href="{% url 'board' %}">목록</a>
+</p>
+</body>
+
+
+{% endblock %}
