@@ -6,6 +6,9 @@ from .models import Profile
 from bookmap.models import BookStore, Scrap, Stamp
 from culture.models import Comment ##
 import os
+from urllib.parse import urlparse
+import requests
+from django.core.files.base import ContentFile
 
 
 # Create your views here.
@@ -14,13 +17,12 @@ def home(request):
         user = request.user
         try:
             profile=Profile.objects.get(user=user)
-            return render(request, 'social.html')
+            return render(request, 'home.html')
         except:
             if request.user.is_superuser:
                 return render(request, 'home.html')
             email = user.email
             nick = user.username
-            # img = user.socialaccount_set.all.first.get_avatar_url
             profile = Profile(user=user, email=email, nickname=nick)
             profile.save()
             return render(request, 'social.html')
@@ -145,4 +147,12 @@ def mypage(request):
                         })
 
 def social(request):
-    return render(request, 'social.html')
+    if request.method == 'POST':
+        img_url = request.POST['img_url']
+        user = request.user
+        profile = Profile.objects.get(user=user)
+        name = urlparse(img_url).path.split('/')[-1]
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            profile.profileimg.save(name, ContentFile(response.content), save=True)
+    return redirect('home')
