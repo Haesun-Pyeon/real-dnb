@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% load socialaccount %}
+    {% providers_media_js %}
+    {% block content %}
+    {% load staticfiles %}
+    <body>
+        <img src="{{ user.socialaccount_set.all.first.get_avatar_url }}" />
+        <p>{{ user.socialaccount_set.all.first.get_avatar_url }}</p>
+        <form method="POST" action="{% url 'social' %}" class="form">
+            {% csrf_token %}
+            
+        </form>
+    </body>
+
+    {% endblock %}
+</html>

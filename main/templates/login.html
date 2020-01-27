@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     {% extends 'base.html' %}
+    {% load socialaccount %}
+    {% providers_media_js %}
     {% block content %}
     {% load staticfiles %}
     <head>
@@ -30,6 +32,8 @@
         아직 회원이 아니신가요? <a href="{% url 'signup' %}"><u>회원가입</u></a> 하기
         </div>
 
+        <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
+        
     </body>
 
     {% endblock %}
