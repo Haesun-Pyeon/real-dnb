@@ -128,3 +128,6 @@ def mypage(request):
                         'profile': profile,
                         'commnets': comments,
                         })
+
+def test(request):
+    return render(request, 'test.html')
