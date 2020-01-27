@@ -146,6 +146,9 @@ def mypage(request):
                         'commnets': comments,
                         })
 
+def test(request):
+    return render(request, 'test.html')
+
 def social(request):
     if request.method == 'POST':
         img_url = request.POST['img_url']

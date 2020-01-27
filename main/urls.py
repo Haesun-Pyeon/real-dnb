@@ -9,5 +9,6 @@ urlpatterns = [
     path('mypage/', views.mypage, name='mypage'),
     path('del_user/', views.del_user, name='del_user'),
     path('user_change/', views.user_change, name='user_change'),
+    path('test/', views.test, name='test'),
     path('social/', views.social, name='social'),
 ]
