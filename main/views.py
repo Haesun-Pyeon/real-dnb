@@ -144,5 +144,8 @@ def mypage(request):
                         'commnets': comments,
                         })
 
+def test(request):
+    return render(request, 'test.html')
+
 def social(request):
     return render(request, 'social.html')
