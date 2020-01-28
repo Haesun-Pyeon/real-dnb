@@ -270,7 +270,11 @@ def themamap(request):
     return render(request, 'themamap.html',{'thema':thema})
 
 def themadetail(request, tag_id):
+    edit = False
     thema = get_object_or_404(Tag, pk=tag_id)
+    user = thema.user
+    if request.user.is_authenticated and request.user == user:
+        edit = True
     stores = BookStore.objects.filter(tag_set=thema)
     addr = []
     name = []
@@ -286,19 +290,21 @@ def themadetail(request, tag_id):
             'stores':stores,
             'bsaddr':addrlist,
             'bsname':namelist,
-            'pklist':pklist}
+            'pklist': pklist,
+            'edit': edit,}
 
     return render(request, 'themadetail.html', content)
 
-def addthema(request):
+def thema_add(request):
     if request.method == 'POST':
         form = StoreEditForm(request.POST, request.FILES)
         if form.is_valid():
 
             return redirect('my_thema')
-        else:
-            pass #폼이 유효하지 않은 경우,,
     else:
         form = AddThemaForm()
         stores = BookStore.objects.all()
-        return render(request, 'addthema.html', {'form': form, 'stores': stores})
+        return render(request, 'thema_add.html', {'form': form, 'stores': stores})
+
+def thema_change(request, tag_id): #tag_id 모델에 써야하나
+    return redirect('themadetail', tag_id=tag_id)

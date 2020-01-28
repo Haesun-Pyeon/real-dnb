@@ -2,9 +2,10 @@
 {% block content %}
 {% load static %}
 <body>
-    <a href="{% url 'themamap' %}">공개 테마</a>
 {% if user.is_authenticated %}
+    <a href="{% url 'themamap' %}">공개 테마</a>
     <a href="{% url 'my_thema' %}">나의 테마</a>
+    <a href="{% url 'thema_add' %}">테마 추가하기</a>
 {% endif %}
 
 {% for i in thema %}
@@ -15,13 +16,10 @@
 
 <a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
 <br>
-<span>좋아요 {{i.like}}개</span> <!--스크랩처럼 간단한 모양에 갯수만 쓰는거로 표시해도 괜찮을듯-->
+<span>좋아요 {{i.like}}개</span> <!--간단한 모양에 갯수만 쓰는거로 표시해도 괜찮을듯,,-->
 <span>작성자: {{i.user.profile.nickname}}</span>
 
 {% endfor %}
 
-{% if user.is_authenticated %}
-    <a href="{% url 'addthema' %}">테마 추가하기</a>
-{% endif %}
 </body>
 {% endblock %}
