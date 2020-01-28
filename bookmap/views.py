@@ -270,10 +270,9 @@ def themamap(request):
     return render(request, 'themamap.html',{'thema':thema})
 
 def themadetail(request, tag_id):
-    edit = False
+    edit = None
     thema = get_object_or_404(Tag, pk=tag_id)
-    user = thema.user
-    if request.user.is_authenticated and request.user == user:
+    if request.user == thema.user:
         edit = True
     stores = BookStore.objects.filter(tag_set=thema)
     addr = []
@@ -306,5 +305,5 @@ def thema_add(request):
         stores = BookStore.objects.all()
         return render(request, 'thema_add.html', {'form': form, 'stores': stores})
 
-def thema_change(request, tag_id): #tag_id 모델에 써야하나
-    return redirect('themadetail', tag_id=tag_id)
+def thema_change(request, tag_id):
+    return redirect('themadetail', pk=tag_id)

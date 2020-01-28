@@ -13,10 +13,8 @@
 <span>좋아요 {{thema.like}}개</span>
 <span>작성자: {{thema.user.profile.nickname}}</span>
 {% if edit %}
-    <a>테마 수정하기</a>
+    <a href="{% url 'thema_change' thema.id %}">테마 수정하기</a>
     <a>테마 삭제하기</a>
-    {% comment %} href="{% url 'thema_change' thema.tag_id %}" {% endcomment %}
-    <!-- edit 뷰에서 수정하기 -->
 {% endif %}
 
 
