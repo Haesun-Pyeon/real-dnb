@@ -44,11 +44,17 @@ class Crawling(models.Model):
 
 class Tag(models.Model):
     title = models.CharField(max_length=30, unique=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     description = models.TextField()
     img = models.ImageField(upload_to='thema/', null=True, blank=True)
+    private = models.BooleanField(default=False)
+    like = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['-like', 'title']
 
     def __str__(self):
-        return self.title
+        return '%s, %s' %(self.title,self.user)
 
 class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

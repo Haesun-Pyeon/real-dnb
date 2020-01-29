@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    {% extends 'base.html' %}
+    {% block content %}
+    {% load staticfiles %}
+    <body>
+        <form method="POST" action="{% url 'thema_add' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <span>책방 선택</span><br>
+            <select name='store' multiple>
+                {% for store in stores %}
+                    <option value='{{store.name}}'>{{store.name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="등록"/>
+        </form>
+    </body>
+
+    {% endblock %}
+</html>
