@@ -296,14 +296,26 @@ def themadetail(request, tag_id):
 
 def thema_add(request):
     if request.method == 'POST':
-        form = StoreEditForm(request.POST, request.FILES)
+        form = AddThemaForm(request.POST, request.FILES)
         if form.is_valid():
-
+            thema = form.save(commit=False)
+            thema.user = request.user
+            thema.save()
+            store = request.POST.getlist('store')
+            book = BookStore.objects.filter(name__in=store)
+            for b in book:
+                b.tag_set.add(thema)
             return redirect('my_thema')
+        else:
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
+            return HttpResponse(content)
     else:
         form = AddThemaForm()
         stores = BookStore.objects.all()
         return render(request, 'thema_add.html', {'form': form, 'stores': stores})
 
 def thema_change(request, tag_id):
-    return redirect('themadetail', pk=tag_id)
+    return redirect('themadetail', tag_id=tag_id)
+
+def thema_delete(request, tag_id):
+    return redirect('my_thema')

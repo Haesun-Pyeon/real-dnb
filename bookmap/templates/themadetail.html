@@ -4,22 +4,23 @@
 {% load static %}
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}"> -->
 </head>
 
 <body>
 <h1>{{thema.title}}</h1>
 <h4>{{thema.description|linebreaks}}</h4>
 <span>좋아요 {{thema.like}}개</span>
-<span>작성자: {{thema.user.profile.nickname}}</span>
+<span>만든이: {{thema.user.profile.nickname}}</span>
 {% if edit %}
-    <a href="{% url 'thema_change' thema.id %}">테마 수정하기</a>
-    <a>테마 삭제하기</a>
+    <a href="{% url 'thema_change' thema.id %}">테마 수정</a>
+    <a href="{% url 'thema_delete' thema.id %}">테마 삭제</a>
 {% endif %}
 
+<a href="{% url 'themamap' %}">목록보기</a>
 
-<div id="map" class="map"></div>
-
+<div id="map" class="map" style="width:100%;height:900px;"></div>
+<a onclick="current();">현위치</a>
 
 <table class="table">
     <thead>
@@ -60,26 +61,34 @@ let addrArr = {{ bsaddr | safe }};
 let nameArr = {{ bsname | safe }};
 let pkArr = {{ pklist | safe }};
 var selectedifw=null;
+var selectedmk=null;
 let bounds = new kakao.maps.LatLngBounds();
 //내위치 받아와서 이미지마커로 표시하기
-var imageSrc = 'https://myrealdomain.com/images/my-icon-5.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(35, 37); // 마커이미지의 크기입니다
+var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FOTq9H%2FbtqBubzCAFj%2F7KjqV2AhC4kWrKNnul7Q91%2Fimg.png', // 마커이미지의 주소입니다    
+imageSize = new kakao.maps.Size(70, 70); // 마커이미지의 크기입니다
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
+function current(){
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(position){
-        lat=position.coords.latitude;
-        lon=position.coords.longitude;
+        let lat=position.coords.latitude;
+        let lon=position.coords.longitude;
         var locPosition=new kakao.maps.LatLng(lat,lon);
-        let marker = new kakao.maps.Marker({
+        let cur_marker = new kakao.maps.Marker({
                 map: map,
                 position: locPosition,
                 clickable: false,
                 title: '현재위치',
                 image: markerImage
         });
+        if (selectedmk){
+            selectedmk.setMap(null);
+        }
+        selectedmk=cur_marker;
+        map.setCenter(locPosition);
+        map.setLevel(5,{animate: true});
     });
 };
+}
 
 function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
     geocoder.addressSearch(address,function(result, status){
