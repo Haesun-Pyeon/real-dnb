@@ -4,8 +4,8 @@
     {% block content %}
     {% load staticfiles %}
     <body>
-        <strong>테마 추가하기</strong>
-        <form method="POST" action="{% url 'thema_add' %}" enctype="multipart/form-data">
+        <strong>테마 수정하기</strong>
+        <form method="POST" action="{% url 'thema_change' thema.id%}" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
                 {{form}}
@@ -13,7 +13,7 @@
             <span>책방 선택</span><br>
             <select name='store' multiple>
                 {% for store in stores %}
-                    <option value='{{store.name}}'>{{store.name}}</option>
+                    <option value='{{store.name}}' {%if thema in store.tag_set.all %}selected{% endif %}>{{store.name}}</option>
                 {% endfor %}
             </select>
             <br><i>(PC) Ctrl+클릭 시 중복 선택됩니다.</i>

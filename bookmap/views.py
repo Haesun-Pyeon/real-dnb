@@ -53,7 +53,8 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'form':form, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
+        thema = Tag.objects.filter(user=request.user)
+        return render(request, 'storedetail.html', {'reviews': reviews, 'rev': rev, 'store': store_detail, 'scrap': store_scrap, 'form': form, 'star_avg': star_avg, 'first': first, 'second': second, 'third': third, 'thema': thema,})
     else:
         return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
       
@@ -305,17 +306,57 @@ def thema_add(request):
             book = BookStore.objects.filter(name__in=store)
             for b in book:
                 b.tag_set.add(thema)
-            return redirect('my_thema')
+            return redirect('themadetail',tag_id=thema.id)
         else:
             content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
             return HttpResponse(content)
     else:
         form = AddThemaForm()
         stores = BookStore.objects.all()
-        return render(request, 'thema_add.html', {'form': form, 'stores': stores})
-
+        return render(request, 'thema_add.html', {'form': form, 'stores': stores,})
+        
 def thema_change(request, tag_id):
-    return redirect('themadetail', tag_id=tag_id)
+    thema = Tag.objects.get(id=tag_id)
+    stores = BookStore.objects.all()
+    if thema.img:
+        pic=thema.img.path
+    else:
+        pic = None
+    if request.method == 'POST':
+        form = AddThemaForm(request.POST, request.FILES, instance=thema)
+        if request.FILES and pic:
+            os.remove(pic)
+        if form.is_valid():
+            thema = form.save()
+            for s in stores:
+                if thema in s.tag_set.all():
+                    s.tag_set.remove(thema)
+            store = request.POST.getlist('store')
+            book = BookStore.objects.filter(name__in=store)
+            for b in book:
+                b.tag_set.add(thema)
+            return redirect('themadetail',tag_id=thema.id)
+        else:
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
+            return HttpResponse(content)
+    else:
+        form = AddThemaForm(instance=thema)
+        return render(request, 'thema_edit.html', {'form': form, 'stores': stores, 'thema':thema, })
 
 def thema_delete(request, tag_id):
+    thema = Tag.objects.get(id=tag_id)
+    if thema.img:
+        os.remove(thema.img.path)
+    thema.delete()
     return redirect('my_thema')
+
+def store_thema(request, bookstore_id, tf):
+    if request.method == 'POST':
+        tag = request.POST['thema']
+        thema = Tag.objects.get(id=tag)
+        store = BookStore.objects.get(bookstore_id=bookstore_id)
+        if tf == 0: #tf가 0이면 추가, 1이면 삭제
+            store.tag_set.add(thema)
+        else:
+            store.tag_set.remove(thema)
+        return redirect('storedetail', bookstore_id=bookstore_id)

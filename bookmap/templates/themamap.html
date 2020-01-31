@@ -15,9 +15,8 @@
 {% endif %}
 
 <a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
-<br>
 <span>좋아요 {{i.like}}개</span> <!--간단한 모양에 갯수만 쓰는거로 표시해도 괜찮을듯,,-->
-<span>작성자: {{i.user.profile.nickname}}</span>
+<span>만든이: {{i.user.profile.nickname}}</span><br>
 
 {% endfor %}
 

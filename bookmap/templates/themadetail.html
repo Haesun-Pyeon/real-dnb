@@ -14,7 +14,7 @@
 <span>만든이: {{thema.user.profile.nickname}}</span>
 {% if edit %}
     <a href="{% url 'thema_change' thema.id %}">테마 수정</a>
-    <a href="{% url 'thema_delete' thema.id %}">테마 삭제</a>
+    <a href="{% url 'thema_delete' thema.id %}" onclick="return confirm('정말로 삭제하시겠습니까?')">테마 삭제</a>
 {% endif %}
 
 <a href="{% url 'themamap' %}">목록보기</a>

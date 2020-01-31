@@ -16,4 +16,5 @@ urlpatterns = [
     path('my_thema', views.my_thema, name='my_thema'),
     path('stamp/<int:bookstore_id>', views.stamp, name='stamp'),
     path('ranking/', views.ranking, name='ranking'),
+    path('store_thema/<int:bookstore_id>/<int:tf>', views.store_thema, name='store_thema'),
 ]
