@@ -13,19 +13,21 @@ from django.core.files.base import ContentFile
 
 # Create your views here.
 def home(request):
+    tf = False
     if request.user.is_authenticated:
         user = request.user
         try:
             profile=Profile.objects.get(user=user)
-            return render(request, 'home.html')
         except:
-            if request.user.is_superuser:
-                return render(request, 'home.html')
-            email = user.email
-            nick = user.username
-            profile = Profile(user=user, email=email, nickname=nick)
-            profile.save()
-            return render(request, 'social.html')
+            if not user.is_superuser:
+                tf = True
+    #처음 소셜로그인해서 프로필 없을경우만 tf=True
+    if tf == True:
+        email = user.email
+        nick = user.username
+        profile = Profile(user=user, email=email, nickname=nick)
+        profile.save()
+        return render(request, 'social.html')
     else:
         return render(request, 'home.html')
 
@@ -79,7 +81,7 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         return redirect('home')
-    return render(request, 'main/signup.html')
+    return render(request, 'signup.html')
 
 def del_user(request):
     user = request.user

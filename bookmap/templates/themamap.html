@@ -2,7 +2,12 @@
 {% block content %}
 {% load static %}
 <body>
-
+{% if user.is_authenticated %}
+    <a href="{% url 'themamap' %}">공개 테마</a>
+    <a href="{% url 'my_thema' %}">나의 테마</a>
+    <a href="{% url 'thema_add' %}">테마 추가하기</a>
+{% endif %}
+<br>
 {% for i in thema %}
 
 {% if i.img %}
@@ -10,7 +15,8 @@
 {% endif %}
 
 <a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
-<br>
+<span>좋아요 {{i.like}}개</span> <!--간단한 모양에 갯수만 쓰는거로 표시해도 괜찮을듯,,-->
+<span>만든이: {{i.user.profile.nickname}}</span><br>
 
 {% endfor %}
 
