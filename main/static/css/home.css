@@ -1,5 +1,7 @@
 @font-face { font-family: 'MapoDPPA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'Arita-buri-SemiBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 .banner {
     position: relative; 
     width: 1125px; 
@@ -52,7 +54,7 @@ body{
 }
 
 .main-btn{
-    font-family: 'Arita-buri-SemiBold';
+    font-family: 'YiSunShinDotumM';
     width: 600px;
     height: 130px;
     font-size: 3.5rem;

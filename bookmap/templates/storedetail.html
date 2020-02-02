@@ -2,8 +2,10 @@
 <html>
 {% extends 'base.html' %}
 {% block content %}
+{% load staticfiles %}
+
 <head>
-    <link rel="stylesheet" type="text/css" href="">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
@@ -93,8 +95,68 @@
         {% endif %}
     </table>
     {% if user.is_authenticated %}
-        <button onclick="get_stamp();">도장찍기</button>
+        <a href="javascript:get_stamp();">도장찍기</a>
+        <a href="javascript:Open_add();">내 테마에 추가하기</a>
+        <a href="javascript:Open_del();">내 테마에서 삭제하기</a>
+        <br>
+        <div id='thema_list' style="display: none;"> <!--클릭 시 보임-->
+            <strong>내 테마 목록</strong><br>
+            <span>[현재 속한 테마]</span><br>
+                {% for thema in store.tag_set.all %}
+                <li>{{thema.title}}</li>
+                {% empty %}
+                <li>없음</li>
+                {% endfor %}
+            <br><span>[테마 선택]</span><br>
+            <form method="POST" id='thema_form'>
+                {% csrf_token %}
+                <!--일단 여기서는 중복선택 안되게함-->
+                <select id='add' name='thema'>
+                    {% for t in thema %} <!--테마에 추가할때 (없는 태그들만 띄워줌)-->
+                        {% if t not in store.tag_set.all %}
+                        <option value='{{t.id}}'>{{t.title}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <select id='del' name='thema'>
+                    {% for t in thema %} <!--테마에서 삭제할때 (기존에 설정된 태그들만 띄워줌)-->
+                        {% if t in store.tag_set.all %}
+                        <option value='{{t.id}}'>{{t.title}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+
+                <input type="submit" id='submit'/>
+            </form>
+            <a href="javascript:Close();">닫기</a>
+        </div>
+
+        <script type="text/javascript">
+            function Open_add(){
+                document.getElementById("thema_list").style.display='inline'
+                document.getElementById('submit').setAttribute('value',"추가")
+                document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 0%}")
+                document.getElementById('del').style.display='none'
+                document.getElementById('add').style.display='inline'
+                document.getElementById("del").disabled=true;
+                document.getElementById("add").disabled=false;
+                }
+            function Open_del(){
+                document.getElementById("thema_list").style.display='inline'
+                document.getElementById('submit').setAttribute('value',"삭제")
+                document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 1%}")
+                document.getElementById('add').style.display='none'
+                document.getElementById('del').style.display='inline'
+                document.getElementById("add").disabled=true;
+                document.getElementById("del").disabled=false;
+            }
+            function Close(){
+                document.getElementById("thema_list").style.display='none'
+                }
+        </script>
     {% endif %}
+
     <details>
         <summary>단골리스트</summary>
         <div>

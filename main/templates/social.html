@@ -1,11 +1,8 @@
 <!--카카오 로그인 시 최초1회 프사 저장하는 페이지(아무것도 안뜸)-->
 <!DOCTYPE html>
 <html>
-    {% extends 'base.html' %}
     {% load socialaccount %}
     {% providers_media_js %}
-    {% block content %}
-    {% load staticfiles %}
     <body>
         <form method="POST" action="{% url 'social' %}" class="form">
             {% csrf_token %}
@@ -16,6 +13,4 @@
             </script>
         </form>
     </body>
-
-    {% endblock %}
 </html>

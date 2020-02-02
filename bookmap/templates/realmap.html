@@ -2,7 +2,10 @@
 <html>
     {% extends 'base.html' %}
     {% block content %}
+    {% load staticfiles %}
+
     <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}">
     </head>
     <body>
         <div class="realmap">
@@ -17,8 +20,8 @@
                 <label for="s-option" class="label">주소검색</label>
         </div>
         <div class="sbox">
-            <input type="search" class="search-box" name="query" placeholder="Search...">
-            <img src="" class="search-mark">
+            <input type="search" class="search-box" name="query" placeholder="검색어를 입력하세요">
+            <img src="{% static 'images/searchbtn.png' %}" class="search-mark">
         </div>
         </form>
         <script>
@@ -55,10 +58,8 @@
     <div class="map-container">
         <div id="map" class="map">
             <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
-            <div class="seetheme"><a href="{% url 'themamap' %}">테마</a></div>
+            <div class="seetheme"><a onclick="current();">현위치</a></div>
         </div>
-
-        <button onclick="current();">현재위치</button>
 
         <div id="list" class="list">
         <table class="table">
@@ -66,7 +67,7 @@
                 <tr>
                 <th class="table-sname">이름</th>
                 <th>주소</th>
-                <th class="table-seemore">더보기</th>
+                <th class="table-seemore">자세한 정보</th>
                 <!-- style="white-space:nowrap;" -->
                 </tr>
             </thead>
@@ -104,8 +105,8 @@
     var selectedmk=null;
     let bounds = new kakao.maps.LatLngBounds();
     //내위치 받아와서 이미지마커로 표시하기
-    var imageSrc = 'https://myrealdomain.com/images/my-icon-5.png', // 마커이미지의 주소입니다    
-        imageSize = new kakao.maps.Size(35, 37); // 마커이미지의 크기입니다
+    var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FOTq9H%2FbtqBubzCAFj%2F7KjqV2AhC4kWrKNnul7Q91%2Fimg.png', // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(70, 70); // 마커이미지의 크기입니다
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
     function current(){
         if(navigator.geolocation){

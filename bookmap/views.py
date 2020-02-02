@@ -4,7 +4,7 @@ from .models import BookStore, Scrap, Review, Tag, Crawling, Stamp
 from main.models import Profile
 from django.core import serializers
 import simplejson
-from .forms import ReviewForm
+from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg
 import os
 from datetime import datetime
@@ -53,7 +53,8 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'scrap' : store_scrap, 'form':form, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
+        thema = Tag.objects.filter(user=request.user)
+        return render(request, 'storedetail.html', {'reviews': reviews, 'rev': rev, 'store': store_detail, 'scrap': store_scrap, 'form': form, 'star_avg': star_avg, 'first': first, 'second': second, 'third': third, 'thema': thema,})
     else:
         return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
       
@@ -99,31 +100,6 @@ def realmap(request):
         'bsaddr' : addrlist, 
         'bsname' : namelist,
         'pklist' : pklist})
-
-def themamap(request):
-    thema = Tag.objects.all()
-    return render(request, 'themamap.html',{'thema':thema})
-
-def themadetail(request, tag_id):
-    thema = get_object_or_404(Tag, pk=tag_id)
-    stores = BookStore.objects.filter(tag_set=thema)
-    addr = []
-    name = []
-    storepk = []
-    for a in stores:
-        addr.append(a.addr)
-        name.append(a.name)
-        storepk.append(a.bookstore_id)
-    addrlist = simplejson.dumps(addr)
-    namelist = simplejson.dumps(name)
-    pklist = simplejson.dumps(storepk)
-    content = {'thema':thema,
-            'stores':stores,
-            'bsaddr':addrlist,
-            'bsname':namelist,
-            'pklist':pklist}
-
-    return render(request, 'themadetail.html', content)
 
 def scrap(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
@@ -284,4 +260,103 @@ def ranking(request):
             t[key_arr[idx + 2]] = count_tot[i]
             t[key_arr[idx + 4]] = img_tot[i]
 
-    return render(request,'ranking.html', {'first':res_first, 'second':res_second, 'third':res_third})
+    return render(request, 'ranking.html', {'first': res_first, 'second': res_second, 'third': res_third})
+    
+def my_thema(request):
+    thema = Tag.objects.filter(user=request.user)
+    return render(request, 'themamap.html', {'thema': thema})
+    
+def themamap(request):
+    thema = Tag.objects.filter(private=False)
+    return render(request, 'themamap.html',{'thema':thema})
+
+def themadetail(request, tag_id):
+    edit = None
+    thema = get_object_or_404(Tag, pk=tag_id)
+    if request.user == thema.user:
+        edit = True
+    stores = BookStore.objects.filter(tag_set=thema)
+    addr = []
+    name = []
+    storepk = []
+    for a in stores:
+        addr.append(a.addr)
+        name.append(a.name)
+        storepk.append(a.bookstore_id)
+    addrlist = simplejson.dumps(addr)
+    namelist = simplejson.dumps(name)
+    pklist = simplejson.dumps(storepk)
+    content = {'thema':thema,
+            'stores':stores,
+            'bsaddr':addrlist,
+            'bsname':namelist,
+            'pklist': pklist,
+            'edit': edit,}
+
+    return render(request, 'themadetail.html', content)
+
+def thema_add(request):
+    if request.method == 'POST':
+        form = AddThemaForm(request.POST, request.FILES)
+        if form.is_valid():
+            thema = form.save(commit=False)
+            thema.user = request.user
+            thema.save()
+            store = request.POST.getlist('store')
+            book = BookStore.objects.filter(name__in=store)
+            for b in book:
+                b.tag_set.add(thema)
+            return redirect('themadetail',tag_id=thema.id)
+        else:
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
+            return HttpResponse(content)
+    else:
+        form = AddThemaForm()
+        stores = BookStore.objects.all()
+        return render(request, 'thema_add.html', {'form': form, 'stores': stores,})
+        
+def thema_change(request, tag_id):
+    thema = Tag.objects.get(id=tag_id)
+    stores = BookStore.objects.all()
+    if thema.img:
+        pic=thema.img.path
+    else:
+        pic = None
+    if request.method == 'POST':
+        form = AddThemaForm(request.POST, request.FILES, instance=thema)
+        if request.FILES and pic:
+            os.remove(pic)
+        if form.is_valid():
+            thema = form.save()
+            for s in stores:
+                if thema in s.tag_set.all():
+                    s.tag_set.remove(thema)
+            store = request.POST.getlist('store')
+            book = BookStore.objects.filter(name__in=store)
+            for b in book:
+                b.tag_set.add(thema)
+            return redirect('themadetail',tag_id=thema.id)
+        else:
+            content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
+            return HttpResponse(content)
+    else:
+        form = AddThemaForm(instance=thema)
+        return render(request, 'thema_edit.html', {'form': form, 'stores': stores, 'thema':thema, })
+
+def thema_delete(request, tag_id):
+    thema = Tag.objects.get(id=tag_id)
+    if thema.img:
+        os.remove(thema.img.path)
+    thema.delete()
+    return redirect('my_thema')
+
+def store_thema(request, bookstore_id, tf):
+    if request.method == 'POST':
+        tag = request.POST['thema']
+        thema = Tag.objects.get(id=tag)
+        store = BookStore.objects.get(bookstore_id=bookstore_id)
+        if tf == 0: #tf가 0이면 추가, 1이면 삭제
+            store.tag_set.add(thema)
+        else:
+            store.tag_set.remove(thema)
+        return redirect('storedetail', bookstore_id=bookstore_id)
