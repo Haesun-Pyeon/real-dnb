@@ -1,0 +1,96 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+</head>
+
+<body>
+    {% if username in room_name_json %}
+    있음
+    {% endif %}
+    {% for msg in messages.all %}
+    {{msg.sender}}<br> <!--sender가 나면 오른쪽 내가 아니면 왼쪽에 두기-->
+    {{msg.content}}<br>
+    {{msg.sentAt}}<br>
+    {% endfor %}
+    <div id="chat-body"></div><br/>
+    <input id="chat-message-input" type="text" size="100"/><br/>
+    <input id="chat-message-submit" type="button" value="Send"/>
+
+    <form method="POST">
+    {% csrf_token %}
+        <input id="chat-room" name="room" type="text" style="visibility: hidden;"/>
+        <input id="chat-text" name="message" type="text" style="visibility: hidden;" value="msg"/>
+        <input id="save" type="submit" style="visibility: hidden;"/>
+    </form>
+
+</body>
+
+<script>
+    
+    let roomName = {{ room_name_json }};
+    var request_user = {{ name }};
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        var from = data['name']; //from이 request_user면 내가 보낸 글, 아니면 남이 보낸 글
+
+        //누가보낸건지
+        var div1 = document.createElement('div');
+        var text1 = document.createTextNode(from);
+        div1.appendChild(text1);
+        document.getElementById("chat-body").appendChild(div1);
+
+        //내용
+        var div2 = document.createElement('div');
+        var text2 = document.createTextNode(message);
+        div2.appendChild(text2);
+        document.getElementById("chat-body").appendChild(div2);
+
+        //시각
+        var cur = new Date();
+        let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+        var div3 = document.createElement('div');
+        var hours = 0, ap = "";
+        if(cur.getHours() < 12){hours = cur.getHours(); ap = " a.m.";}
+        else{hours = cur.getHours()-12; ap = " p.m.";}
+        var time = month[cur.getMonth()]+". "+cur.getDate()+", "+cur.getFullYear()+", "+cur.getHours()+":"+cur.getMinutes()+ap;
+        var text3 = document.createTextNode(time);
+        div3.appendChild(text3);
+        document.getElementById("chat-body").appendChild(div3);
+
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        var room = document.querySelector("#chat-room");
+        room.value = roomName;
+        var text = document.querySelector("#chat-text");
+        text.value = message;
+        chatSocket.send(JSON.stringify({'message':message, 'name':request_user}));
+        document.querySelector('#save').click();
+
+        messageInputDom.value = '';
+    };
+</script>
+
+</html>
