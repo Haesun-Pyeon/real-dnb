@@ -7,6 +7,15 @@ import json
 def index(request):
     return render(request, 'index.html', {})
 
+def chat_list(request):
+    groups = Group.objects.all()
+    msglist = []
+    for group in groups:
+        if request.user in group.participants.all():
+            msg = Message.objects.filter(room=group)[0]
+            msglist.append(msg)
+    return render(request, 'chat_list.html', {'msglist':msglist})
+
 def room(request, room_name):
     try:
         group = Group.objects.get(name=room_name)
