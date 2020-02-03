@@ -7,13 +7,16 @@
 </head>
 
 <body>
-    {% if username in room_name_json %}
-    있음
-    {% endif %}
     {% for msg in messages.all %}
-    {{msg.sender}}<br> <!--sender가 나면 오른쪽 내가 아니면 왼쪽에 두기-->
-    {{msg.content}}<br>
-    {{msg.sentAt}}<br>
+        {% if msg.sender == user %}
+            {{msg.sender}}<br> <!--내가 보낸 문자 오른쪽정렬-->
+            {{msg.content}}<br>
+            {{msg.sentAt}}<br>
+        {% else %}
+            {{msg.sender}}<br> <!--남이 보낸 문자 왼쪽정렬-->
+            {{msg.content}}<br>
+            {{msg.sentAt}}<br>
+        {% endif %}
     {% endfor %}
     <div id="chat-body"></div><br/>
     <input id="chat-message-input" type="text" size="100"/><br/>
@@ -22,7 +25,7 @@
     <form method="POST">
     {% csrf_token %}
         <input id="chat-room" name="room" type="text" style="visibility: hidden;"/>
-        <input id="chat-text" name="message" type="text" style="visibility: hidden;" value="msg"/>
+        <input id="chat-text" name="message" type="text" style="visibility: hidden;"/>
         <input id="save" type="submit" style="visibility: hidden;"/>
     </form>
 

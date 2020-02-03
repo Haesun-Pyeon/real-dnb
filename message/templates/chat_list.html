@@ -1,6 +1,12 @@
 chat_list
 <br>
 {% for msg in msglist %}
-{{msg.room}}<br>
-{{msg.content}}<br>
+
+{% if msg.sender == request.user %}
+    <a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.recipient}}{{msg.content}}<br></a>    
+{% else %}
+    <a href="{% url 'chat-temp' msg.sender.id %}">{{msg.sender}}{{msg.content}}<br></a>    
+{% endif %}
+
+</a>
 {% endfor %}

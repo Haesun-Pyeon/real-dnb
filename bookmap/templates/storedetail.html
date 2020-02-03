@@ -294,12 +294,16 @@
         {{ review.star }}</div>
         <div class="ucontent">{{ review.content }}</div>
         
+        {% if user.is_authenticated %}
         {% if review.user == user %}
         <div class="delete">
             <a href="{% url 'reviewdelete' review.id %}">삭제</a>
         </div>
+        {% else %}
+        <a href="{% url 'chat-temp' review.user.id %}">쪽지보내기</a>
     </div>
         {% endif %} 
+        {% endif %}
         <hr>
     {% endfor %}
 </div>
