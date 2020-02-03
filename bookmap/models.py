@@ -48,13 +48,16 @@ class Tag(models.Model):
     description = models.TextField()
     img = models.ImageField(upload_to='thema/', null=True, blank=True)
     private = models.BooleanField(default=False)
-    like = models.IntegerField(default=0)
+    like = models.ManyToManyField(User, related_name='like')
 
     class Meta:
-        ordering = ['-like', 'title']
+        ordering = ['title']
 
     def __str__(self):
-        return '%s, %s' %(self.title,self.user)
+        return '%s, %s' % (self.title, self.user)
+    
+    def total_like(self):
+        return self.like.count()
 
 class Scrap(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
