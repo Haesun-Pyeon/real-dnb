@@ -47,7 +47,7 @@ def signup(request):
                 email = request.POST['email']
                 profile = Profile(user=user, nickname=nickname, email=email)
                 profile.save()
-                auth.login(request, user)
+                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('home')
         else:
             content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
