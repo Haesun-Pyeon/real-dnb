@@ -50,7 +50,7 @@ input.search-box:focus + span {
 .search-mark{
     height: 70px;
     position: absolute;
-    top: 165px;
+    top: 140px;
     left: 830px;
 }
 

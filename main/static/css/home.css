@@ -74,3 +74,32 @@ body{
 .main-btn a:link { color:black; text-decoration: none;}
 .main-btn a:visited { color: black; text-decoration: none;}
 .main-btn a:hover { color: black; text-decoration: none;}
+
+@media(min-width:1025px){
+    .banner {
+        position: relative; 
+        width: 2560px; 
+        height: 720px;
+        overflow: hidden;
+    }
+    .banner ul {
+        position: absolute; 
+        margin: 0px; 
+        padding: 0; 
+        list-style: none;
+    }
+    .banner ul li {
+        float: left; 
+        width: 2560px; 
+        height: 720px;
+        margin:0; 
+        padding:0;
+    }
+    body{
+        margin: 0px;
+    }
+    .slideimg-pc{
+        width: 2560px; 
+        height: 720px;
+    }
+}
