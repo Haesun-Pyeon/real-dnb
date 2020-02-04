@@ -24,9 +24,20 @@
 body{
     margin: 0px;
 }
-.slideimg{
+.slideimg4{
     width: 1125px; 
     height: 2436px;
+    background-image: url(../images/bookstore4.png);
+}
+.slideimg5{
+    width: 1125px; 
+    height: 2436px;
+    background-image: url(../images/bookstore5.png);
+}
+.slideimg6{
+    width: 1125px; 
+    height: 2436px;
+    background-image: url(../images/bookstore6.png);
 }
 /* 사진을 가운데에 왜곡 없이 띄우는 코드
 .slideimg{
@@ -76,10 +87,26 @@ body{
 .main-btn a:hover { color: black; text-decoration: none;}
 
 @media(min-width:1025px){
+    .slideimg4{
+        background-image: url(../images/bookstore4-pc.png);
+        background-size: 3075px 1720px;
+        width: 3075px;
+    }
+    .slideimg5{
+        background-image: url(../images/bookstore5-pc.png);
+        background-size: 3075px 1720px;
+        width: 3075px;
+    }
+    .slideimg6{
+        background-image: url(../images/bookstore6-pc.png);
+        background-size: 3075px 1720px;
+        width: 3075px;
+    }
+    
     .banner {
         position: relative; 
         width: 2560px; 
-        height: 720px;
+        height: 1720px;
         overflow: hidden;
     }
     .banner ul {
@@ -91,15 +118,8 @@ body{
     .banner ul li {
         float: left; 
         width: 2560px; 
-        height: 720px;
+        height: 1720px;
         margin:0; 
         padding:0;
-    }
-    body{
-        margin: 0px;
-    }
-    .slideimg-pc{
-        width: 2560px; 
-        height: 720px;
     }
 }

@@ -28,6 +28,7 @@ AUTHENTICATION_BACKENDS = (
 
 INSTALLED_APPS = [
     'channels',
+    'request',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
