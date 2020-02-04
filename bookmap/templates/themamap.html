@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <body>
 {% if user.is_authenticated %}
     <a href="{% url 'themamap' %}">공개 테마</a>
@@ -15,7 +18,12 @@
 {% endif %}
 
 <a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
-<span>좋아요 {{i.like}}개</span> <!--간단한 모양에 갯수만 쓰는거로 표시해도 괜찮을듯,,-->
+{%if request.user in i.like.all %}
+<i class="fa fa-heart" style='color:#E29B78;'></i>
+{%else%}
+<i class="fa fa-heart-o" style='color:#E29B78;'></i>
+{%endif%}
+<span>{{i.total_like}}개</span>
 <span>만든이: {{i.user.profile.nickname}}</span><br>
 
 {% endfor %}

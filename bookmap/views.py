@@ -5,7 +5,7 @@ from main.models import Profile
 from django.core import serializers
 import simplejson
 from .forms import ReviewForm, AddThemaForm
-from django.db.models import Avg
+from django.db.models import Avg, Count
 import os
 from datetime import datetime
 
@@ -263,12 +263,12 @@ def ranking(request):
     return render(request, 'ranking.html', {'first': res_first, 'second': res_second, 'third': res_third})
     
 def my_thema(request):
-    thema = Tag.objects.filter(user=request.user)
-    return render(request, 'themamap.html', {'thema': thema})
+    thema = Tag.objects.filter(user=request.user).annotate(likes=Count("like")).order_by('-likes')
+    return render(request, 'themamap.html', {'thema': thema,})
     
 def themamap(request):
-    thema = Tag.objects.filter(private=False)
-    return render(request, 'themamap.html',{'thema':thema})
+    thema = Tag.objects.filter(private=False).annotate(likes=Count("like")).order_by('-likes')
+    return render(request, 'themamap.html',{'thema':thema,})
 
 def themadetail(request, tag_id):
     edit = None
@@ -286,12 +286,14 @@ def themadetail(request, tag_id):
     addrlist = simplejson.dumps(addr)
     namelist = simplejson.dumps(name)
     pklist = simplejson.dumps(storepk)
+    check_like=thema.like.filter(id=request.user.id).exists()
     content = {'thema':thema,
             'stores':stores,
             'bsaddr':addrlist,
             'bsname':namelist,
             'pklist': pklist,
-            'edit': edit,}
+            'edit': edit,
+            'check_like':check_like,}
 
     return render(request, 'themadetail.html', content)
 
@@ -360,3 +362,12 @@ def store_thema(request, bookstore_id, tf):
         else:
             store.tag_set.remove(thema)
         return redirect('storedetail', bookstore_id=bookstore_id)
+
+def thema_like(request, tag_id):
+    thema = Tag.objects.get(id=tag_id)
+    user = User.objects.get(username=request.user)
+    if thema.like.filter(id=user.id).exists():
+        thema.like.remove(user)
+    else:
+        thema.like.add(user)
+    return HttpResponse(str(thema.total_like()))

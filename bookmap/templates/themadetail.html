@@ -1,16 +1,22 @@
 <html>
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
+{% load staticfiles %}
 
 <head>
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 </head>
 
 <body>
 <h1>{{thema.title}}</h1>
 <h4>{{thema.description|linebreaks}}</h4>
-<span>좋아요 {{thema.like}}개</span>
+
+<i onclick="thema_like();" id='like' class="{%if check_like %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
+<span id="like-count">{{thema.total_like}}</span><span>개</span>
+
 <span>만든이: {{thema.user.profile.nickname}}</span>
 {% if edit %}
     <a href="{% url 'thema_change' thema.id %}">테마 수정</a>
@@ -43,10 +49,41 @@
 </table>
 </body>
 
-
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 <script type="text/javascript">
+//좋아요 AJAX 관련
+var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+function thema_like() {
+    {% if request.user.is_active %}
+    $.ajax({
+        url: "{% url 'thema_like' thema.id%}",
+        type: "post",
+    }).done(function (data) {
+        if($("#like").hasClass("fa-heart")) {
+            $("#like").removeClass("fa-heart");
+            $("#like").addClass("fa-heart-o");
+        } else {
+            $("#like").removeClass("fa-heart-o");
+            $("#like").addClass("fa-heart");
+        }
+        document.getElementById('like-count').innerHTML = data;
+    });
+    {% else %}
+    alert("로그인 된 사용자만 사용할 수 있습니다.");
+    {% endif %}
+}
+
+//지도 관련
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
