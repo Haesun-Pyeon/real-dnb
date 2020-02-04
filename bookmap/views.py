@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.models import User
-from .models import BookStore, Scrap, Review, Tag, Crawling, Stamp
+from .models import BookStore, Scrap, Review, Thema, Crawling, Stamp
 from main.models import Profile
 from django.core import serializers
 import simplejson
@@ -53,7 +53,7 @@ def detail(request, bookstore_id):
     if request.user.is_authenticated:
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
-        thema = Tag.objects.filter(user=request.user)
+        thema = Thema.objects.filter(user=request.user)
         return render(request, 'storedetail.html', {'reviews': reviews, 'rev': rev, 'store': store_detail, 'scrap': store_scrap, 'form': form, 'star_avg': star_avg, 'first': first, 'second': second, 'third': third, 'thema': thema,})
     else:
         return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
@@ -263,19 +263,19 @@ def ranking(request):
     return render(request, 'ranking.html', {'first': res_first, 'second': res_second, 'third': res_third})
     
 def my_thema(request):
-    thema = Tag.objects.filter(user=request.user).annotate(likes=Count("like")).order_by('-likes')
+    thema = Thema.objects.filter(user=request.user).annotate(likes=Count("like")).order_by('-likes')
     return render(request, 'themamap.html', {'thema': thema,})
     
 def themamap(request):
-    thema = Tag.objects.filter(private=False).annotate(likes=Count("like")).order_by('-likes')
+    thema = Thema.objects.filter(private=False).annotate(likes=Count("like")).order_by('-likes')
     return render(request, 'themamap.html',{'thema':thema,})
 
 def themadetail(request, tag_id):
     edit = None
-    thema = get_object_or_404(Tag, pk=tag_id)
+    thema = get_object_or_404(Thema, pk=tag_id)
     if request.user == thema.user:
         edit = True
-    stores = BookStore.objects.filter(tag_set=thema)
+    stores = BookStore.objects.filter(thema_set=thema)
     addr = []
     name = []
     storepk = []
@@ -307,7 +307,7 @@ def thema_add(request):
             store = request.POST.getlist('store')
             book = BookStore.objects.filter(name__in=store)
             for b in book:
-                b.tag_set.add(thema)
+                b.thema_set.add(thema)
             return redirect('themadetail',tag_id=thema.id)
         else:
             content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
@@ -318,7 +318,7 @@ def thema_add(request):
         return render(request, 'thema_add.html', {'form': form, 'stores': stores,})
         
 def thema_change(request, tag_id):
-    thema = Tag.objects.get(id=tag_id)
+    thema = Thema.objects.get(id=tag_id)
     stores = BookStore.objects.all()
     if thema.img:
         pic=thema.img.path
@@ -331,12 +331,12 @@ def thema_change(request, tag_id):
         if form.is_valid():
             thema = form.save()
             for s in stores:
-                if thema in s.tag_set.all():
-                    s.tag_set.remove(thema)
+                if thema in s.thema_set.all():
+                    s.thema_set.remove(thema)
             store = request.POST.getlist('store')
             book = BookStore.objects.filter(name__in=store)
             for b in book:
-                b.tag_set.add(thema)
+                b.thema_set.add(thema)
             return redirect('themadetail',tag_id=thema.id)
         else:
             content="<script type='text/javascript'>alert('형식에 맞게 입력하세요.');history.back();</script>"
@@ -346,7 +346,7 @@ def thema_change(request, tag_id):
         return render(request, 'thema_edit.html', {'form': form, 'stores': stores, 'thema':thema, })
 
 def thema_delete(request, tag_id):
-    thema = Tag.objects.get(id=tag_id)
+    thema = Thema.objects.get(id=tag_id)
     if thema.img:
         os.remove(thema.img.path)
     thema.delete()
@@ -355,16 +355,16 @@ def thema_delete(request, tag_id):
 def store_thema(request, bookstore_id, tf):
     if request.method == 'POST':
         tag = request.POST['thema']
-        thema = Tag.objects.get(id=tag)
+        thema = Thema.objects.get(id=tag)
         store = BookStore.objects.get(bookstore_id=bookstore_id)
         if tf == 0: #tf가 0이면 추가, 1이면 삭제
-            store.tag_set.add(thema)
+            store.thema_set.add(thema)
         else:
-            store.tag_set.remove(thema)
+            store.thema_set.remove(thema)
         return redirect('storedetail', bookstore_id=bookstore_id)
 
 def thema_like(request, tag_id):
-    thema = Tag.objects.get(id=tag_id)
+    thema = Thema.objects.get(id=tag_id)
     user = User.objects.get(username=request.user)
     if thema.like.filter(id=user.id).exists():
         thema.like.remove(user)
