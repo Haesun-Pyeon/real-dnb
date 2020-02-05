@@ -22,8 +22,8 @@
 {% for i in thema %}
 <div class="allthema-box">
 
-    {% if i.user.profile.image %}
-        <img src="{{i.user.profile.image}}" alt="" class="myprofile_img">
+    {% if i.user.profile.profileimg %}
+        <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
     {% else %}
         <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
     {% endif %}

@@ -18,6 +18,7 @@
 - django-allauth
 - channels
 - channels_redis
+- pandas
 
 ## 모델 불러오기
 - $python manage.py migrate

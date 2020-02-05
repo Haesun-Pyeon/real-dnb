@@ -17,7 +17,10 @@ class BookStore(models.Model):
     email = models.EmailField('이메일', null=True, blank=True)
     openhour = models.TextField('영업시간',null=True, blank=True)
     users = models.ManyToManyField(User, through='Scrap', related_name='%(app_label)s_%(class)s_related')
+    thema_set = models.ManyToManyField('Thema', blank=True)
     tag_set = models.ManyToManyField('Tag', blank=True)
+
+
 
     class Meta:
             ordering = ['name']
@@ -31,7 +34,13 @@ class BookStore(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a detail record for this book."""
         return reverse('storedetail', args=[str(self.pk)])
-    
+
+class Tag(models.Model):
+    title = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.title
+
 #우선 크롤링 리뷰는 냅뒀다가 나중에 블로그 검색 API 적용시에 수정
 class Crawling(models.Model):
     store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
@@ -42,7 +51,7 @@ class Crawling(models.Model):
     def __str__(self):
         return '%s, %s' %(self.store, self.title)
 
-class Tag(models.Model):
+class Thema(models.Model):
     title = models.CharField(max_length=30, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     description = models.TextField()
