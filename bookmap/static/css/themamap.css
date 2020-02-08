@@ -1,9 +1,11 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 
+html, body {width: 100%; height: 100%;}
+
 .themaimg{
-    width: 90%;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .btn-box{
@@ -15,7 +17,7 @@
     font-family: 'YiSunShinDotumM';
     padding: 15px 30px;
     font-size: 2rem;
-    margin: 10px 10px;
+    margin: 20px 10px 10px 10px;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -30,32 +32,50 @@
 }
 
 .title{
-    font-weight: 800;
-    font-size: 3rem;
+    font-weight: 900;
+    font-size: 2.5rem;
+    font-family: 'YiSunShinDotumM';
     text-decoration: none;
-    color: #569377;
-    font-family: 'NanumSquareRound';
-    margin-right: 2rem;
+    color: black;
+    /*margin-left: 25px;*/
 }
 .writer{
     color: #727272;
     font-family: 'NanumSquareRound';
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-left: 2rem;
 }
-i.fa.fa-heart, i.fa.fa-heart-o, .count{
+i.fa.fa-heart, i.fa.fa-heart-o{
     font-size: 2.5rem;
-    
 }
-
+.count{
+    font-size: 2rem;
+    margin-left: 5px;
+}
 .myprofile_img {
     border-radius: 100%;
-    width: 110px;
-    height: 110px;
-    margin-left: 30px;
-    margin-bottom: 50px;
+    width: 90px;
+    height: 90px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
-
 .themaimg-box{
     text-align: center;
+}
+.allthema-box{
+    overflow: hidden;
+    margin: auto;
+    width: 90%;
+}
+.publicthema-btn a:visited{color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
+.publicthema-btn a:hover {color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
+.mythema-btn a:visited{color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377; }
+.mythema-btn a:hover { color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
+.addthema-btn a:visited{color: #FFD757; text-decoration: none; background-color: #FFFFFF; border: 2px solid #FFD757;}
+.addthema-btn a:hover{color: #FFD757; text-decoration: none; background-color: #FFFFFF; border: 2px solid #FFD757;}
+
+.like{
+    float: right;
+    margin-top: 20px;
+    margin-right: 5px;
 }

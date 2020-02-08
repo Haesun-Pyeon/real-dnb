@@ -4,30 +4,39 @@
 {% load staticfiles %}
 
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/realmap.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themadetail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 </head>
 
 <body>
-<h1>{{thema.title}}</h1>
-<h4>{{thema.description|linebreaks}}</h4>
+    <div class="description">
+        <h1>{{thema.title}}
+        <div class="like">
+            <i onclick="thema_like();" id='like' class="{%if check_like %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
+            <span id="like-count">{{thema.total_like}}</span>
+        </div>
+        </h1>
+        {% if thema.user.profile.profileimg %}
+            <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
+        {% else %}
+            <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+        {% endif %}
+        <span class="writer">{{thema.user.profile.nickname}}</span>
+        <hr>
+        <h4>{{thema.description|linebreaks}}</h4>
+    </div> 
 
-<i onclick="thema_like();" id='like' class="{%if check_like %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
-<span id="like-count">{{thema.total_like}}</span><span>개</span>
 
-<span>만든이: {{thema.user.profile.nickname}}</span>
+<div id="map" class="map" style="width:90%;height:800px;z-index: 0; margin: 0px auto;"></div>
+
+<a onclick="current();">현위치</a>
+<a href="{% url 'themamap' %}">목록보기</a>
 {% if edit %}
     <a href="{% url 'thema_change' thema.id %}">테마 수정</a>
     <a href="{% url 'thema_delete' thema.id %}" onclick="return confirm('정말로 삭제하시겠습니까?')">테마 삭제</a>
 {% endif %}
-
-<a href="{% url 'themamap' %}">목록보기</a>
-
-<div id="map" class="map" style="width:100%;height:900px;"></div>
-<a onclick="current();">현위치</a>
-
 <table class="table">
     <thead>
         <tr>
@@ -48,6 +57,7 @@
     </tbody>
 </table>
 </body>
+
 
 <script type="text/javascript">
 //좋아요 AJAX 관련
