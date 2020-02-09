@@ -3,37 +3,43 @@
     {% extends 'base.html' %}
     {% load socialaccount %}
     {% providers_media_js %}
-    {% block content %}
     {% load staticfiles %}
+    {% block content %}
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     </head>
     <body>
-        <img src="{% static 'images/booklogo.png' %}" class="logoimg">
         <form action="{% url 'login' %}" method='POST'>
         {% csrf_token %}
         <div class="loginbox">
-            <label for="inp" class="inp">
-            <input name="username" type="text" id="inp">
-            <span class="label">아이디</span>
-            <span class="border"></span>
-            </label>
-
-            <label for="inp" class="inp">
-            <input name="password" type="password" id="inp">
-            <span class="label">비밀번호</span>
-            <span class="border"></span>
-            </label>
+            <img src="{% static 'images/logo.jpg' %}" style="width: 16rem; margin-top: 6rem;">
+            <div class="login-content">
+                <input name="username" type="text" id="inp" placeholder="ID">
+                <br>
+                <input name="password" type="password" id="inp" placeholder="PASSWORD">
+                <br>
+                <button type="submit" class='login-btn'>LOGIN</button>
+                </form>
+                <br>
+                <a href="{% provider_login_url 'kakao' %}">
+                <img src="{% static 'images/kakao_account_login_btn_large_narrow.png' %}" class="kakao">
+                </a>
+                <div class="gotosignup">
+                아직 회원이 아니신가요? <a href="{% url 'signup' %}"><u>회원가입</u></a> 하기
+                </div>
+            </div>
         </div>
+
         
-        <button type="submit" class='btn_login confirm-btn'></button>
-
-        <div class="gotosignup">
-        아직 회원이 아니신가요? <a href="{% url 'signup' %}"><u>회원가입</u></a> 하기
-        </div>
-
-        <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
     </body>
 
     {% endblock %}
 </html>
+
+
+
+<!-- 
+<li><img src="{% static 'images/bookstore4-pc.png' %}" class="slideimg-pc"></li>
+<li><img src="{% static 'images/bookstore5-pc.png' %}" class="slideimg-pc"></li>
+<li><img src="{% static 'images/bookstore6-pc.png' %}" class="slideimg-pc"></li>
+-->

@@ -14,13 +14,15 @@
     <a href="{% url 'themamap' %}" class="publicthema-btn">공개테마 보기</a>
     <a href="{% url 'my_thema' %}" class="mythema-btn">나의테마 보기</a>
     <a href="{% url 'thema_add' %}" class="addthema-btn">테마 추가하기</a>
-    
+    <hr>
+{% else %}
+    <br>
 {% endif %}
 </div>
-<br>
 
-{% for i in thema %}
+
 <div class="allthema-box">
+{% for i in thema %}
 
     {% if i.user.profile.profileimg %}
         <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
@@ -29,20 +31,24 @@
     {% endif %}
     <span class="writer">{{i.user.profile.nickname}}</span>
    
+    <div class="like">
     {% if request.user in i.like.all %}
     <i class="fa fa-heart" style='color:#E29B78;'></i>
     {% else %}
     <i class="fa fa-heart-o" style='color:#E29B78;'></i>
     {% endif %}
     <span class="count">{{i.total_like}}</span>
-    <br>
+    <br></div>
 
-    {% if i.img %} <div class="themaimg-box">
+    {% if i.img %}
+    <div class="themaimg-box">
+        <a href="{% url 'themadetail' i.id %}" class="title">
     <img src='{{i.img.url}}' class="themaimg">
     {% endif %}
     </div>
 
-    <a href="{% url 'themadetail' i.id %}" class="title">{{i.title}}</a>
+        {{i.title}}</a>
+    <hr>
     {% endfor %}
 </div>
 </body>
