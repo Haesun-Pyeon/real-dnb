@@ -19,6 +19,7 @@
 - channels
 - channels_redis
 - pandas
+- xlrd
 
 ## 모델 불러오기
 - $python manage.py migrate
