@@ -169,7 +169,7 @@ li.items{
   position: absolute;
   z-index: 10;
   right: 50px;
-  top: 28px;
+  top: 18px;
   cursor: pointer;
 }
 .toggle-btn .bar {

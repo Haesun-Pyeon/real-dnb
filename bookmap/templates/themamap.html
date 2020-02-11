@@ -43,11 +43,20 @@
     {% if i.img %}
     <div class="themaimg-box">
         <a href="{% url 'themadetail' i.id %}" class="title">
-    <img src='{{i.img.url}}' class="themaimg">
+            <img src='{{i.img.url}}' class="themaimg"> </div>
+            <div class="title2">{{i.title}}</div>
+        </a>
+    
+    
+    {% else %}
+    <a href="{% url 'themadetail' i.id %}" class="title">
+        <div class="title2">{{i.title}}</div>
+    </a>
+    
     {% endif %}
-    </div>
+    
 
-        {{i.title}}</a>
+        
     <hr>
     {% endfor %}
 </div>
