@@ -1,6 +1,7 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Cafe24Dangdanghae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 div#map{
     width:100%;height:300px;position:relative;z-index:0;
@@ -10,16 +11,18 @@ div#map{
     margin-top: 30px;
 }
 span#name{
-    font-size: 80px;
-    font-family: 'YiSunShinDotumM';
+    font-size: 3.5rem;
+    font-family: 'Cafe24Dangdanghae';
 }
 
-.scrap_count{
-    width: 97px;
+.like{
+    width: 95px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
 }
+#like{font-size: 2.5rem;}
+#like-count{font-size: 2rem; margin-left: 10px; margin-bottom: 20px;}
 
 .contents{
     width: 80%;
@@ -27,19 +30,7 @@ span#name{
     margin-right: auto;
     display: block;
 }
-.sendmessage{
-    width: fit-content;
-    padding: 10px 15px 10px 15px;
-    font-size: 25px;
-    border-radius: 10px;
-    border: 1px solid gray;
-    /* box-shadow: 5px 5px 4px lightgrey; */
-    font-family: 'YiSunShinDotumM';
-}
-.infotext{
-    display: block;
-}
-.introduce{
+/*.introduce{
     text-align: center;
     font-size: 50px;
     margin-left: auto;
@@ -57,7 +48,7 @@ span#name{
     font-family: 'BBTreeGL';
     font-size: 18px;
     color: gray;
-}
+}*/
 table{
     width: 100%;
     margin-top: 20px;
@@ -66,24 +57,56 @@ tr{
     height: fit-content;
 }
 td{
-    font-size: 30px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'NanumSquareRound';
 }
 td.icon{
-    vertical-align: top;
     text-align: center;
+    vertical-align: middle;
 }
 td.colname{
     width: 225px;
-    vertical-align: top;
+    font-size: 27px;
+    vertical-align: middle;
+}
+td.icon i{
+    font-size: 27px;
+    color: #569377;
+    align-content: center;
+}
+
+i.fas.fa-external-link-alt{
+    font-size: 30px;
+    color: grey;
+    margin-left: 10px;
 }
 td.data{
     width: 550px;
-    font-size: 30px;
+    font-size: 27px;
     overflow: hidden;
     vertical-align: middle;
-}
+} /*여기까지 책방정보 테이블*/
 
+/*도장찍기 버튼*/
+.stamp{
+    width: 80px;
+    height: 80px;
+    background: #569377;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 30px;
+    display: block;
+    font-family: 'YiSunShinDotumM';
+    position: absolute;
+    z-index: 3;
+    margin: 15px 0px 0px 15px;
+    color: white;
+    padding-top: 9px;
+}
+.stamp a{
+    color: white;
+    font-size: 26px;
+    z-index: 3;
+}
 div.review{
     font-size: 40px;
     font-family: 'YiSunShinDotumM';
@@ -197,7 +220,17 @@ textarea#id_content{
 input[type="radio"]{
     display:none;
  }
- 
+
+#rev-star{
+    color: #FFD757; font-size: 30px;
+}
+label i.fas.fa-star{
+    color: lightgray; font-size: 35px;
+}
+input[type="radio"]:checked + label i.fas.fa-star{
+    color: #FFD757;
+}
+ /* 라디오버튼 별점 이미지가 아니라 icon 불러와서 보여주기
 input[type="radio"] + label{
      background-image:url(../img/gray_star.png);
      background-size: 60px 60px;
@@ -211,7 +244,7 @@ input[type="radio"] + label{
 input[type="radio"]:checked + label{
      background-image:url(../img/full_star.png);
      background-size: 60px 60px;
- }
+ }*/
 .review_hs{
     width: 100%;
     margin-top: 40px;
@@ -226,9 +259,7 @@ input[type="radio"]:checked + label{
 .cr_review_ct h3 a:visited { color: #615136; text-decoration: none;}
 .cr_review_ct h3 a:hover { color: #615136; text-decoration: none;}
 
-.heart{
-    width: 50px;
-}
+/*
 .count-num{
     font-family: 'YiSunShinDotumM';
     display: inline-flex;
@@ -238,23 +269,12 @@ input[type="radio"]:checked + label{
     font-size: 40px;
     float: right;
     display: table-cell;
-}
+}*/
 i.fas.fa-quote-left, i.fas.fa-quote-right{
     display: inline-block; color: lightgray; font-size: 30px;
 }
-i.fas.fa-globe-asia,i.fas.fa-mobile-alt,i.fas.fa-clock,
-i.fas.fa-map-marker-alt,i.fas.fa-envelope,i.fab.fa-instagram
-{
-    color: #615136; font-size: 50px; align-content: center; 
-}
-i.fas.fa-external-link-alt{
-    font-size: 30px;
-    color: grey;
-    margin-left: 10px;
-}
-i.fas.fa-star{
-    color: rgb(254,215,86); font-size: 30px;
-}
+
+
 
 .storeimg{
     width: 100%;

@@ -7,42 +7,49 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
 
     <div class="storename">
-        <div class="square"></div>
         <span id='name'>{{store.name}}</span>
-        {% if request.PC %}
+       <!--{% if request.PC %}
             <div class="introduce"><i class="fas fa-quote-left"></i>
                 <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
                 <i class="fas fa-quote-right"></i>
             </div>
-        {% endif %}
+        {% endif %}-->
     </div>
-    <div class="scrap_count">
+    
+    <div class="like">
         {% if user.is_authenticated %}
             {% if scrap %}
-                <a href="{% url 'scrap' store.bookstore_id %}"><img src="" class="heart"></a>
+                <a href="{% url 'scrap' store.bookstore_id %}">
+                    <i class="fa fa-heart" id="like" style='color:#E29B78;'></i></a>
             {% else %}
-                <a href="{% url 'scrap' store.bookstore_id %}"><img src="" class="heart"></a>
+                <a href="{% url 'scrap' store.bookstore_id %}">
+                    <i class="fa fa-heart-o" id="like" style='color:#E29B78;'></i></a>
             {% endif %}
         {% else %}
-            <img src="" class="heart">
+            <i class="fa fa-heart" id="like" style='color:#E29B78;'></i>
         {% endif %}
-        <div class="count-num">{{store.like_count}}</div>
-    </div><br>
+        <span id="like-count">{{store.like_count}}</span>
+    <br></div>
+
+
 
 <div class="contents">  
     <!-- 아이폰기준 -->
+    <!--
     {% if not request.PC %}
     <div class="infotext">
         <div class="introduce"><i class="fas fa-quote-left"></i>
             <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
             <i class="fas fa-quote-right"></i>
         </div>
-    {% endif %}
+    {% endif %} -->
 
     <table class="table">
         <tr>
@@ -94,11 +101,12 @@
         </tr>
         {% endif %}
     </table>
+
     {% if user.is_authenticated %}
-        <a href="javascript:get_stamp();">도장찍기</a>
         <a href="javascript:Open_add();">내 테마에 추가하기</a>
         <a href="javascript:Open_del();">내 테마에서 삭제하기</a>
         <br>
+
         <div id='thema_list' style="display: none;"> <!--클릭 시 보임-->
             <strong>내 테마 목록</strong><br>
             <span>[현재 속한 테마]</span><br>
@@ -187,14 +195,17 @@
             {% endif %}
         </div>
     </details>
-</div>
+
     
     <br>
     <!--해당서점 지도 표시-->
-    <div id="map"></div>
+    <div id="map">
+        {% if user.is_authenticated %}
+        <div class="stamp"><a href="javascript:get_stamp();">도장<br>찍기</a></div>
+        {% endif %}
+    </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
     <script type="text/javascript">
-    
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
@@ -257,31 +268,33 @@
     </div>
     <br>
 
+    <!-- 리뷰 -->
     <div class="review-container">
     <div class="review">REVIEW | 
-            <i class="fas fa-star"></i> {{star_avg}}</div>
+            <i class="fas fa-star" id="rev-star"></i> {{star_avg}}
+    </div>
     
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
         {% csrf_token %}
         <div class="radio_star">
-
-        <input type="radio" name="star" id="shipadd1" value="1" checked/>
-        <label for="shipadd1"></label>
-        <input type="radio" name="star" id="shipadd2" value="2" />
-        <label for="shipadd2"></label>
-        <input type="radio" name="star" id="shipadd3" value="3" />
-        <label for="shipadd3"></label>
-        <input type="radio" name="star" id="shipadd4" value="4" />
-        <label for="shipadd4"></label>
-        <input type="radio" name="star" id="shipadd5" value="5" />
-        <label for="shipadd5"></label>
-    </div>
+            <input type="radio" name="star" id="shipadd1" value="1" checked/>
+            <label for="shipadd1"><i class="fas fa-star"></i></label>
+            <input type="radio" name="star" id="shipadd2" value="2" />
+            <label for="shipadd2"><i class="fas fa-star"></i></label>
+            <input type="radio" name="star" id="shipadd3" value="3" />
+            <label for="shipadd3"><i class="fas fa-star"></i></label>
+            <input type="radio" name="star" id="shipadd4" value="4" />
+            <label for="shipadd4"><i class="fas fa-star"></i></label>
+            <input type="radio" name="star" id="shipadd5" value="5" />
+            <label for="shipadd5"><i class="fas fa-star"></i></label>
+        </div>
 
         <div class="rev_write">
         {{form.as_table}}
         <button type='submit'>등록</button>
-    </form> </div>
+        </div>
+    </form> 
     {% endif %}
     <hr>
 
@@ -312,19 +325,18 @@
     <br><br>
 
     <div class="clawling-container">
-    </div>
     <br>
-    <div class="review_hs">
-        {%for review in rev%}
-        <div class="cr_review_ct">
-        <h3><a href={{review.link}}>{{review.title}}</a></h3>
-        <h4>{{review.content}}</h4>
+        <div class="review_hs">
+            {%for review in rev%}
+            <div class="cr_review_ct">
+            <h3><a href={{review.link}}>{{review.title}}</a></h3>
+            <h4>{{review.content}}</h4>
+            </div>
+            <hr>
+            {%endfor%}
         </div>
-        <hr>
-        {%endfor%}
     </div>
 </div>
-
 </body>
 {% endblock %}
 </html>
