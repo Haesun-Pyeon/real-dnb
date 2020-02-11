@@ -40,6 +40,11 @@
 </head>
 
 <body>
+    #{{tag}}<br>
+    {% for s in stores %}
+        {{s.name}}
+    {% endfor %}
+
     <img src="{% static 'images/logo.jpg' %}" style="width: 80%; margin: 300px 100px;">
 <!--
     <div class="contents">
