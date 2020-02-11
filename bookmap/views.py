@@ -54,7 +54,8 @@ def detail(request, bookstore_id):
         store_scrap = scrap.filter(user=request.user)
         form = ReviewForm()
         thema = Thema.objects.filter(user=request.user)
-        return render(request, 'storedetail.html', {'reviews': reviews, 'rev': rev, 'store': store_detail, 'scrap': store_scrap, 'form': form, 'star_avg': star_avg, 'first': first, 'second': second, 'third': third, 'thema': thema,})
+        s_thema = store_detail.thema_set.filter(user=request.user)
+        return render(request, 'storedetail.html', {'reviews': reviews, 'rev': rev, 'store': store_detail, 'scrap': store_scrap, 'form': form, 'star_avg': star_avg, 'first': first, 'second': second, 'third': third, 'thema': thema, 's_thema':s_thema,})
     else:
         return render(request, 'storedetail.html', {'reviews':reviews,'rev' : rev, 'store' : store_detail, 'star_avg':star_avg, 'first':first, 'second':second, 'third':third, })
       

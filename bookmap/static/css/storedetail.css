@@ -60,6 +60,10 @@ tr{
 }
 td{
     font-family: 'NanumSquareRound';
+    border-top: 1px solid #615136;
+    border-bottom: 1px solid #615136;
+    padding: 10px;
+    vertical-align: middle;
 }
 td.icon{
     text-align: center;

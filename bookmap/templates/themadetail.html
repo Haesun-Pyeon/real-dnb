@@ -19,7 +19,7 @@
         </div>
         </h1>
         {% if thema.user.profile.profileimg %}
-            <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
+            <img src="{{thema.user.profile.profileimg.url}}" alt="" class="myprofile_img">
         {% else %}
             <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
         {% endif %}
