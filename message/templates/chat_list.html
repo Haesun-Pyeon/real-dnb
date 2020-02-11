@@ -1,12 +1,35 @@
-chat_list
-<br>
-{% for msg in msglist %}
+<!DOCTYPE html>
+<html style="width: 100%;">
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chat_list.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-{% if msg.sender == request.user %}
-    <a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.recipient}}{{msg.content}}<br></a>    
-{% else %}
-    <a href="{% url 'chat-temp' msg.sender.id %}">{{msg.sender}}{{msg.content}}<br></a>    
-{% endif %}
+<body>
+    
+<div class="mlist">
+    <table>
+        <tbody>
+            {% for msg in msglist %}
+            <tr>
+                {% if msg.sender == request.user %}
+                <td class="send_content"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.content}}<br></a></td>
+                <td class="sender_id"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.recipient}}</a></td>
+                <td class="send_time">{{msg.sentAt}}</td>
+                {% else %}
+                <td class="send_content"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.content}}<br></a></td>
+                <td class="sender_id"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.sender}}</a></td>
+                <td class="send_time">{{msg.sentAt}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+</div>
+</body>
+{% endblock %}
 
-</a>
-{% endfor %}
+</html>

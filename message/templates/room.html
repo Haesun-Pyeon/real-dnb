@@ -1,26 +1,42 @@
-<!-- chat/templates/chat/room.html -->
 <!DOCTYPE html>
-<html>
+<html style="width: 100%;">
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/room.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8"/>
-    <title>Chat Room</title>
 </head>
 
 <body>
+    <div class="chatbody" id="chatbody">
     {% for msg in messages.all %}
-        {% if msg.sender == user %}
-            {{msg.sender}}<br> <!--내가 보낸 문자 오른쪽정렬-->
-            {{msg.content}}<br>
-            {{msg.sentAt}}<br>
+        {% if msg.sender == user %} <!--내가 보낸 문자 오른쪽정렬-->
+        <div class="sendchat">
+            <div class="chatcontent_r">{{msg.content}}</div>
+            <div class="chat_time">{{msg.sentAt}}</div>
+        </div>
         {% else %}
-            {{msg.sender}}<br> <!--남이 보낸 문자 왼쪽정렬-->
-            {{msg.content}}<br>
-            {{msg.sentAt}}<br>
+            {% if msg.sender.profile.profileimg %}
+                <img src="{{msg.sender.profile.profileimg.url}}" alt="" class='mypage-prof-img'>
+            {% else %}
+                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+            {% endif %}
+
+            <!--남이 보낸 문자 왼쪽정렬-->
+            {{msg.sender}}<br> 
+            <div class="chatcontent">
+            {{msg.content}}</div>
+            <div class="chat_time">
+            {{msg.sentAt}}</div>
+
         {% endif %}
     {% endfor %}
-    <div id="chat-body"></div><br/>
-    <input id="chat-message-input" type="text" size="100"/><br/>
-    <input id="chat-message-submit" type="button" value="Send"/>
+</div>
+    <input id="chat-message-input" type="text" size="100" class="sending-box"/>
+    <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
+
 
     <form method="POST">
     {% csrf_token %}
@@ -29,71 +45,78 @@
         <input id="save" type="submit" style="visibility: hidden;"/>
     </form>
 
+    <!--목록으로 돌아가기-->
+    <a class="listlink" href="{% url 'chat-list' %}">목록으로 돌아가기</a>
+        <script type="text/javascript">
+            function enter() { 
+                if (window.event.keyCode == 13) {
+                    document.getElementById('send').click();
+                }
+            }
+        </script>
+    <script>
+        let roomName = {{ room_name_json }};
+        var request_user = {{ name }};
+        var chatSocket = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/chat/' + roomName + '/');
+
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            var from = data['name']; //from이 request_user면 내가 보낸 글, 아니면 남이 보낸 글
+
+            //누가보낸건지
+            var div1 = document.createElement('div');
+            var text1 = document.createTextNode(from);
+            div1.appendChild(text1);
+            document.getElementById("chat-body").appendChild(div1);
+
+            //내용
+            var div2 = document.createElement('div');
+            var text2 = document.createTextNode(message);
+            div2.appendChild(text2);
+            document.getElementById("chat-body").appendChild(div2);
+
+            //시각
+            var cur = new Date();
+            let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+            var div3 = document.createElement('div');
+            var hours = 0, ap = "";
+            if(cur.getHours() < 12){hours = cur.getHours(); ap = " a.m.";}
+            else{hours = cur.getHours()-12; ap = " p.m.";}
+            var time = month[cur.getMonth()]+". "+cur.getDate()+", "+cur.getFullYear()+", "+cur.getHours()+":"+cur.getMinutes()+ap;
+            var text3 = document.createTextNode(time);
+            div3.appendChild(text3);
+            document.getElementById("chat-body").appendChild(div3);
+
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            var messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+            var room = document.querySelector("#chat-room");
+            room.value = roomName;
+            var text = document.querySelector("#chat-text");
+            text.value = message;
+            chatSocket.send(JSON.stringify({'message':message, 'name':request_user}));
+            document.querySelector('#save').click();
+
+            messageInputDom.value = '';
+        };
+    </script>
 </body>
-
-<script>
-    
-    let roomName = {{ room_name_json }};
-    var request_user = {{ name }};
-    var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/chat/' + roomName + '/');
-
-    chatSocket.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        var message = data['message'];
-        var from = data['name']; //from이 request_user면 내가 보낸 글, 아니면 남이 보낸 글
-
-        //누가보낸건지
-        var div1 = document.createElement('div');
-        var text1 = document.createTextNode(from);
-        div1.appendChild(text1);
-        document.getElementById("chat-body").appendChild(div1);
-
-        //내용
-        var div2 = document.createElement('div');
-        var text2 = document.createTextNode(message);
-        div2.appendChild(text2);
-        document.getElementById("chat-body").appendChild(div2);
-
-        //시각
-        var cur = new Date();
-        let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-        var div3 = document.createElement('div');
-        var hours = 0, ap = "";
-        if(cur.getHours() < 12){hours = cur.getHours(); ap = " a.m.";}
-        else{hours = cur.getHours()-12; ap = " p.m.";}
-        var time = month[cur.getMonth()]+". "+cur.getDate()+", "+cur.getFullYear()+", "+cur.getHours()+":"+cur.getMinutes()+ap;
-        var text3 = document.createTextNode(time);
-        div3.appendChild(text3);
-        document.getElementById("chat-body").appendChild(div3);
-
-    };
-
-    chatSocket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
-    document.querySelector('#chat-message-input').focus();
-
-    document.querySelector('#chat-message-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#chat-message-submit').click();
-        }
-    };
-
-    document.querySelector('#chat-message-submit').onclick = function(e) {
-        var messageInputDom = document.querySelector('#chat-message-input');
-        var message = messageInputDom.value;
-        var room = document.querySelector("#chat-room");
-        room.value = roomName;
-        var text = document.querySelector("#chat-text");
-        text.value = message;
-        chatSocket.send(JSON.stringify({'message':message, 'name':request_user}));
-        document.querySelector('#save').click();
-
-        messageInputDom.value = '';
-    };
-</script>
-
+{% endblock %}
 </html>
