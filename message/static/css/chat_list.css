@@ -1,6 +1,11 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 
+.chat-title{
+    font-size: 3rem;
+    font-family: 'YiSunShinDotumM';
+    margin: 20px;
+}
 .mlist table{
     font-family: 'NanumSquareRound';
     font-size:28px;
@@ -12,23 +17,31 @@
 }
 .mlist td{
     height: 100px;
-    border-bottom: 2px dashed #615136;
+    border-bottom: 2px dashed #569377;
+    border-top: 2px dashed #569377;
 }
 .send_content{
     width:50%;
+    padding-left: 20px;
 }
 .sender_id{
     padding-right:10px;
     text-align: right;
 }
-.mlist td a{
-    color: #402719;
+td.send_content a{
+    color: #569377;
+    font-weight: 700;
+    text-decoration: none;
+}
+td.sender_id a{
+    color: #000000;
     text-decoration: none;
 }
 .send_time{
     width:330px;
     color: gray;
     text-align: center;
+    font-size: 1.5rem;
 }
 @media (min-width: 1025px){
     .mlist{

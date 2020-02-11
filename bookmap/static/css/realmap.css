@@ -143,6 +143,7 @@ table {
     border-top: 1px solid #615136;
     border-bottom: 1px solid #615136;
     padding: 10px;
+    vertical-align: middle;
 }
 .table thead th{
     border-bottom: 2px solid #615136;
