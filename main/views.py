@@ -9,6 +9,7 @@ import os
 from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
+from django.db.models import Q
 
 
 # Create your views here.
@@ -29,7 +30,20 @@ def home(request):
         profile.save()
         return render(request, 'social.html')
     else:
-        return render(request, 'home.html')
+        tag = ''
+        try:
+            tag_set = request.user.profile.tag_set.all()
+            tag = tag_set.order_by('?')[0]
+            stores = BookStore.objects.all()
+            q = Q()
+            for store in stores:
+                if tag in store.tag_set.all():
+                    q.add(Q(name=store.name), q.OR)
+            stores = BookStore.objects.filter(q).order_by('?')[:4]
+        except:
+            stores = '' #태그 없으면 로그인 안한 사람이랑 같은 로직으로 ㄱㄱ
+            
+        return render(request, 'home.html', {'stores':stores, 'tag':tag,})
 
 def signup(request):
     if request.method == 'POST':

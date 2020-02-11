@@ -25,8 +25,8 @@
 - $python manage.py migrate
 
 ## 책방 DB 불러오기
-- 외관사진들 다 media/store/폴더에 넣고 bookDB.txt, crawling.txt파일 있는지 확인
-- DB.py 있는 위치에서 $python DB.py 입력!
+- bookDB2.xlsx 파일 있는지 확인
+- DB2.py 있는 위치에서 $python DB2.py 입력!
 
 ## 관리자계정 만들기
 - $python manage.py createsuperuser
