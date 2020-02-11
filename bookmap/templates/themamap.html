@@ -1,32 +1,57 @@
+<!DOCTYPE html>
+<html style="width: 100%;">
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/themamap.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
+<div class="btn-box">
 {% if user.is_authenticated %}
-    <a href="{% url 'themamap' %}">공개 테마</a>
-    <a href="{% url 'my_thema' %}">나의 테마</a>
-    <a href="{% url 'thema_add' %}">테마 추가하기</a>
+    <a href="{% url 'themamap' %}" class="publicthema-btn">공개테마 보기</a>
+    <a href="{% url 'my_thema' %}" class="mythema-btn">나의테마 보기</a>
+    <a href="{% url 'thema_add' %}" class="addthema-btn">테마 추가하기</a>
+    <hr>
+{% else %}
+    <br>
 {% endif %}
-<br>
+</div>
+
+
+<div class="allthema-box">
 {% for i in thema %}
 
-{% if i.img %}
-<img src='{{i.img.url}}'>
-{% endif %}
+    {% if i.user.profile.profileimg %}
+        <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
+    {% else %}
+        <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+    {% endif %}
+    <span class="writer">{{i.user.profile.nickname}}</span>
+   
+    <div class="like">
+    {% if request.user in i.like.all %}
+    <i class="fa fa-heart" style='color:#E29B78;'></i>
+    {% else %}
+    <i class="fa fa-heart-o" style='color:#E29B78;'></i>
+    {% endif %}
+    <span class="count">{{i.total_like}}</span>
+    <br></div>
 
-<a href="{% url 'themadetail' i.id %}">{{i.title}}</a>
-{%if request.user in i.like.all %}
-<i class="fa fa-heart" style='color:#E29B78;'></i>
-{%else%}
-<i class="fa fa-heart-o" style='color:#E29B78;'></i>
-{%endif%}
-<span>{{i.total_like}}개</span>
-<span>만든이: {{i.user.profile.nickname}}</span><br>
+    {% if i.img %}
+    <div class="themaimg-box">
+        <a href="{% url 'themadetail' i.id %}" class="title">
+    <img src='{{i.img.url}}' class="themaimg">
+    {% endif %}
+    </div>
 
-{% endfor %}
-
+        {{i.title}}</a>
+    <hr>
+    {% endfor %}
+</div>
 </body>
 {% endblock %}
+
+</html>

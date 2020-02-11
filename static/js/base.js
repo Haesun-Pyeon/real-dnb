@@ -1,6 +1,6 @@
 var path = document.location.pathname;
 
-if (path.includes('themamap')) {
+if (path.includes('thema')) {
     result = 'THEME MAP'
 } else if (path.includes('bookmap/store')) {
     result = 'INFOMATION'
