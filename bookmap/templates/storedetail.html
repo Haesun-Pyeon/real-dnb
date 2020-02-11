@@ -103,25 +103,26 @@
     </table>
 
     {% if user.is_authenticated %}
-        <a href="javascript:Open_add();">내 테마에 추가하기</a>
-        <a href="javascript:Open_del();">내 테마에서 삭제하기</a>
-        <br>
+        <div class="themabtn-box">
+            <a href="javascript:Open_add();" class="add-btn">내 테마에 추가하기</a>
+            <a href="javascript:Open_del();" class="delete-btn">내 테마에서 삭제하기</a>
+        </div>
 
         <div id='thema_list' style="display: none;"> <!--클릭 시 보임-->
-            <strong>내 테마 목록</strong><br>
-            <span>[현재 속한 테마]</span><br>
-                {% for thema in store.tag_set.all %}
+            <div class="nowthema">[현재 속한 테마]</div>
+                {% for thema in store.thema_set.all %}
                 <li>{{thema.title}}</li>
                 {% empty %}
                 <li>없음</li>
                 {% endfor %}
-            <br><span>[테마 선택]</span><br>
+            <hr>    
+            <div class="selectthema">[테마 선택]</div>
             <form method="POST" id='thema_form'>
                 {% csrf_token %}
                 <!--일단 여기서는 중복선택 안되게함-->
                 <select id='add' name='thema'>
                     {% for t in thema %} <!--테마에 추가할때 (없는 태그들만 띄워줌)-->
-                        {% if t not in store.tag_set.all %}
+                        {% if t not in store.thema_set.all %}
                         <option value='{{t.id}}'>{{t.title}}</option>
                         {% endif %}
                     {% endfor %}
@@ -129,15 +130,16 @@
 
                 <select id='del' name='thema'>
                     {% for t in thema %} <!--테마에서 삭제할때 (기존에 설정된 태그들만 띄워줌)-->
-                        {% if t in store.tag_set.all %}
+                        {% if t in store.thema_set.all %}
                         <option value='{{t.id}}'>{{t.title}}</option>
                         {% endif %}
                     {% endfor %}
                 </select>
 
-                <input type="submit" id='submit'/>
+                <input type="submit" id='submit' class="sub-btn"/>
             </form>
-            <a href="javascript:Close();">닫기</a>
+            <a href="javascript:Close();" class="close-btn">닫기</a>
+            <hr>
         </div>
 
         <script type="text/javascript">
@@ -292,7 +294,7 @@
 
         <div class="rev_write">
         {{form.as_table}}
-        <button type='submit'>등록</button>
+        <button type='submit' class="button">등록</button>
         </div>
     </form> 
     {% endif %}
@@ -313,7 +315,7 @@
             <a href="{% url 'reviewdelete' review.id %}">삭제</a>
         </div>
         {% else %}
-        <a href="{% url 'chat-temp' review.user.id %}">쪽지보내기</a>
+        <a href="{% url 'chat-temp' review.user.id %}" class="send-btn">쪽지보내기</a>
     </div>
         {% endif %} 
         {% endif %}
@@ -321,16 +323,12 @@
     {% endfor %}
 </div>
 
-
-    <br><br>
-
     <div class="clawling-container">
-    <br>
         <div class="review_hs">
             {%for review in rev%}
             <div class="cr_review_ct">
-            <h3><a href={{review.link}}>{{review.title}}</a></h3>
-            <h4>{{review.content}}</h4>
+            <h3><a href={{review.link}}>{{review.title}}</h3>
+            <h4>{{review.content}}</h4></a>
             </div>
             <hr>
             {%endfor%}

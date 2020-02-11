@@ -8,7 +8,7 @@ body{
     font-family: 'NanumSquareRound';
     font-size: 35px;
     color: #3c281b;
-    height: 1400px;
+    height: 1430px;
     overflow:auto;
     margin:0 30px;
     padding-top: 10px;
@@ -103,10 +103,14 @@ input#chat-message-input.sending-box:focus{
 }
 .listlink{
     font-family: 'YiSunShinDotumM';
-    font-size: 25px;
-    color: #3c281b;
+    font-size: 1.5rem;
+    color: #ffffff;
     text-decoration: none;
-    margin:0 430px;
+    background-color: #E29B78;
+    padding: 10px 90px;
+    border-radius: 5px;
+    width: fit-content;
+    margin: 0px 310px;
 }
 @media (min-width: 1025px){
     .chatcontent, .chatcontent_r{

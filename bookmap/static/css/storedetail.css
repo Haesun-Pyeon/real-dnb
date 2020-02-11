@@ -16,7 +16,7 @@ span#name{
 }
 
 .like{
-    width: 95px;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -49,6 +49,8 @@ span#name{
     font-size: 18px;
     color: gray;
 }*/
+
+ /* 책방정보 테이블 */
 table{
     width: 100%;
     margin-top: 20px;
@@ -84,8 +86,97 @@ td.data{
     font-size: 27px;
     overflow: hidden;
     vertical-align: middle;
-} /*여기까지 책방정보 테이블*/
-
+}
+/* 테마에 추가, 삭제 버튼*/
+.add-btn, .delete-btn{
+    background-color: #FFD757;
+    font-family: 'YiSunShinDotumM';
+    padding: 5px 30px;
+    font-size: 1.5rem;
+    margin: 10px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 90px;
+    border: 2px solid #FFD757;
+}
+.add-btn:visited, .add-btn:hover, .delete-btn:visited, .delete-btn:hover
+{color: #FFD757; background-color: white; text-decoration: none;}
+ 
+.themabtn-box{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+div#thema_list{
+    width: 70%;
+    font-family: 'YiSunShinDotumM';
+}
+.nowthema,.selectthema{
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 900;
+    color: #569377;
+}
+li{
+    font-size: 1.5rem;
+    text-align: center;
+}
+div#thema_list hr{
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem;
+}
+form#thema_form{
+    text-align: center;
+    margin: 10px 0px;
+}
+select#add, select#del{
+    width: 250px;
+    padding: .5rem .5rem; /* 여백으로 높이 설정 */
+    font-family: inherit;  /* 폰트 상속 */
+    border: 1px solid #999;
+    border-radius: 10px; 
+    -moz-appearance: none;
+    appearance: none;
+    font-size: 1.4rem;
+}
+input#submit.sub-btn{
+    height: 42px;
+    font-size: 1.4rem;
+    color: #569377;
+    background-color: white;
+    border: 2px solid #569377;
+    border-radius: 10px;
+}
+.close-btn{
+    background-color: #569377;
+    font-family: 'YiSunShinDotumM';
+    padding: 5px 15px;
+    font-size: 1.3rem;
+    margin-left: 360px;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/*단골리스트*/
+details{
+    font-size: 1.5rem;
+    font-family: 'YiSunShinDotumM';
+    background-color: #E29B78;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+    padding: .3rem 0rem;
+    border-radius: 80px;
+}
 /*도장찍기 버튼*/
 .stamp{
     width: 80px;
@@ -137,76 +228,37 @@ div.review{
     box-shadow: 5px 5px 4px lightgrey;
     font-family: 'YiSunShinDotumM';   
 } */
-.clawling-container{
-    text-align:center;
-    border-radius: 100px;
-    background-color: rgba(235,221,202,0.6);
-    width: 100%;
-}
-.clawling{
-    font-family: 'BBTreeGL';
-    font-size: 25px;
-    color: gray;
-}
-a.clawling:link,a.modify-btn:link { color:#615136; text-decoration: none;}
-a.clawling:visited,a.modify-btn:visited { color: #615136; text-decoration: none;}
-a.clawling:hover,,a.modify-btn:hover { color: #615136; text-decoration: none;}
+
+/*
+a:link { color:#ffffff; text-decoration: none;}
+a:visited { color: #ffffff; text-decoration: none;}
+a:hover { color: #ffffff; text-decoration: none;} */
 
 .delete{
     float: right;
 }
-.summary{
-    font-family: 'YiSunShinDotumM';   
-    font-size: 30px;
-    border-radius: 10px;
-}
-
-.inp_mod{
-    width: 200px;
-    height: 80px;
-    font-family: 'YiSunShinDotumM';
-    font-size: 25px;
-    margin-top: 10px;
-}
-.inp_save{
-    width:50px;
-    background-color: #615136;
-    border: none;
-    color:#fff;
-    padding: 10px 0;
-    text-align: center;
-    text-decoration: none;
-    /* display: inline-block; */
-    font-size: 15px;
-    margin: 4px;
-    cursor: pointer;
-    /* border-radius: 10px; */
-    float: right;
-    margin-top: 40px;
-    margin-right: 10px;
-}
 
 textarea#id_content{
     width: 715px;
-    height: 60px;
-    outline: 2px solid #EBDDCA;
+    height: 50px;
+    outline: 2px solid #999;
     font-size: 30px;
     font-family: 'YiSunShinDotumM';
 }
 .rev_write{
     position: relative;
 }
-.rev_write button{
+.button{
     /* font-family: 'YiSunShinDotumM';
     font-size: 30px; */
     position: absolute;
-    margin: 5px 0px 0px 10px;
+    margin-left: 20px;
 }
 
-.delete, button{
+.delete, .button{
     font-family: 'YiSunShinDotumM';
-    font-size: 25px;
-    background-color: #615136;
+    font-size: 1.3rem;
+    background-color: #569377;
     border: 0px;
     color:white;
     border-radius: 10px;
@@ -230,6 +282,20 @@ label i.fas.fa-star{
 input[type="radio"]:checked + label i.fas.fa-star{
     color: #FFD757;
 }
+.send-btn{
+    background-color: #E29B78;
+    font-family: 'YiSunShinDotumM';
+    padding: 10px 15px;
+    font-size: 1.3rem;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    right: 10px;
+}
  /* 라디오버튼 별점 이미지가 아니라 icon 불러와서 보여주기
 input[type="radio"] + label{
      background-image:url(../img/gray_star.png);
@@ -245,19 +311,33 @@ input[type="radio"]:checked + label{
      background-image:url(../img/full_star.png);
      background-size: 60px 60px;
  }*/
+
+ /*크롤링 해온 내용*/
+ .clawling-container{
+    text-align: center;
+    background-color: rgba(235, 221, 202, 0.3);
+    width: 100%;
+    padding-top: 5px;
+    border-radius: 10px;
+}
+
 .review_hs{
     width: 100%;
     margin-top: 40px;
 }
-.cr_review_ct{
-    font-family: 'YiSunShinDotumM';
-}
 .cr_review_ct h3{
     font-weight: 800;
+    font-family: 'YiSunShinDotumM';
+    font-size: 1.7rem;
 }
-.cr_review_ct h3 a:link { color:#615136; text-decoration: none;}
-.cr_review_ct h3 a:visited { color: #615136; text-decoration: none;}
-.cr_review_ct h3 a:hover { color: #615136; text-decoration: none;}
+.cr_review_ct h4{
+    font-size: 1.4rem;
+    padding: 0px 25px;
+    font-family: 'NanumSquareRound';
+}
+.cr_review_ct a:link { color:#000000; text-decoration: none;}
+.cr_review_ct a:visited { color: #000000; text-decoration: none;}
+.cr_review_ct a:hover { color: #000000; text-decoration: none;}
 
 /*
 .count-num{
@@ -273,12 +353,10 @@ input[type="radio"]:checked + label{
 i.fas.fa-quote-left, i.fas.fa-quote-right{
     display: inline-block; color: lightgray; font-size: 30px;
 }
-
-
-
 .storeimg{
     width: 100%;
 }
+/*
 @media(min-width:1025px){
     div#map{
         width: 80%;
@@ -392,4 +470,4 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     }
 
 
-}
+}*/
