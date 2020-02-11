@@ -50,7 +50,7 @@
             <td class="colname">연락처</td>
             <td class="data">{{store.phone_number}}</td>
         </tr>
-        {% if store.site %}
+        {% if store.site != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-globe-asia"></i></td>
             <td class="colname">홈페이지</td>
@@ -66,7 +66,7 @@
             <td class="data">없음</td>
         {% endif %}
         </tr>
-        {% if store.openhour %}
+        {% if store.openhour != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-clock"></i></td>
             <td class="colname">영업시간</td>
@@ -78,7 +78,7 @@
             <td class="colname">주소</td>
             <td class="data"><span id='addr'>{{store.addr}}</span></td>
         </tr>
-        {% if store.insta %}
+        {% if store.insta != 'nan' %}
         <tr>
             <td class="icon"><i class="fab fa-instagram"></i></td>
             <td class="colname">인스타그램</td>
@@ -86,7 +86,7 @@
             <i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a></td>
         </tr>
         {% endif %}
-        {% if store.email %}
+        {% if store.email != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-envelope"></i></td>
             <td class="colname">이메일</td>
@@ -102,7 +102,7 @@
         <div id='thema_list' style="display: none;"> <!--클릭 시 보임-->
             <strong>내 테마 목록</strong><br>
             <span>[현재 속한 테마]</span><br>
-                {% for thema in store.tag_set.all %}
+                {% for thema in store.thema_set.all %}
                 <li>{{thema.title}}</li>
                 {% empty %}
                 <li>없음</li>
@@ -113,7 +113,7 @@
                 <!--일단 여기서는 중복선택 안되게함-->
                 <select id='add' name='thema'>
                     {% for t in thema %} <!--테마에 추가할때 (없는 태그들만 띄워줌)-->
-                        {% if t not in store.tag_set.all %}
+                        {% if t not in store.thema_set.all %}
                         <option value='{{t.id}}'>{{t.title}}</option>
                         {% endif %}
                     {% endfor %}
@@ -121,7 +121,7 @@
 
                 <select id='del' name='thema'>
                     {% for t in thema %} <!--테마에서 삭제할때 (기존에 설정된 태그들만 띄워줌)-->
-                        {% if t in store.tag_set.all %}
+                        {% if t in store.thema_set.all %}
                         <option value='{{t.id}}'>{{t.title}}</option>
                         {% endif %}
                     {% endfor %}
@@ -251,8 +251,8 @@
     
     <br>
     <div class="img-container">
-    {% if store.img %}
-        <img src='{{store.img.url}}' class="storeimg">
+    {% if store.img != 'nan' %}
+        <img src='{{store.img}}' class="storeimg">
     {% endif %}
     </div>
     <br>

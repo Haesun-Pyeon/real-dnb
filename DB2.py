@@ -6,11 +6,30 @@ from bookmap.models import BookStore, Tag
 import pandas as pd
 
 if __name__ == '__main__':
-    f = pd.read_excel('561.xlsx')
+    f = pd.read_excel('bookDB2.xlsx')
     for l in range(len(f)):
         name = f.loc[l, 'name']
-        tag = str(f.loc[l, 'tag'])
-        tag = tag.split(',')
+        addr = f.loc[l, 'addr']
+        phone_number = f.loc[l, 'phone_number']
+        site = f.loc[l, 'site']
+        img = f.loc[l, 'img']
+        insta = f.loc[l, 'insta']
+        email = f.loc[l, 'email']
+        oh = str(f.loc[l, 'openhour'])
+        openhour=oh.replace(';','\n')
+        tag = str(f.loc[l, 'tag_set'])
+        tag = tag.split(';')
+
+        BookStore.objects.create(
+        name=name,
+        addr=addr,
+        insta=insta,
+        site=site,
+        email=email,
+        phone_number=phone_number,
+        openhour=openhour,
+        img=img)
+        
         try:
             store = BookStore.objects.get(name=name)
             for t in tag:

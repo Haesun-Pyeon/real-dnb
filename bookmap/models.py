@@ -12,7 +12,7 @@ class BookStore(models.Model):
     phone_regex = RegexValidator(regex=r'^\d{2,4}\-\d{3,4}\-\d{4}$', message="000-0000-0000과 같은 형식으로 입력해주세요.")
     phone_number = models.CharField('전화번호',validators=[phone_regex], blank=True, max_length=15, null=True)
     site = models.URLField('웹사이트',null=True, blank=True)
-    img = models.ImageField('외관사진',upload_to='store/', null=True, blank=True)
+    img = models.URLField(null=True, blank=True)
     insta = models.CharField('인스타그램',null=True, blank=True, max_length=50)
     email = models.EmailField('이메일', null=True, blank=True)
     openhour = models.TextField('영업시간',null=True, blank=True)
@@ -40,6 +40,14 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def tag_count(self):
+        store = BookStore.objects.all()
+        count = 0
+        for s in store:
+            if self in s.tag_set.all():
+                count += 1
+        return count
 
 #우선 크롤링 리뷰는 냅뒀다가 나중에 블로그 검색 API 적용시에 수정
 class Crawling(models.Model):

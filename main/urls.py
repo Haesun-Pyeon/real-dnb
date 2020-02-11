@@ -11,5 +11,7 @@ urlpatterns = [
     path('user_change/', views.user_change, name='user_change'),
     path('test/', views.test, name='test'),
     path('social/', views.social, name='social'),
-
+    path('tag/', views.tag, name='tag'),
+    path('tag_count/<int:tag_id>', views.tag_count, name='tag_count'),
+    path('pro_tag/', views.pro_tag, name='pro_tag'),
 ]
