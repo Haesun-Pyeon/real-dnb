@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<strong>내 취향에 맞는 태그를 선택해주세요!</strong>
+<i>tip: 이름을 누르면 포함된 책방의 갯수가 보입니다.</i>
+<form method="POST" action="{% url 'pro_tag' %}">
+    {% csrf_token %}
+    {% for t in tag %}
+    <input name='tag' type="checkbox" value="{{t.title}}">
+    <a href="javascript:tag_count('{{t.id}}','{{t.title}}');">{{t.title}}</a>
+    <span id='{{t.title}}'></span><br>
+    {% endfor %}
+    <input type="submit" value="등록">
+
+</form>
+
+<script type="text/javascript">
+    function tag_count(id,name) {
+        id=parseInt(id);
+        $.ajax({
+            url: "{% url 'tag_count' 123%}".replace('123',id),
+            type: "get",
+        }).done(function (data) {
+            document.getElementById(name).innerHTML = data;
+        });
+    }
+</script>
+
+</body>
+
+{% endblock %}

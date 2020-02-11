@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html style="width: 100%;">
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
@@ -7,10 +9,8 @@
     <script src="{% static 'js/home.js' %}" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     <script language="JavaScript">
-
         $(document).ready(function() {
             var $banner = $(".banner").find("ul");
-    
             var $bannerWidth = $banner.children().outerWidth();//이미지의 폭
             var $bannerHeight = $banner.children().outerHeight(); // 높이
             var $length = $banner.children().length;//이미지의 갯수
@@ -40,7 +40,9 @@
 </head>
 
 <body>
-	<div class="contents">
+    <img src="{% static 'images/logo.jpg' %}" style="width: 80%; margin: 300px 100px;">
+<!--
+    <div class="contents">
 		<div class="banner">
 			<ul>
 				<li><div class="slideimg-box"><img class="slideimg4"></div></li>
@@ -61,7 +63,10 @@
     <div class="main-btn">
         <a href="{%url 'realmap' %}">추천책방 보러가기</a>
     </div>
+
+-->
 </body>
 
 
 {% endblock %}
+</html>

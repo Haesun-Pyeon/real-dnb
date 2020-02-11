@@ -29,33 +29,37 @@
     </div> 
 
 
-<div id="map" class="map" style="width:90%;height:800px;z-index: 0; margin: 0px auto;"></div>
+<div id="map" class="map" style="width:90%;height:700px;z-index: 0; margin: 0px auto;">
+    <div class="loc"><a onclick="current();">현위치</a></div>
+</div>
 
-<a onclick="current();">현위치</a>
-<a href="{% url 'themamap' %}">목록보기</a>
-{% if edit %}
-    <a href="{% url 'thema_change' thema.id %}">테마 수정</a>
-    <a href="{% url 'thema_delete' thema.id %}" onclick="return confirm('정말로 삭제하시겠습니까?')">테마 삭제</a>
-{% endif %}
 <table class="table">
     <thead>
         <tr>
-        <th>이름</th>
+        <th class="table-sname">책방이름</th>
         <th>주소</th>
-        <th>더보기</th>
-        <!-- style="white-space:nowrap;" -->
+        <th class="table-seemore">자세한 정보</th>
         </tr>
     </thead>
     <tbody>
         {% for store in stores %}
         <tr onclick="list_click('{{store.addr}}');">
-            <td>{{store.name}}</td>
+            <td class="table-sname">{{store.name}}</td>
             <td>{{store.addr}}</td>
-            <td><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
+            <td class="table-seemore"><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<div class="btn-container">
+    {% if edit %}
+        <a href="{% url 'thema_change' thema.id %}" class="update">수정</a>
+        <a href="{% url 'thema_delete' thema.id %}" class="delete" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+    {% endif %}
+    <a href="{% url 'themamap' %}" class="seelist">목록보기</a>
+</div>
+
 </body>
 
 

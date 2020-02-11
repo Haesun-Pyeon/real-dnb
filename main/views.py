@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from .models import Profile
-from bookmap.models import BookStore, Scrap, Stamp
+from bookmap.models import BookStore, Scrap, Stamp, Tag
 from culture.models import Comment ##
 import os
 from urllib.parse import urlparse
@@ -48,7 +48,7 @@ def signup(request):
                 profile = Profile(user=user, nickname=nickname, email=email)
                 profile.save()
                 auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                return redirect('home')
+                return redirect('tag')
         else:
             content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
             return HttpResponse(content)
@@ -160,4 +160,20 @@ def social(request):
         response = requests.get(img_url)
         if response.status_code == 200:
             profile.profileimg.save(name, ContentFile(response.content), save=True)
+    return redirect('tag')
+
+def tag(request):
+    tag = Tag.objects.all()
+    return render(request, 'tag.html', {'tag': tag,})
+    
+def tag_count(request, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    return HttpResponse(str(tag.tag_count()))
+
+def pro_tag(request):
+    tag = request.POST.getlist('tag')
+    profile = Profile.objects.get(user=request.user)
+    for t in tag:
+        temp=Tag.objects.get(title=t)
+        profile.tag_set.add(temp)
     return redirect('home')

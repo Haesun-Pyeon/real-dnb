@@ -5,12 +5,21 @@ from .forms import CommentForm, CultureForm
 from el_pagination.views import AjaxListView
 from django.db.models import Q
 import os
+import simplejson
 # Create your views here.
 
 def board(request):
     cultures = Culture.objects.order_by('-write_date')
     result = 'total'
-    return render(request, 'board.html', {'cultures':cultures, 'result':result})
+
+    bookstores = BookStore.objects.all()
+    insta = []
+    for a in bookstores:
+        if a.insta != 'nan':
+            insta.append(a.insta)
+        else: pass
+    instalist = simplejson.dumps(insta)
+    return render(request, 'board.html', {'cultures':cultures, 'result':result,'instalist':instalist,'stores':bookstores,})
 
 def entry_index(request, template='others/board.html'):
     context = {

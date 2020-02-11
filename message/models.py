@@ -37,3 +37,7 @@ class Message(models.Model):
     def senderProfile(self):
         who = Profile.objects.get(user=self.sender)
         return who
+
+    def recipientProfile(self):
+        who = Profile.objects.get(user=self.recipient)
+        return who

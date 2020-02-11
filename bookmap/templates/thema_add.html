@@ -3,23 +3,35 @@
     {% extends 'base.html' %}
     {% block content %}
     {% load staticfiles %}
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/thema_add.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    </head>
     <body>
-        <strong>테마 추가하기</strong>
-        <form method="POST" action="{% url 'thema_add' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <table>
+    <div class="newbody">
+        <h1>테마 추가하기</h1>
+        <div class="thema-container">
+            <form method="POST" action="{% url 'thema_add' %}" enctype="multipart/form-data" class="themaform">
+                {% csrf_token %}
                 {{form}}
-            </table>
-            <span>책방 선택</span><br>
-            <select name='store' multiple>
-                {% for store in stores %}
-                    <option value='{{store.name}}'>{{store.name}}</option>
-                {% endfor %}
-            </select>
-            <br><i>(PC) Ctrl+클릭 시 중복 선택됩니다.</i>
-            <br><i>테마 등록 후 책방 상세페이지에서도 추가/삭제 가능합니다.</i>
-            <input type="submit" value="등록"/>
-        </form>
+                <br>
+                <div>
+                    <h4>∙ 책방 선택</h4>
+                <select name='store' class="select-box" multiple>
+                    {% for store in stores %}
+                        <option value='{{store.name}}'>{{store.name}}</option>
+                    {% endfor %}
+                </select><br>
+                <div class="info">
+                    <i>(PC) Ctrl+클릭 시 중복 선택됩니다.</i><br>
+                    <i>테마 등록 후 책방 상세페이지에서도 추가/삭제 가능합니다.</i>
+                </div>
+                </div>
+                <br>
+                <input type="submit" value="등록" class="submit"/>
+            </form>
+        </div>
+    </div>
     </body>
 
     {% endblock %}

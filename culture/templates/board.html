@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
+{% load staticfiles %}
 {% load el_pagination_tags %}
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+    <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
 </head>
 
 <body>
@@ -78,9 +79,38 @@
 </div>
 
 
-
 </div>
+
+
+{% for store in stores%}
+{% if store.insta != 'nan' %}
+<div id="{{store.insta}}"></div>
+{% endif %}
+{% endfor %}
+
+<script type='text/javascript'>
+    let arr = {{ instalist | safe }};
+    for(let i=0; i< arr.length;i++){
+        $(window).on('load', insta(arr[i]));
+    }
+    function insta(name){
+        $.instagramFeed({
+            'username': name,
+            'container': "#123".replace('123',name),
+            'display_profile': false,
+            'display_biography': false,
+            'items': 1,
+            'items_per_row': 4,
+            'margin': 0.5,
+            'styling': true,
+        });
+    }
+</script>
+
 </body>
+
+
+
 
 
 {% endblock %}
