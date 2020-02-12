@@ -115,8 +115,6 @@
                 {% empty %}
                     <li>없음</li>
                 {% endfor %}
-                {{s_thema.count}}
-
             <hr>    
             <div class="selectthema">[테마 선택]</div>
             <form method="POST" id='thema_form'>
@@ -148,20 +146,30 @@
             function Open_add(){
                 document.getElementById("thema_list").style.display='inline'
                 document.getElementById('submit').setAttribute('value',"추가")
+                document.getElementById('submit').disabled=false;
                 document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 0%}")
                 document.getElementById('del').style.display='none'
                 document.getElementById('add').style.display='inline'
                 document.getElementById("del").disabled=true;
                 document.getElementById("add").disabled=false;
+
+                {% if s_thema.count == thema.count %}
+                document.getElementById('submit').disabled=true;
+                {% endif %}
                 }
             function Open_del(){
                 document.getElementById("thema_list").style.display='inline'
                 document.getElementById('submit').setAttribute('value',"삭제")
+                document.getElementById('submit').disabled=false;
                 document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 1%}")
                 document.getElementById('add').style.display='none'
                 document.getElementById('del').style.display='inline'
                 document.getElementById("add").disabled=true;
                 document.getElementById("del").disabled=false;
+
+                {% if not s_thema %}
+                document.getElementById('submit').disabled=true;
+                {% endif %}
             }
             function Close(){
                 document.getElementById("thema_list").style.display='none'
