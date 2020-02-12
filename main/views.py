@@ -4,7 +4,6 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from .models import Profile
 from bookmap.models import BookStore, Scrap, Stamp, Tag
-from culture.models import Comment ##
 import os
 from urllib.parse import urlparse
 import requests
@@ -150,7 +149,6 @@ def mypage(request):
             next_level = level + 1
         more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
-    comments = Comment.objects.filter(user=request.user) #컬쳐 바꾸면 빼기
     return render(request,'mypage.html', {
                         'scraps':scraps, 
                         'stamp':mystamp,
@@ -159,7 +157,6 @@ def mypage(request):
                         'more':more,
                         'user':user,
                         'profile': profile,
-                        'commnets': comments,
                         })
 
 def test(request):
