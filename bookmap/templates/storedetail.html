@@ -102,7 +102,7 @@
         {% endif %}
     </table>
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and thema %}
         <div class="themabtn-box">
             <a href="javascript:Open_add();" class="add-btn">내 테마에 추가하기</a>
             <a href="javascript:Open_del();" class="delete-btn">내 테마에서 삭제하기</a>
@@ -110,10 +110,10 @@
 
         <div id='thema_list' style="display: none;"> <!--클릭 시 보임-->
             <div class="nowthema">[현재 속한 테마]</div>
-                {% for thema in store.thema_set.all %}
-                <li>{{thema.title}}</li>
+                {% for t in s_thema %}
+                    <li>{{t.title}}</li>
                 {% empty %}
-                <li>없음</li>
+                    <li>없음</li>
                 {% endfor %}
             <hr>    
             <div class="selectthema">[테마 선택]</div>
@@ -146,20 +146,30 @@
             function Open_add(){
                 document.getElementById("thema_list").style.display='inline'
                 document.getElementById('submit').setAttribute('value',"추가")
+                document.getElementById('submit').disabled=false;
                 document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 0%}")
                 document.getElementById('del').style.display='none'
                 document.getElementById('add').style.display='inline'
                 document.getElementById("del").disabled=true;
                 document.getElementById("add").disabled=false;
+
+                {% if s_thema.count == thema.count %}
+                document.getElementById('submit').disabled=true;
+                {% endif %}
                 }
             function Open_del(){
                 document.getElementById("thema_list").style.display='inline'
                 document.getElementById('submit').setAttribute('value',"삭제")
+                document.getElementById('submit').disabled=false;
                 document.getElementById('thema_form').setAttribute('action',"{%url 'store_thema' store.bookstore_id 1%}")
                 document.getElementById('add').style.display='none'
                 document.getElementById('del').style.display='inline'
                 document.getElementById("add").disabled=true;
                 document.getElementById("del").disabled=false;
+
+                {% if not s_thema %}
+                document.getElementById('submit').disabled=true;
+                {% endif %}
             }
             function Close(){
                 document.getElementById("thema_list").style.display='none'
