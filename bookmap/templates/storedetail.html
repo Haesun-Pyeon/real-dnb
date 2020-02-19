@@ -12,7 +12,8 @@
     <script type='text/javascript' src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- 지도 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
-
+    <!-- 스크랩 AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -28,21 +29,45 @@
     </div>
     
     <div class="like">
-        {% if user.is_authenticated %}
-            {% if scrap %}
-                <a href="{% url 'scrap' store.bookstore_id %}">
-                    <i class="fa fa-heart" id="like" style='color:#E29B78;'></i></a>
-            {% else %}
-                <a href="{% url 'scrap' store.bookstore_id %}">
-                    <i class="fa fa-heart-o" id="like" style='color:#E29B78;'></i></a>
-            {% endif %}
-        {% else %}
-            <i class="fa fa-heart" id="like" style='color:#E29B78;'></i>
-        {% endif %}
+        <i onclick="like();" id='like' class="{%if scrap %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
         <span id="like-count">{{store.like_count}}</span>
     <br></div>
 
-
+    <script type="text/javascript">
+    //스크랩 AJAX 관련
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+    function like() {
+        {% if request.user.is_active %}
+        $.ajax({
+            url: "{% url 'scrap' store.bookstore_id%}",
+            type: "post",
+        }).done(function (data) {
+            if($("#like").hasClass("fa-heart")) {
+                $("#like").removeClass("fa-heart");
+                $("#like").addClass("fa-heart-o");
+            } else {
+                $("#like").removeClass("fa-heart-o");
+                $("#like").addClass("fa-heart");
+            }
+            document.getElementById('like-count').innerHTML = data;
+        });
+        {% else %}
+        alert("로그인 된 사용자만 사용할 수 있습니다.");
+        {% endif %}
+    }
+    </script>
+    
 
 <div class="contents">  
     <!-- 아이폰기준 -->

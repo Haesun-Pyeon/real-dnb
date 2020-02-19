@@ -109,7 +109,7 @@ def scrap(request, bookstore_id):
         Scrap.objects.create(user=request.user, store=store)
     else:
         scrapped.delete()
-    return redirect('storedetail', bookstore_id=bookstore_id)
+    return HttpResponse(str(store.like_count()))
 
 def reviewcreate(request, bookstore_id):
     store = get_object_or_404(BookStore, pk=bookstore_id)
