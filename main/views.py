@@ -174,7 +174,7 @@ def social(request):
     return redirect('tag')
 
 def tag(request):
-    tag = Tag.objects.all()
+    tag = Tag.objects.all().order_by('?')
     return render(request, 'tag.html', {'tag': tag,})
     
 def tag_count(request, tag_id):

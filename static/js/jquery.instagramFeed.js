@@ -139,7 +139,7 @@
                         }
 
                         html += "<a href='" + url +"' class='instagram-" + type_resource + "' rel='noopener' target='_blank'>";
-                        html += "<img src='" + image + "' alt='" + caption + "'" + styles.gallery_image +" />";
+                        html += "<img src='" + image +"'" + styles.gallery_image +" />";
                         html += "</a>";
                         html += "<strong>" + options.username + "</strong>";
                         html += "<span>" + caption.slice(0,50) + "...</span>";

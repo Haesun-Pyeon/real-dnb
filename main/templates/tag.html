@@ -21,7 +21,7 @@
             {% csrf_token %}
             {% for t in tag %}
             <input name='tag' type="checkbox" value="{{t.title}}">
-            <a href="javascript:tag_count('{{t.id}}','{{t.title}}');" class="bookstore">{{t.title}}</a>
+            <a href="javascript:tag_count('{{t.id}}','{{t.title}}');" class="bookstore">#{{t.title}}</a>
             <span id='{{t.title}}'></span>
             <br>
             {% endfor %}
