@@ -1,0 +1,83 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+    margin: 0px;
+    background-color: #E29B78;
+    text-align: center;
+}
+.tag-box{
+    background-color: #ffffff;
+    width: 70%;
+    height: 75rem;
+    border-radius: 10px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 4px 7px 1px #fff, inset 0 -5px 20px rgba(173, 186, 204, 0.25), 0 2px 6px rgba(0, 21, 64, 0.14), 0 10px 20px rgba(0, 21, 64, 0.05);
+    font-family: 'YiSunShinDotumM';
+}
+.choice-ment{
+    font-family: 'YiSunShinDotumM';
+    font-size: 2.7rem;
+    font-weight: 600;
+}
+.fa-lightbulb:before{
+    color: #FFD757;
+}
+.tip-ment{
+    font-size: 1.7rem;
+}
+.tags{
+    height: 53rem;
+    margin: 10px 20px 20px 20px;
+    overflow: scroll;
+    font-size: 2rem;
+    font-family: 'NanumSquareRound';
+    text-align: left;
+    padding-left: 180px;
+}
+
+input[type='checkbox'] {
+    /* margin-top: -3px; */
+    vertical-align: middle;
+    -webkit-appearance:none;
+    width:30px;
+    height:30px;
+    border:1px solid #569377;
+    border-radius: 5px;
+    outline:none;
+    background: #569377;
+}
+input[type='checkbox']:before {
+    content:'';
+    display:block;
+    width:90%;
+    height:90%;
+    margin: auto;  
+}
+input[type='checkbox']:checked:before {
+    background: url(../images/check.png) no-repeat center/21px 21px;
+    float: left;
+}
+
+.signup-btn{
+    width: 23rem;
+    height: 5rem;
+    border-radius: 5px;
+    border: 4px solid #569377; 
+    background-color: rgba(0,0,0,0); 
+    color: #569377; 
+    padding: 3px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+a.bookstore{
+    text-decoration: none;
+    color: #569377;
+    font-weight: 500;
+}

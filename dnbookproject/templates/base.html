@@ -33,7 +33,7 @@
                          <li><a href="{% url 'home' %}">HOME</a></li>
                          <li><a href="{% url 'realmap' %}">책방 지도</a></li>
                          <li><a href="{% url 'themamap' %}">테마 지도</a></li>
-                         <li><a href="{% url 'board' %}">문화 프로그램</a></li>
+                         <li><a href="{% url 'board' %}">책방 소식</a></li>
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
@@ -62,8 +62,8 @@
                     <ul class='items-pc'>
                          <li><a href="{% url 'home' %}">홈</a></li>
                          <li><a href="{% url 'realmap' %}">책방 지도</a></li>
-                         <li><a href="{% url 'board' %}">문화 프로그램</a></li>
-                         <li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>
+                         <li><a href="{% url 'board' %}">책방 소식</a></li>
+                         <!--<li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>-->
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
