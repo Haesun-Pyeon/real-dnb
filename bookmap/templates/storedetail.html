@@ -8,7 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 카톡공유 -->
     <script type='text/javascript' src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <!-- 지도 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 
 </head>
@@ -54,11 +56,14 @@
     {% endif %} -->
 
     <table class="table">
+        {% if store.phone_number != 'nan' %}
         <tr>
-            <td class="icon"><i class="fas fa-mobile-alt"></i> </td>
+            <td class="icon"><i class="fas fa-mobile-alt"></i></td>
             <td class="colname">연락처</td>
             <td class="data">{{store.phone_number}}</td>
         </tr>
+        {% endif %}
+
         {% if store.site != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-globe-asia"></i></td>
@@ -69,24 +74,23 @@
             {% else %}
                 <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a>
             {% endif %}</td>
-        {% else %}
-            <td class="icon"><i class="fas fa-globe-asia"></i></td>
-            <td class="colname">홈페이지</td>
-            <td class="data">없음</td>
-        {% endif %}
         </tr>
+        {% endif %}
+
         {% if store.openhour != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-clock"></i></td>
             <td class="colname">영업시간</td>
-            <td class="data">{{store.openhour}}</td>
-        {% endif %}
+            <td class="data">{{store.openhour|linebreaksbr}}</td>
         </tr>
+        {% endif %}
+
         <tr>
             <td class="icon"><i class="fas fa-map-marker-alt"></i> </td>
             <td class="colname">주소</td>
             <td class="data"><span id='addr'>{{store.addr}}</span></td>
         </tr>
+
         {% if store.insta != 'nan' %}
         <tr>
             <td class="icon"><i class="fab fa-instagram"></i></td>
@@ -95,6 +99,7 @@
             <i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a></td>
         </tr>
         {% endif %}
+        
         {% if store.email != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-envelope"></i></td>
