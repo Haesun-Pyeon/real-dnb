@@ -42,10 +42,9 @@
 <body>
     <img src="{% static 'images/logo.jpg' %}" style="width: 80%; margin: 300px 100px;">
 
-    <div class="tag">#{{tag}}</div>
     <div class="tag-store">
         {% for s in stores %}
-            <a class="sub-btn" href="{%url 'storedetail' s.bookstore_id%}">{{s.name}}</a>
+            <a class="sub-btn" href="{%url 'storedetail' s.bookstore_id%}">{{s.name}}</a><br>
         {% endfor %}
     </div>
 
