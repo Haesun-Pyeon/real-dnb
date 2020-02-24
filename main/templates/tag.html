@@ -10,20 +10,23 @@
 <body>
     <div class="tag-box">
         <img src="{% static 'images/logo.jpg' %}" style="width: 15rem; margin-top: 2rem;">
-        <div class="choice-ment">내 취향에 맞는 태그를 선택해주세요</div>
-        <div class="tip-ment">
+        <div class="choice-ment">
+            내 취향에 맞는 태그를 선택해주세요
             <i class="fas fa-lightbulb"></i>
-            <i>이름을 누르면 포함된 책방의 개수가 보입니다</i>
         </div>
-
         <div class="tag-container">
             <form method="POST" action="{% url 'pro_tag' %}">
             {% csrf_token %}
             {% for t in tag %}
-            <input name='tag' type="checkbox" value="{{t.title}}">
-            <a href="javascript:tag_count('{{t.id}}','{{t.title}}');" class="bookstore">#{{t.title}}</a>
-            <span id='{{t.title}}'></span>
-            <br>
+            <div class="inner-container">
+                <label>
+                    <input name='tag' type="checkbox" value="{{t.title}}">
+                    <span class="name-span"> #{{t.title}}
+                       <!--<a href="javascript:tag_count('{{t.id}}','{{t.title}}');" class="bookstore">#{{t.title}}</a>-->
+                       <span id='{{t.title}}'></span>
+                    </span>
+                </label>
+            </div>
             {% endfor %}
         </div>
             <input type="submit" value="등록" class="signup-btn">
