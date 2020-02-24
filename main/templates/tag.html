@@ -16,7 +16,7 @@
             <i>이름을 누르면 포함된 책방의 개수가 보입니다</i>
         </div>
 
-        <div class="tags">
+        <div class="tag-container">
             <form method="POST" action="{% url 'pro_tag' %}">
             {% csrf_token %}
             {% for t in tag %}

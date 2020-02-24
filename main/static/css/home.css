@@ -1,10 +1,49 @@
 @font-face { font-family: 'MapoDPPA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'Arita-buri-SemiBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-div.temp{
-    background-image: url(../images/logo.jpg);
-    background-size: cover;
+body, html{
+    height: 100%;
 }
+.bg{
+    background-image: url(../images/illust.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 90%;
+}
+
+.sname {
+    width: 400px; 
+    height: 400px; 
+    background-color: #569377;
+    font-family: 'MapoDPPA';
+    color: white;
+    font-size: 3rem;
+    border-radius: 100%;
+    transition: all 2s; 
+    -webkit-animation: fadeOut 1s 1s infinite linear alternate;
+    animation: fadeOut 1s 1s infinite linear alternate; 
+}
+div.tag:hover {
+    background-color: crimson;
+}
+p.tag-text{
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 90px;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@-webkit-keyframes fadeOut {   
+  0% { opacity: 1; }
+  100% { opacity: 0;}
+}
+
+/* 
 div.banner{
     width: 980px; 
     height: 2400px;
@@ -19,7 +58,7 @@ div.banner{
     padding:0; 
     list-style: none;
 }
-/*
+
 .banner ul li {
     float: left; 
     width: 980px; 
@@ -27,7 +66,7 @@ div.banner{
     margin:0; 
     padding:0;
 }
-*/
+
 body{
     margin: 0px;
 }
@@ -77,45 +116,15 @@ body{
     color: #ffffff;
     line-height: 130px;
     z-index: 3;
-    /*text-shadow: 3px 2px 3px rgb(70, 69, 69);*/
+    text-shadow: 3px 2px 3px rgb(70, 69, 69);
     letter-spacing: 2px;
 }
 
 .main-btn a:link { color:black; text-decoration: none;}
 .main-btn a:visited { color: black; text-decoration: none;}
-.main-btn a:hover { color: black; text-decoration: none;}
+.main-btn a:hover { color: black; text-decoration: none;} */
 
 @media(min-width:1024px){
 
-    .slideimg4, .slideimg5, .slideimg6, .banner, .banner ul li {
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-position: center;
-        height: calc(100vh);
-        min-height: 200px;
-}
-    .slideimg4{
-        background-image: url(../images/bookstore4-pc.png);
-    }
-    .slideimg5{
-        background-image: url(../images/bookstore5-pc.png);
-    }
-    .slideimg6{
-        background-image: url(../images/bookstore6-pc.png);
-    }
-    .main-ment{
-        left: 80;
-        top: 40;
-        width: 100%;
-        height: 32px;
-        color: #FFFFFF;
-        font-size: 4rem;
-        text-shadow: 5px 5px 5px black;
-    }
-    .main-btn{
-        
-    }
 }
 
