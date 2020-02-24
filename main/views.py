@@ -210,3 +210,9 @@ def pro_tag(request):
         temp=Tag.objects.get(title=t)
         profile.tag_set.add(temp)
     return redirect('home')
+
+def mytag(request):
+    mytag = request.user.profile.tag_set.all()
+    alltag = Tag.objects.all()
+    alltag = alltag.difference(mytag)
+    return render(request, 'mytag.html',{'alltag':alltag, 'mytag':mytag})
