@@ -5,7 +5,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/themadetail.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
 </head>
@@ -14,7 +14,7 @@
     <div class="description">
         <h1>{{thema.title}}
         <div class="like">
-            <i onclick="thema_like();" id='like' class="{%if check_like %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
+            <i onclick="thema_like();" id='like' class="{%if check_like %}fas fa-heart{%else%}far fa-heart{%endif%}" style='color:#E29B78;'></i>
             <span id="like-count">{{thema.total_like}}</span>
         </div>
         </h1>
@@ -83,12 +83,12 @@ function thema_like() {
         url: "{% url 'thema_like' thema.id%}",
         type: "post",
     }).done(function (data) {
-        if($("#like").hasClass("fa-heart")) {
-            $("#like").removeClass("fa-heart");
-            $("#like").addClass("fa-heart-o");
+        if($("#like").hasClass("fas")) {
+            $("#like").removeClass("fas");
+            $("#like").addClass("far");
         } else {
-            $("#like").removeClass("fa-heart-o");
-            $("#like").addClass("fa-heart");
+            $("#like").removeClass("far");
+            $("#like").addClass("fas");
         }
         document.getElementById('like-count').innerHTML = data;
     });
