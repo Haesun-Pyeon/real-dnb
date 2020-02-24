@@ -28,9 +28,32 @@ def home(request):
         profile = Profile(user=user, email=email, nickname=nick)
         profile.save()
         return render(request, 'social.html')
+    #여기부터 추천
     else:
-        tag = ''
         try:
+            tag_set = request.user.profile.tag_set.all()
+            if tag_set.count() == 0:
+                raise ValueError
+            stores = BookStore.objects.all()
+            arr = []
+            for store in stores:
+                temp = []
+                temp.append(store.name)
+                s1 = set(store.tag_set.all()) # 책방 태그 집합
+                s2 = set(tag_set) # 내 취향 집합
+                if s1 & s2:
+                    temp.append(len(s1 & s2)) # 교집합 개수
+                    arr.append(temp)
+            arr.sort(key=lambda x:x[1])
+            arr.reverse()
+            arr = arr[:10]
+            q = Q()
+            for s in arr:
+                q.add(Q(name=s[0]), q.OR)
+            stores = BookStore.objects.filter(q).order_by('?')[:5]
+
+            # 내가 고른 태그 중 랜덤으로 추천
+            '''
             tag_set = request.user.profile.tag_set.all()
             tag = tag_set.order_by('?')[0]
             stores = BookStore.objects.all()
@@ -39,10 +62,11 @@ def home(request):
                 if tag in store.tag_set.all():
                     q.add(Q(name=store.name), q.OR)
             stores = BookStore.objects.filter(q).order_by('?')[:4]
+            '''
         except:
             stores = '' #태그 없으면 로그인 안한 사람이랑 같은 로직으로 ㄱㄱ
-            
-        return render(request, 'home.html', {'stores':stores, 'tag':tag,})
+        
+        return render(request, 'home.html', {'stores':stores})
 
 def signup(request):
     if request.method == 'POST':
@@ -188,3 +212,9 @@ def pro_tag(request):
         temp=Tag.objects.get(title=t)
         profile.tag_set.add(temp)
     return redirect('home')
+
+def mytag(request):
+    mytag = request.user.profile.tag_set.all()
+    alltag = Tag.objects.all()
+    alltag = alltag.difference(mytag)
+    return render(request, 'mytag.html',{'alltag':alltag, 'mytag':mytag})

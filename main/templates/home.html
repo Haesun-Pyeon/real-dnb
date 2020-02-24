@@ -12,23 +12,12 @@
 
 <body>
 <div class="bg">
-    {% if user.is_authenticated %}
-    <div class="tag">
-        <p class="tag-text">#{{tag}}</p>
-    </div>
+
+    <img src="{% static 'images/logo.jpg' %}" style="width: 80%; margin: 300px 100px;">
+
     <div class="tag-store">
         {% for s in stores %}
-        <div class="sname">
-            <a href="{%url 'storedetail' s.bookstore_id%}">{{s.name}}</a>
-        </div>
-            <br>
-            <!--
-            {% if s.img %}
-                <img src="{{s.img}}" onerror="this.src='images/simple-logo.jpg'">
-            {% else %}
-                <img src="{% static 'images/simple-logo.jpg' %}">
-            {% endif %}
-            -->
+            <a class="sub-btn" href="{%url 'storedetail' s.bookstore_id%}">{{s.name}}</a><br>
         {% endfor %}
     </div>
     {%else%}
