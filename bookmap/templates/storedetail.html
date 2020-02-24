@@ -129,9 +129,15 @@
         <tr>
             <td class="icon"><i class="fas fa-envelope"></i></td>
             <td class="colname">이메일</td>
-            <td class="data"><span id='addr'>{{store.email}}</span></td>
+            <td class="data">{{store.email}}</td>
         </tr>
         {% endif %}
+
+        <tr>
+            <td class="icon"><i class="fas fa-tags"></i></td>
+            <td class="colname">태그목록</td>
+            <td class="data">{%for t in store.tag_set.all%} #{{t}} {% endfor %}</td>
+        </tr>
     </table>
 
     {% if user.is_authenticated and thema %}

@@ -32,6 +32,8 @@ def home(request):
     else:
         try:
             tag_set = request.user.profile.tag_set.all()
+            if tag_set.count() == 0:
+                raise ValueError
             stores = BookStore.objects.all()
             arr = []
             for store in stores:
@@ -63,7 +65,7 @@ def home(request):
             '''
         except:
             stores = '' #태그 없으면 로그인 안한 사람이랑 같은 로직으로 ㄱㄱ
-            
+        
         return render(request, 'home.html', {'stores':stores})
 
 def signup(request):
