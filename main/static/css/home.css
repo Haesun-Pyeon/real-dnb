@@ -1,7 +1,8 @@
 @font-face { font-family: 'MapoDPPA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'Arita-buri-SemiBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-body, html{
+
+/*body, html{
     height: 100%;
 }
 .bg{
@@ -10,8 +11,10 @@ body, html{
     background-position: center;
     background-size: cover;
     height: 90%;
+}*/
+body{
+    background-color: #E29B78;
 }
-
 .sname {
     width: 400px; 
     height: 400px; 
