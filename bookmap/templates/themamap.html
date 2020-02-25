@@ -5,7 +5,7 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/themamap.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
 <body>
@@ -33,9 +33,9 @@
    
     <div class="like">
     {% if request.user in i.like.all %}
-    <i class="fa fa-heart" style='color:#E29B78;'></i>
+    <i class="fas fa-heart" style='color:#E29B78;'></i>
     {% else %}
-    <i class="fa fa-heart-o" style='color:#E29B78;'></i>
+    <i class="far fa-heart" style='color:#E29B78;'></i>
     {% endif %}
     <span class="count">{{i.total_like}}</span>
     <br></div>

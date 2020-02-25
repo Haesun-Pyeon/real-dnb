@@ -9,7 +9,7 @@
     </head>
     <body>
     <div class="newbody">
-        <h1>테마 추가하기</h1>
+        <h1>테마 수정하기</h1>
         <div class="thema-container">
             <form method="POST" action="{% url 'thema_change' thema.id%}" enctype="multipart/form-data" class="themaform">
                 {% csrf_token %}
@@ -19,7 +19,7 @@
                     <h4>∙ 책방 선택</h4>
                 <select name='store' class="select-box" multiple>
                     {% for store in stores %}
-                        <option value='{{store.name}}'>{{store.name}}</option>
+                        <option value='{{store.name}}' {% if thema in store.thema_set.all %} selected {% endif %}>{{store.name}}</option>
                     {% endfor %}
                 </select><br>
                 <div class="info">

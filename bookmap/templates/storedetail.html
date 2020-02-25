@@ -7,7 +7,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/storedetail.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- 카톡공유 -->
     <script type='text/javascript' src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <!-- 지도 -->
@@ -29,7 +28,7 @@
     </div>
     
     <div class="like">
-        <i onclick="like();" id='like' class="{%if scrap %}fa fa-heart{%else%}fa fa-heart-o{%endif%}" style='color:#E29B78;'></i>
+        <i onclick="like();" id='like' class="{%if scrap %}fas fa-heart{%else%}far fa-heart{%endif%}" style='color:#E29B78;'></i>
         <span id="like-count">{{store.like_count}}</span>
     <br></div>
 
@@ -53,12 +52,12 @@
             url: "{% url 'scrap' store.bookstore_id%}",
             type: "post",
         }).done(function (data) {
-            if($("#like").hasClass("fa-heart")) {
-                $("#like").removeClass("fa-heart");
-                $("#like").addClass("fa-heart-o");
+            if($("#like").hasClass("fas")) {
+                $("#like").removeClass("fas");
+                $("#like").addClass("far");
             } else {
-                $("#like").removeClass("fa-heart-o");
-                $("#like").addClass("fa-heart");
+                $("#like").removeClass("far");
+                $("#like").addClass("fas");
             }
             document.getElementById('like-count').innerHTML = data;
         });
@@ -308,30 +307,6 @@
             let addr = document.getElementById('addr').innerHTML;
             let name = document.getElementById('name').innerHTML;
         
-            function get_stamp(){
-                if(navigator.geolocation){
-                    navigator.geolocation.getCurrentPosition(function(position){
-                        let lat=position.coords.latitude;
-                        let lon=position.coords.longitude;
-                        let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
-                        let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
-                        var stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
-                        geocoder.addressSearch(addr,function(result, status){
-                            if (status === kakao.maps.services.Status.OK){
-                                let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-                                if (stamp_bounds.contain(coords)){
-                                    location.href="{%url 'stamp' store.bookstore_id %}";
-                                }
-                                else{
-                                    alert("책방 근처에서 적립 가능합니다.");
-                                }
-                            };
-        
-                        });
-                    });
-                }
-            };
-        
             function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
                 geocoder.addressSearch(address,function(result, status){
                     if (status === kakao.maps.services.Status.OK){
@@ -349,6 +324,31 @@
             addrStoN(addr,name);
     
         }
+        function get_stamp(){   //도장찍기
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    let lat=position.coords.latitude;
+                    let lon=position.coords.longitude;
+                    let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
+                    let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
+                    let stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
+                    let geocoder = new kakao.maps.services.Geocoder();
+                    let addr = document.getElementById('addr').innerHTML;
+                    geocoder.addressSearch(addr,function(result, status){
+                        if (status === kakao.maps.services.Status.OK){
+                            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                            if (stamp_bounds.contain(coords)){
+                                location.href="{%url 'stamp' store.bookstore_id %}";
+                            }
+                            else{
+                                alert("책방 근처에서 적립 가능합니다.");
+                            }
+                        };
+    
+                    });
+                });
+            }
+        };
     </script>
 
     <br>
