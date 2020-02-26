@@ -4,13 +4,10 @@
 
 <head>
     <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
 </head>
 
 <body>
-<div class="board">
-<div class="square"></div>
-<h1 class="ment">책방소식</h1>
-<p class="ment">북콘서트, 전시회 등 문화행사를 홍보할 수 있는 게시판입니다.(바꿔야함,,)</p>
 
 {% for store in stores%}
 {% if store.insta != 'nan' %}
@@ -32,7 +29,7 @@
             'items': 1,
             'items_per_row': 4,
             'margin': 0.5,
-            'styling': true,
+            'styling': false,
         });
     }
 </script>
