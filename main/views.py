@@ -218,3 +218,12 @@ def mytag(request):
     alltag = Tag.objects.all()
     alltag = alltag.difference(mytag)
     return render(request, 'mytag.html',{'alltag':alltag, 'mytag':mytag})
+
+def tag_change(request):
+    mytag = request.POST.getlist('mytag')
+    profile = Profile.objects.get(user=request.user)
+    profile.tag_set.clear()
+    for t in mytag:
+        temp = Tag.objects.get(title=t)
+        profile.tag_set.add(temp)
+    return redirect('mytag')
