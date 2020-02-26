@@ -108,7 +108,24 @@ td.data{
 }
 .add-btn:visited, .add-btn:hover, .delete-btn:visited, .delete-btn:hover
 {color: #FFD757; background-color: white; text-decoration: none;}
- 
+/* 카카오톡으로 공유하기 버튼 */
+#kakao-link-btn{
+    background-color: rgb(250, 227, 0);
+    font-family: 'YiSunShinDotumM';
+    padding: 5px 250px;
+    font-size: 1.5rem;
+    margin: 10px;
+    color: rgb(57,27,27);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 90px;
+    border: 0px;
+}
+#kakao-link-btn img{
+    width: 35px;
+}
 .themabtn-box{
     width: fit-content;
     margin-left: auto;
@@ -180,6 +197,7 @@ details{
     text-align: center;
     padding: .3rem 0rem;
     border-radius: 80px;
+    margin-top: 10px;
 }
 /*도장찍기 버튼*/
 .stamp{

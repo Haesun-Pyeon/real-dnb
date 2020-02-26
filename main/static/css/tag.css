@@ -3,6 +3,7 @@
 
 body{
     margin: 0px;
+    padding: 0px;
     background-color: #E29B78;
     text-align: center;
 }
@@ -29,21 +30,29 @@ body{
 .fa-lightbulb:before{
     color: #FFD757;
 }
-.tip-ment{
-    font-size: 1.7rem;
-}
-.tags{
+
+.tag-container{
     height: 53rem;
     margin: 10px 20px 20px 20px;
     overflow: scroll;
     font-size: 2rem;
     font-family: 'NanumSquareRound';
-    text-align: left;
-    padding-left: 180px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inner-container{
+    margin: 10px;
+    display: inline-block;
+}
+label{
+    cursor: pointer;
 }
 
 input[type='checkbox'] {
-    /* margin-top: -3px; */
+    display: none;
+    /* margin-top: -3px;
     vertical-align: middle;
     -webkit-appearance:none;
     width:30px;
@@ -51,7 +60,21 @@ input[type='checkbox'] {
     border:1px solid #569377;
     border-radius: 5px;
     outline:none;
-    background: #569377;
+    background: #569377;  */
+}
+.name-span{
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    font-weight: 600;
+    border: 2px solid #569377;
+    padding: 15px 30px;
+    color: #569377;
+    /*text-shadow: 0 1px 4px rgba(0,0,0,.5);*/
+    border-radius: 30px;
+    font-size: 20px;
+    transition: 0.5s;
+    user-select: none;
 }
 input[type='checkbox']:before {
     content:'';
@@ -60,9 +83,9 @@ input[type='checkbox']:before {
     height:90%;
     margin: auto;  
 }
-input[type='checkbox']:checked:before {
-    background: url(../images/check.png) no-repeat center/21px 21px;
-    float: left;
+input[type='checkbox']:checked ~ span {
+    background-color: #569377;
+    color: #fff;
 }
 
 .signup-btn{

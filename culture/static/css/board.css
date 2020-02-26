@@ -1,0 +1,39 @@
+@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+body{
+    background-color: #E29B78;
+}
+.instagram_gallery{
+    /* 피드 전체 레이아웃 */
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+strong{
+    display: block;
+    font-size: 2.2rem;
+    font-family: 'YiSunShinDotumM';
+    font-weight: 1000;
+    padding: 10px;
+}
+span{
+    font-size: 1.8rem;
+    font-family: 'YiSunShinDotumM';
+    padding: 10px;
+}
+.instagram_gallery > a {
+/* 피드 개별 이미지 하이퍼링크 */
+}
+.instagram_gallery img {
+/* 피드 개별 이미지 크기 및 속성 */
+    width: 100%;
+    border-radius: 10px;
+}

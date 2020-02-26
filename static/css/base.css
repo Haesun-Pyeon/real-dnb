@@ -62,6 +62,10 @@ li.items{
   border-radius: 200px;
   width: 500px;
 } 
+.items li a.items-login{
+  font-size: 41px;
+  padding: 10px 0;
+}
 .items-pc {
   list-style-type: none;
   position: relative;
@@ -109,7 +113,7 @@ li.items{
           transform: translateY(0px);
   opacity: 1;
   font-size: 1.7rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   width: 550px;
   padding-left:3rem;
 }
