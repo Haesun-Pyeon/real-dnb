@@ -3,20 +3,71 @@
 {% load staticfiles %}
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mytag.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 <body>
-    
-내태그<br>
-{% for i in mytag %}
-{{i.title}}<br>
-{% endfor %}
-<br><br>
-전체태그<br>
-{% for i in alltag %}
-{{i.title}}
-{% endfor %}
-
+<form method="POST" action="{% url 'tag_change' %}" enctype="multipart/form-data" name='tag_form'>
+    {% csrf_token %}
+    <table>
+    <tr>
+        <td>
+            <strong>나의 태그</strong><br>
+            <select name='mytag' multiple>
+                {% for i in mytag %}
+                    <option value='{{i.title}}'>{{i.title}}</option>
+                {% endfor %}
+            </select><br>        
+        </td>
+        <td>
+            <i onclick="right();" class="fas fa-angle-double-right"></i><br>
+            <i onclick="left();" class="fas fa-angle-double-left"></i>
+        </td>
+        <td>
+            <strong>그 외 나머지</strong><br> <!--전체태그에서 내태그 뺀거 (뭐라말할지 모르겠음,,,)-->
+            <select name='alltag' multiple>
+                {% for i in alltag %}
+                    <option value='{{i.title}}'>{{i.title}}</option>
+                {% endfor %}
+            </select><br>
+        </td>
+        <td>
+            <a href="javascript:submit();">저장</a>
+            <input type="submit" id='submit' style="display: none;">
+        </td>
+    </tr>
+    </table>
+</form>
+<span>(PC버전) Ctrl이나 Shift 누르면서 클릭 하면 다중선택 가능함다,,,</span>
+<script>
+    function right(){
+        let j = document.tag_form.alltag.length;
+        for (var i=document.tag_form.mytag.length-1;i>=0;i--){
+            if (document.tag_form.mytag.options[i].selected){
+                val=document.tag_form.mytag.options[i].value;
+                document.tag_form.mytag.options[i]=null;
+                document.tag_form.alltag.options[j]=new Option(val,val);
+                j++;
+            }
+        }
+    }
+    function left(){
+        let j=document.tag_form.mytag.length;
+        for (var i=document.tag_form.alltag.length-1;i>=0;i--){
+            if (document.tag_form.alltag.options[i].selected){
+                val=document.tag_form.alltag.options[i].value;
+                document.tag_form.alltag.options[i]=null;
+                document.tag_form.mytag.options[j]=new Option(val,val);
+                j++;
+            }
+        }
+    }
+    function submit(){
+        for (var i=document.tag_form.mytag.length-1;i>=0;i--){
+            document.tag_form.mytag.options[i].selected="selected";
+        }
+        document.getElementById('submit').click();
+    }
+</script>
 </body>
-
 {% endblock %}
+

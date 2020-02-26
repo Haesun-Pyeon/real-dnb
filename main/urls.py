@@ -15,4 +15,6 @@ urlpatterns = [
     path('tag_count/<int:tag_id>', views.tag_count, name='tag_count'),
     path('pro_tag/', views.pro_tag, name='pro_tag'),
     path('mytag/', views.mytag, name='mytag'),
+    path('tag_change/', views.tag_change, name='tag_change'),
+
 ]
