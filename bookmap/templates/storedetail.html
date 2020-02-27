@@ -214,7 +214,7 @@
         </script>
     {% endif %}
 
-    <a id="kakao-link-btn" href="javascript:;" class="share-kakao"> 카카오톡으로 공유하기
+    <a id="kakao-link-btn" href="javascript:sendLink();" class="share-kakao"> 카카오톡으로 공유하기
         <img src="{% static 'images/talk.png' %}"/>
     </a>
     <script type='text/javascript'>
@@ -227,30 +227,31 @@
         {% endif %}
         
         Kakao.init('2da39c20f0c16cddf9d044b0011770fe');
-        Kakao.Link.createDefaultButton({
-            container: '#kakao-link-btn',
-            objectType: 'location',
-            address: addr,
-            addressTitle: name,
-            content: {
-                title: '책 보러 가자!',
-                description: name+', 여긴 어때?',
-                imageUrl: logo,
-                link: {
-                    mobileWebUrl: document.location.href,
-                    webUrl: document.location.href
-                }
-            },
-            buttons: [
-                {
-                    title: '보러가기',
+        function sendLink(){
+            Kakao.Link.sendDefault({
+                objectType: 'location',
+                address: addr,
+                addressTitle: name,
+                content: {
+                    title: '책 보러 가자!',
+                    description: name+', 여긴 어때?',
+                    imageUrl: logo,
                     link: {
                         mobileWebUrl: document.location.href,
                         webUrl: document.location.href
                     }
                 },
-            ]
-        });        
+                buttons: [
+                    {
+                        title: '보러가기',
+                        link: {
+                            mobileWebUrl: document.location.href,
+                            webUrl: document.location.href
+                        }
+                    },
+                ]
+            });
+        }
     </script>
     
 
