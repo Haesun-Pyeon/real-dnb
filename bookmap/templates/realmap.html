@@ -113,6 +113,28 @@
         averageCenter: true,
         minLevel: 8
     });
+    var styles = [{
+        width : '53px', height : '52px',
+        background: '#569377',
+        color: '#fff',
+        textAlign: 'center',
+        lineHeight: '54px',
+        borderRadius: '50px',
+        fontSize: '20px',
+        border: '2px dotted white'
+    }, {
+        width : '73px', height : '72px',
+        background: '#E29B78',
+        color: '#fff',
+        textAlign: 'center',
+        lineHeight: '74px',  
+        borderRadius: '50px',
+        fontSize: '20px',
+        border: '2px dotted white'
+    }
+];
+
+    clusterer.setStyles(styles);
     //내위치 받아와서 이미지마커로 표시하기
     var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FOTq9H%2FbtqBubzCAFj%2F7KjqV2AhC4kWrKNnul7Q91%2Fimg.png', // 마커이미지의 주소입니다    
         imageSize = new kakao.maps.Size(70, 70); // 마커이미지의 크기입니다

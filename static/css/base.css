@@ -89,11 +89,19 @@ li.items{
     list-style-type: none;
     position: absolute;
     left: 35%;
-    top: 110%;
 }
 .signbox a{
     font-family: 'BBTreeGL';
     font-size: 30px;
+    color: #FFFFFF;
+}
+.items-login-box{
+  width: 100%;
+  margin: 120px 0px 0px 30px;
+}
+.items-login-box a{
+    font-family: 'BBTreeGL';
+    font-size: 35px;
     color: #FFFFFF;
 }
 #toggle:checked ~ nav.openmenu{
@@ -117,9 +125,10 @@ li.items{
   width: 550px;
   padding-left:3rem;
 }
+
 #toggle:checked ~ nav.openmenu ul li:nth-child(1) {
   transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.1s;
-}
+} 
 #toggle:checked ~ nav.openmenu ul li:nth-child(2) {
   transition: all 0.3s cubic-bezier(0.6, 0, 0.8, 1.5) 0.2s;
 }
