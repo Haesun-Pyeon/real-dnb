@@ -3,40 +3,42 @@
 {% load staticfiles %}
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mytag.css' %}">
 </head>
 <body>
-<form method="POST" action="{% url 'tag_change' %}" enctype="multipart/form-data" name='tag_form'>
-    {% csrf_token %}
-    <table>
-    <tr>
-        <td>
-            <strong>나의 태그</strong><br>
-            <select name='mytag' multiple>
-                {% for i in mytag %}
-                    <option value='{{i.title}}'>{{i.title}}</option>
-                {% endfor %}
-            </select><br>        
-        </td>
-        <td>
-            <i onclick="right();" class="fas fa-angle-double-right"></i><br>
-            <i onclick="left();" class="fas fa-angle-double-left"></i>
-        </td>
-        <td>
-            <strong>그 외 나머지</strong><br> <!--전체태그에서 내태그 뺀거 (뭐라말할지 모르겠음,,,)-->
-            <select name='alltag' multiple>
-                {% for i in alltag %}
-                    <option value='{{i.title}}'>{{i.title}}</option>
-                {% endfor %}
-            </select><br>
-        </td>
-        <td>
-            <a href="javascript:submit();">저장</a>
-            <input type="submit" id='submit' style="display: none;">
-        </td>
-    </tr>
-    </table>
-</form>
-<span>(PC버전) Ctrl이나 Shift 누르면서 클릭 하면 다중선택 가능함다,,,</span>
+<div class="tag-container">
+    <form method="POST" action="{% url 'tag_change' %}" enctype="multipart/form-data" name='tag_form'>
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>
+                <h1>나의 태그</h1><br>
+                <select name='mytag' multiple>
+                    {% for i in mytag %}
+                        <option value='{{i.title}}'>{{i.title}}</option>
+                    {% endfor %}
+                </select><br>        
+            </td>
+            <td>
+                <i onclick="right();" class="fas fa-angle-double-right"></i><br>
+                <i onclick="left();" class="fas fa-angle-double-left"></i>
+            </td>
+            <td>
+                <h1>나머지 태그</h1><br> <!--전체태그에서 내태그 뺀거 (뭐라말할지 모르겠음,,,)-->
+                <select name='alltag' multiple>
+                    {% for i in alltag %}
+                        <option value='{{i.title}}'>{{i.title}}</option>
+                    {% endfor %}
+                </select><br>
+            </td>
+        </tr>
+        </table>
+        <a href="javascript:submit();" class="save-btn">저장</a>
+        <input type="submit" id='submit' style="display: none;">
+    </form>
+    <div class="pcinfo">(PC버전) Ctrl이나 Shift 누르면서 클릭 하면 다중선택 가능</div>
+</div>
+
 <script>
     function right(){
         let j = document.tag_form.alltag.length;
@@ -69,7 +71,4 @@
 </script>
 </body>
 {% endblock %}
-<<<<<<< HEAD
-=======
 
->>>>>>> fbd1ced16c6dc0a996120bc2c81f38f59014dc25
