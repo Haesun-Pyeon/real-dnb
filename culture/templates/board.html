@@ -6,13 +6,10 @@
     <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
 </head>
-
 <body>
 
-{% for store in stores%}
-{% if store.insta != 'nan' %}
-<div id="{{store.insta}}"></div>
-{% endif %}
+{% for i in insta %}
+<div id="{{i}}"></div>
 {% endfor %}
 
 <script type='text/javascript'>
@@ -33,11 +30,6 @@
         });
     }
 </script>
-
 </body>
-
-
-
-
 
 {% endblock %}

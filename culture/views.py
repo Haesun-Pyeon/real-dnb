@@ -8,10 +8,10 @@ def board(request):
     bookstores = BookStore.objects.all()
     insta = []
     for a in bookstores:
-        if a.insta != 'nan':
+        if (a.insta != 'nan') and (a.insta not in insta):
             insta.append(a.insta)
         else: pass
     random.shuffle(insta)
-    insta=insta[:9]
+    insta=insta[:10]
     instalist = simplejson.dumps(insta)
-    return render(request, 'board.html', {'instalist':instalist,'stores':bookstores,})
+    return render(request, 'board.html', {'instalist':instalist, 'insta':insta,})
