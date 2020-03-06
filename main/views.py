@@ -243,6 +243,8 @@ def non_log(request, addr):
         return render(request, 'home.html', {'stores': stores,})
     else:
         address = addr.split()
+        if len(address[0]) > 2:
+            address[0] = address[0][:2]
         bookstore = BookStore.objects.filter(addr__startswith=address[0], addr__contains=address[1])
         if len(bookstore) <= 5:
             bookstore = BookStore.objects.filter(addr__startswith=address[0])
