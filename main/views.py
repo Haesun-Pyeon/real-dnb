@@ -57,6 +57,7 @@ def home(request):
                 store_weight = {}
                 temp = []
                 temp.append(store.name)
+
                 for t in store.tag_set.all():
                     if t.title in store_weight.keys():
                         store_weight[t.title] += weight[t.title]
@@ -65,6 +66,7 @@ def home(request):
                 temp.append(round(sum(store_weight.values()),1))
                 arr.append(temp)
                 store_weight.clear()
+
             arr.sort(key=lambda x:x[1])
             arr.reverse()
             arr = arr[:15]
