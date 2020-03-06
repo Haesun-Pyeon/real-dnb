@@ -8,7 +8,7 @@ def blog_search(name, addr):
     client_secret = "WwJGey2Jx8"
     address = addr.split()
     city = address[1]
-    encText = urllib.parse.quote(city+" "+name)
+    encText = urllib.parse.quote(city+" "+name+" 책방")
     url = "https://openapi.naver.com/v1/search/blog?query=" + encText + "&display=5" # json 결과
     # url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
     request = urllib.request.Request(url)

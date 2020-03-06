@@ -49,8 +49,7 @@ def detail(request, bookstore_id):
         r['title'] = r['title'].replace("</b>", "")
         r['description'] = r['description'].replace("<b>", "")
         r['description'] = r['description'].replace("</b>", "")
-
-    # rev = Crawling.objects.filter(store=store_detail)
+        r['description'] = r['description'][:40] # 내용 너무 길어서 잘랐음!! 이화야 너가 보고 적당히 숫자 조절해쥬 
     tot = 0
     reviews = store_detail.review_set.all().order_by('-created_at') #사용자 리뷰
     for i in store_detail.review_set.all():
