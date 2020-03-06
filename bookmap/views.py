@@ -8,7 +8,7 @@ from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg, Count
 import os
 from datetime import datetime
-
+from .blogsearch import blog_search
 
 # Create your views here.
 
@@ -41,9 +41,18 @@ def detail(request, bookstore_id):
             t['count'] = 0
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(store=store_detail)
-    rev = Crawling.objects.filter(store=store_detail)
+    revs = blog_search(store_detail.name, store_detail.addr)
+    rev = simplejson.loads(revs)
+    rev = rev['items']
+    for r in rev:
+        r['title'] = r['title'].replace("<b>", "")
+        r['title'] = r['title'].replace("</b>", "")
+        r['description'] = r['description'].replace("<b>", "")
+        r['description'] = r['description'].replace("</b>", "")
+
+    # rev = Crawling.objects.filter(store=store_detail)
     tot = 0
-    reviews = store_detail.review_set.all().order_by('-created_at')
+    reviews = store_detail.review_set.all().order_by('-created_at') #사용자 리뷰
     for i in store_detail.review_set.all():
         tot += i.star
     if store_detail.review_set.all().count():

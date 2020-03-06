@@ -44,6 +44,7 @@ def home(request):
                 if s1 & s2:
                     temp.append(len(s1 & s2)) # 교집합 개수
                     arr.append(temp)
+            
             arr.sort(key=lambda x:x[1])
             arr.reverse()
             arr = arr[:10]
