@@ -23,19 +23,23 @@
     <script type="text/javascript">
     var geocoder = new kakao.maps.services.Geocoder();
     var callback = function(result, status) {
-    if (status === kakao.maps.services.Status.OK) {
-        var addr=result[0].address.address_name;
-        document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}".replace('123',addr));
+        if (status === kakao.maps.services.Status.OK) {
+            var addr=result[0].address.address_name;
+            document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}".replace('123',addr));
+            document.getElementById('non-login').click();  
+        }
+    };
+    function error(e){
+        document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}");
         document.getElementById('non-login').click();  
     }
-    };
-    if (navigator.geolocation && document.getElementById('non-login')) {
-    navigator.geolocation.getCurrentPosition(function(position){
-        let lat=position.coords.latitude;
-        let lon=position.coords.longitude;
-        geocoder.coord2Address(lon,lat,callback);
-    })
-    }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            let lat=position.coords.latitude;
+            let lon=position.coords.longitude;
+            geocoder.coord2Address(lon,lat,callback);
+        },error)
+    } else { error('e') }
     </script>
     {% endif %}
 </html>
