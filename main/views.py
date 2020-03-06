@@ -33,11 +33,11 @@ def home(request):
         try:
             weight={} #가중치 딕셔너리
             tag_set = request.user.profile.tag_set.all()
-            if tag_set.count() == 0:
-                raise ValueError
             stores = BookStore.objects.all()
             arr = []
             scrap = Scrap.objects.filter(user=request.user) #좋아요한 책방
+            if (tag_set.count() == 0) and (scrap.count() == 0):
+                raise ValueError
             for s in scrap:
                 like_list = s.store.tag_set.all().values_list('title',flat=True)
                 for l in like_list:
