@@ -41,3 +41,4 @@ if __name__ == '__main__':
                     store.tag_set.add(temp)
         except:
             pass
+print('저장완료')

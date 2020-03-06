@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.models import User
-from .models import BookStore, Scrap, Review, Thema, Crawling, Stamp
+from .models import BookStore, Scrap, Review, Thema, Stamp
 from main.models import Profile
 from django.core import serializers
 import simplejson
