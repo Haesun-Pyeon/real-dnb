@@ -31,22 +31,43 @@ def home(request):
     #여기부터 추천
     else:
         try:
+            weight={} #가중치 딕셔너리
             tag_set = request.user.profile.tag_set.all()
             if tag_set.count() == 0:
                 raise ValueError
             stores = BookStore.objects.all()
             arr = []
+            scrap = Scrap.objects.filter(user=request.user) #좋아요한 책방
+            for s in scrap:
+                like_list = s.store.tag_set.all().values_list('title',flat=True)
+                for l in like_list:
+                    if l in weight.keys():
+                        weight[l] += 0.1
+                    else:
+                        weight[l] = 0.1
+            for s in scrap:
+                a=BookStore.objects.filter(bookstore_id=s.store.bookstore_id)
+                stores.difference(a)  #좋아요 누른 책방은 추천에서 제외
+            for t in tag_set:
+                if t.title in weight.keys():
+                    weight[t.title] += 1
+                else:
+                    weight[t.title] = 1
             for store in stores:
+                store_weight = {}
                 temp = []
                 temp.append(store.name)
-                s1 = set(store.tag_set.all()) # 책방 태그 집합
-                s2 = set(tag_set) # 내 취향 집합
-                if s1 & s2:
-                    temp.append(len(s1 & s2)) # 교집합 개수
-                    arr.append(temp)
+                for t in store.tag_set.all():
+                    if t.title in store_weight.keys():
+                        store_weight[t.title] += weight[t.title]
+                    elif t.title in weight.keys():
+                        store_weight[t.title] = weight[t.title]
+                temp.append(round(sum(store_weight.values()),1))
+                arr.append(temp)
+                store_weight.clear()
             arr.sort(key=lambda x:x[1])
             arr.reverse()
-            arr = arr[:10]
+            arr = arr[:15]
             q = Q()
             for s in arr:
                 q.add(Q(name=s[0]), q.OR)
