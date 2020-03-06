@@ -16,5 +16,5 @@ urlpatterns = [
     path('pro_tag/', views.pro_tag, name='pro_tag'),
     path('mytag/', views.mytag, name='mytag'),
     path('tag_change/', views.tag_change, name='tag_change'),
-
+    path('non_log/<str:addr>', views.non_log, name='non_log'),
 ]
