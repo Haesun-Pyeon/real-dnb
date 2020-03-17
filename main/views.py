@@ -136,7 +136,7 @@ def del_user(request):
         os.remove(profile.profileimg.path)
     user.delete()
     auth.logout(request)
-    return render(request, 'home.html')
+    return redirect('home')
     
 def user_change(request):
     if request.method == "POST":
@@ -171,7 +171,7 @@ def user_change(request):
 def mypage(request):
     user = request.user
     if user.is_superuser:
-        return render(request, 'home.html')
+        return redirect('home')
     else:
         profile = Profile.objects.get(user=request.user)
         mystamp = profile.stampcount()
