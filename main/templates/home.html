@@ -28,18 +28,18 @@
         {% for s in stores %}
         <div class="post">
           <a id='detail'>
-          <script>
-            let pk={{s.bookstore_id}};
-            let url="https://dnbook.live/bookmap/store/";
-            let result=url.concat(pk);
-            document.getElementById('detail').setAttribute('href',result);
-          </script>
             {% if s.img == 'nan' %}
             <img src="{% static 'images/greenlogo.png' %}" alt="" class="slider-image">  
             {% else %}
             <img src="{{s.img}}" alt="" class="slider-image">
             {% endif %}
           </a>
+          <script>
+            let pk={{s.bookstore_id}};
+            let url="https://dnbook.live/bookmap/store/";
+            let result=url.concat(pk);
+            document.getElementById('detail').setAttribute('href',result);
+          </script>
           <div class="post-info">
             <h4>{{s.name}}</h4>
             <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>

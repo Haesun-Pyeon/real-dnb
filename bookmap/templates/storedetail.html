@@ -317,10 +317,10 @@
                         };
     
                     });
-                },alert("현재 위치를 받아올 수 없습니다."));
+                },error);
             }
-            else{
-                alert("Geolocation을 지원하지 않는 브라우저입니다.");
+            function error(e){
+                alert("현재 위치를 받아올 수 없습니다.")
             }
         };
         window.onload=function(){
