@@ -140,7 +140,6 @@ def del_user(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
-        # os.remove(profile.profileimg.path)
         s3_delete(profile.profileimg)
     user.delete()
     auth.logout(request)
@@ -152,8 +151,8 @@ def user_change(request):
         try:
             new_img = request.FILES['img_file']
             profile = Profile.objects.get(user=user)
-            # if profile.profileimg:
-                # os.remove(profile.profileimg.path)
+            if profile.profileimg:
+                s3_delete(profile.profileimg)
             profile.profileimg = new_img
             profile.save()
         except:
@@ -179,7 +178,7 @@ def user_change(request):
 def mypage(request):
     user = request.user
     if user.is_superuser:
-        return render(request, 'home.html')
+        return redirect('home')
     else:
         profile = Profile.objects.get(user=request.user)
         mystamp = profile.stampcount()

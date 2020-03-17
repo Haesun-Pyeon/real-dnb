@@ -6,9 +6,9 @@ from django.core import serializers
 import simplejson
 from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg, Count
-import os
 from datetime import datetime
 from .blogsearch import blog_search
+from main.views import s3_delete
 
 # Create your views here.
 
@@ -329,14 +329,10 @@ def thema_add(request):
 def thema_change(request, tag_id):
     thema = Thema.objects.get(id=tag_id)
     stores = BookStore.objects.all()
-    if thema.img:
-        pic=thema.img.path
-    else:
-        pic = None
     if request.method == 'POST':
         form = AddThemaForm(request.POST, request.FILES, instance=thema)
-        if request.FILES and pic:
-            os.remove(pic)
+        if request.FILES and thema.img:
+            s3_delete(thema.img)
         if form.is_valid():
             thema = form.save()
             for s in stores:
@@ -357,7 +353,7 @@ def thema_change(request, tag_id):
 def thema_delete(request, tag_id):
     thema = Thema.objects.get(id=tag_id)
     if thema.img:
-        os.remove(thema.img.path)
+        s3_delete(thema.img)
     thema.delete()
     return redirect('my_thema')
 
