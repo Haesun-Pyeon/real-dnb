@@ -12,11 +12,11 @@ a {
 }
 
 .page-wrapper{
-    margin-top: 100px;
+    margin-top: 2rem;
 }
 
 .page-wrapper a:hover{
-    color: #569377;
+    text-decoration: none;
 }
 
 /* Post Slider */
@@ -69,6 +69,7 @@ a {
     background: #FFFFFF;
     display: inline-block;
     border-radius: 5px;
+    vertical-align: middle;
 }
 .post-slider .post-wrapper .post .post-info{
     height: 130px;
@@ -81,10 +82,11 @@ a {
     color: #000000;
 }
 
-.post-slider .post-wrapper .post .post-info p{
+.post-slider .post-wrapper .post .post-info .p{
     margin: 0px 15px;
     font-size: 2rem;
     color: rgb(109, 109, 109);
+    font-family: 'YiSunShinDotumM';
 }
 
 .post-slider .post-wrapper .post img{
@@ -96,4 +98,61 @@ a {
 
 #slick-slide-control00, .slick-dots{
     display: none;
+}
+
+
+.post-slider .post-wrapper-pc{
+    width: 84%;
+    height: 700px;
+    margin: 20px auto;
+    overflow: hidden;
+    padding: 10px 0px 10px 0px;
+    box-shadow: 5px 5px 20px 0.1px rgb(190, 189, 189);
+}
+
+.post-slider .post-wrapper-pc .post{
+    width: 300px;
+    height: 700px;
+    margin: 0px 10px;
+    background: #FFFFFF;
+    display: inline-block;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+.post-slider .post-wrapper-pc .post .post-info{
+    height: 130px;
+    padding: 0px 5px;
+}
+.post-slider .post-wrapper-pc .post .post-info h4{
+    font-family: 'YiSunShinDotumM';
+    font-size: 3rem;
+    font-weight: 900;
+    color: #000000;
+}
+
+.post-slider .post-wrapper-pc .post .post-info .p{
+    margin: 0px 15px;
+    font-size: 1.5rem;
+    color: rgb(109, 109, 109);
+    font-family: 'YiSunShinDotumM';
+}
+
+.post-slider .post-wrapper-pc .post img{
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#ment{
+    font-size: 2rem;
+    font-family: 'MapoDPPA';
+    margin: 50px 0px;
+
+}
+
+@media only screen and (min-width: 1025px){
+    #ment{
+        margin: 20px 0px;
+    }
 }
