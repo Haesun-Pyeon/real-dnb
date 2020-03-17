@@ -15,8 +15,8 @@ import boto3
 def s3_delete(key):
     s3 = boto3.resource('s3')
     bucket_name = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-    obj = s3.Object(bucket_name, key)
-    obj.delete()
+    path='media/'+str(key)
+    s3.Object(bucket_name, path).delete()
 
 # Create your views here.
 def home(request):
@@ -141,10 +141,10 @@ def del_user(request):
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
         # os.remove(profile.profileimg.path)
-        s3_delete(profile.profileimg.path)
+        s3_delete(profile.profileimg)
     user.delete()
     auth.logout(request)
-    return render(request, 'home.html')
+    return redirect('home')
     
 def user_change(request):
     if request.method == "POST":
