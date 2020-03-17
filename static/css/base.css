@@ -74,7 +74,7 @@ li.items{
 }
 .items-pc li{
   font-family: 'BBTreeGL';
-  font-size: 20px;
+  font-size: 25px;
   float: left;
   list-style-type: none;
   margin: 0 25px;
@@ -195,6 +195,7 @@ li.items{
 .toggle-btn .bar:nth-child(2) {
   width: 70px;
 }
+
 @media (min-width: 1025px){
   .toggle-btn{
     top: 13px;
@@ -222,6 +223,7 @@ li.items{
   -webkit-transform: translateY(-8px) rotate(-45deg);
           transform: translateY(-10px) rotate(-45deg);
 }
+
 @media (min-width: 1025px){
   #toggle:checked + label.toggle-btn .bar:nth-child(1) {
     -webkit-transform: translateY(6px) rotate(45deg);
