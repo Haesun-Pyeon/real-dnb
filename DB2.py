@@ -33,6 +33,8 @@ if __name__ == '__main__':
         try:
             store = BookStore.objects.get(name=name)
             for t in tag:
+                if len(t) == 0:
+                    continue
                 try:
                     temp = Tag.objects.get(title=t)
                     store.tag_set.add(temp)

@@ -299,11 +299,14 @@ input[type="radio"]{
     color: #FFD757; font-size: 30px;
 }
 label i.fas.fa-star{
-    color: lightgray; font-size: 35px;
+    color: gray; font-size: 35px;
 }
-input[type="radio"]:checked + label i.fas.fa-star{
+label i.fas.fa-star.on{
+    color: #FFD757; font-size: 35px;
+}
+/* input[type="radio"]:checked + label i.fas.fa-star{
     color: #FFD757;
-}
+} */
 .send-btn{
     background-color: #E29B78;
     font-family: 'YiSunShinDotumM';

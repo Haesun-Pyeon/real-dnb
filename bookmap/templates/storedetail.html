@@ -369,7 +369,7 @@
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
         {% csrf_token %}
-        <div class="radio_star">
+        <div class="radio_star" id="star">
             <input type="radio" name="star" id="shipadd1" value="1" checked/>
             <label for="shipadd1"><i class="fas fa-star"></i></label>
             <input type="radio" name="star" id="shipadd2" value="2" />
@@ -381,6 +381,15 @@
             <input type="radio" name="star" id="shipadd5" value="5" />
             <label for="shipadd5"><i class="fas fa-star"></i></label>
         </div>
+
+        <script>
+            $('#star i').click(function(){
+                $('#star').children('label').children('i').removeClass('on');
+                $(this).addClass('on').parent().prevAll('label').children('i').addClass('on');
+                $(this).parent().click();
+                return false;
+            })
+        </script>
 
         <div class="rev_write">
         {{form.as_table}}
