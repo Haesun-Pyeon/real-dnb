@@ -1,0 +1,1 @@
+web: gunicorn dnbookproject.wsgi --log-file -
