@@ -7,10 +7,9 @@ from main.models import *
 
 class BookStore(models.Model):
     bookstore_id = models.AutoField(primary_key=True)
-    name = models.CharField('책방이름',max_length=20, default="storename")
+    name = models.CharField('책방이름',max_length=20)
     addr = models.TextField('책방주소',unique=True)
-    phone_regex = RegexValidator(regex=r'^\d{2,4}\-\d{3,4}\-\d{4}$', message="000-0000-0000과 같은 형식으로 입력해주세요.")
-    phone_number = models.CharField('전화번호',validators=[phone_regex], blank=True, max_length=15, null=True)
+    phone_number = models.CharField('전화번호', blank=True, max_length=15, null=True)
     site = models.URLField('웹사이트',null=True, blank=True)
     img = models.URLField(null=True, blank=True)
     insta = models.CharField('인스타그램',null=True, blank=True, max_length=50)

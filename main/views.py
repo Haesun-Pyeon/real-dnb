@@ -9,8 +9,14 @@ from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Q
+
 import boto3
-bucket = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+
+def s3_delete(key):
+    s3 = boto3.resource('s3')
+    bucket_name = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    obj = s3.Object(bucket_name, key)
+    obj.delete()
 
 # Create your views here.
 def home(request):
@@ -135,7 +141,7 @@ def del_user(request):
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
         # os.remove(profile.profileimg.path)
-        boto3.delete(bucket, profile.profileimg.path)
+        s3_delete(profile.profileimg.path)
     user.delete()
     auth.logout(request)
     return render(request, 'home.html')
@@ -146,9 +152,8 @@ def user_change(request):
         try:
             new_img = request.FILES['img_file']
             profile = Profile.objects.get(user=user)
-            if profile.profileimg:
+            # if profile.profileimg:
                 # os.remove(profile.profileimg.path)
-                boto3.delete(bucket, profile.profileimg.path)
             profile.profileimg = new_img
             profile.save()
         except:

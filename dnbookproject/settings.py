@@ -9,7 +9,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = ')3!!@n+12c_$uij^kqu@k023c9pdxcvo87o9ym)!bw5rvw1s@p'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
@@ -145,17 +147,12 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_DEFAULT_ACL = 'public-read'
 AWS_LOCATION = 'static'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-#STATIC_URL = '/static/'
 
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#MEDIA_URL = '/media/'
 MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
 
 # Heroku: Update database configuration from $DATABASE_URL. 
