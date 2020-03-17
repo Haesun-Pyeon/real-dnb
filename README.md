@@ -20,6 +20,8 @@
 - channels_redis
 - pandas
 - xlrd
+- pyyaml ua-parser user-agents
+- django-user-agents
 
 ## 모델 불러오기
 - $python manage.py migrate
