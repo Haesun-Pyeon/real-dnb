@@ -20,8 +20,6 @@ class BookStore(models.Model):
     thema_set = models.ManyToManyField('Thema', blank=True)
     tag_set = models.ManyToManyField('Tag', blank=True)
 
-
-
     class Meta:
             ordering = ['name']
 
@@ -48,16 +46,6 @@ class Tag(models.Model):
             if self in s.tag_set.all():
                 count += 1
         return count
-
-#우선 크롤링 리뷰는 냅뒀다가 나중에 블로그 검색 API 적용시에 수정
-class Crawling(models.Model):
-    store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
-    title = models.TextField()
-    content = models.TextField()
-    link = models.URLField()
-    
-    def __str__(self):
-        return '%s, %s' %(self.store, self.title)
 
 class Thema(models.Model):
     title = models.CharField(max_length=30, unique=True)
@@ -95,7 +83,6 @@ class Review(models.Model):
     def __str__(self):
         return '%s, %s' %(self.store, self.content[:30])
 
-    
 class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     store = models.ForeignKey(BookStore, on_delete=models.CASCADE)

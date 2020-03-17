@@ -27,46 +27,55 @@ def home(request):
         nick = user.username
         profile = Profile(user=user, email=email, nickname=nick)
         profile.save()
-        return render(request, 'social.html')
+        return render(request, 'temp.html', {'tf': tf})
     #여기부터 추천
     else:
         try:
+            weight={} #태그별 가중치
             tag_set = request.user.profile.tag_set.all()
-            if tag_set.count() == 0:
-                raise ValueError
-            stores = BookStore.objects.all()
             arr = []
+            scrap = Scrap.objects.filter(user=request.user)  #좋아요한 책방
+            if (tag_set.count() == 0) and (scrap.count() == 0):
+                raise ValueError
+            if (scrap.count() != 0):
+                like_pk=[]
+                for s in scrap:
+                    like_list = s.store.tag_set.all().values_list('title', flat=True)
+                    like_pk.append(s.store.bookstore_id)
+                    for l in like_list:
+                        if l in weight.keys():
+                            weight[l] += 0.1
+                        else:
+                            weight[l] = 0.1
+                stores = BookStore.objects.exclude(bookstore_id__in=like_pk)
+            else:
+                stores = BookStore.objects.all()
+            if (tag_set.count() != 0):
+                for t in tag_set:
+                    if t.title in weight.keys():
+                        weight[t.title] += 1
+                    else:
+                        weight[t.title] = 1
             for store in stores:
+                store_weight = 0 #그 가게의 최종가중치
                 temp = []
                 temp.append(store.name)
-                s1 = set(store.tag_set.all()) # 책방 태그 집합
-                s2 = set(tag_set) # 내 취향 집합
-                if s1 & s2:
-                    temp.append(len(s1 & s2)) # 교집합 개수
-                    arr.append(temp)
+                for t in store.tag_set.all():
+                    if t.title in weight.keys():
+                        store_weight += weight[t.title]
+                temp.append(round(store_weight,1))
+                arr.append(temp)
             arr.sort(key=lambda x:x[1])
             arr.reverse()
-            arr = arr[:10]
+            arr = arr[:15]
             q = Q()
-            for s in arr:
-                q.add(Q(name=s[0]), q.OR)
+            for a in arr:
+                q.add(Q(name=a[0]), q.OR)
             stores = BookStore.objects.filter(q).order_by('?')[:5]
-
-            # 내가 고른 태그 중 랜덤으로 추천
-            '''
-            tag_set = request.user.profile.tag_set.all()
-            tag = tag_set.order_by('?')[0]
-            stores = BookStore.objects.all()
-            q = Q()
-            for store in stores:
-                if tag in store.tag_set.all():
-                    q.add(Q(name=store.name), q.OR)
-            stores = BookStore.objects.filter(q).order_by('?')[:4]
-            '''
-        except:
-            stores = '' #태그 없으면 로그인 안한 사람이랑 같은 로직으로 ㄱㄱ
-        
-        return render(request, 'home.html', {'stores':stores})
+            return render(request, 'home.html', {'stores':stores,})
+        except: # 추천 못하는경우 현위치기반
+            tf = None
+            return render(request, 'temp.html', {'tf': tf})
 
 def signup(request):
     if request.method == 'POST':
@@ -227,3 +236,19 @@ def tag_change(request):
         temp = Tag.objects.get(title=t)
         profile.tag_set.add(temp)
     return redirect('mytag')
+
+def non_log(request, addr):
+    if addr == '123': #현위치 못받아올때는 랜덤 5개
+        stores = BookStore.objects.all().order_by('?')[:5]
+        return render(request, 'home.html', {'stores': stores,})
+    else:
+        address = addr.split()
+        if len(address[0]) > 2:
+            address[0] = address[0][:2]
+        bookstore = BookStore.objects.filter(addr__startswith=address[0], addr__contains=address[1])
+        if len(bookstore) <= 5:
+            bookstore = BookStore.objects.filter(addr__startswith=address[0])
+            stores = bookstore.order_by('?')
+        else:
+            stores = bookstore.order_by('?')[:5]
+        return render(request, 'home.html', {'stores':stores,})

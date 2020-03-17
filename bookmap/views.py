@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.models import User
-from .models import BookStore, Scrap, Review, Thema, Crawling, Stamp
+from .models import BookStore, Scrap, Review, Thema, Stamp
 from main.models import Profile
 from django.core import serializers
 import simplejson
@@ -8,7 +8,7 @@ from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg, Count
 import os
 from datetime import datetime
-
+from .blogsearch import blog_search
 
 # Create your views here.
 
@@ -41,9 +41,17 @@ def detail(request, bookstore_id):
             t['count'] = 0
     store_detail = get_object_or_404(BookStore, pk = bookstore_id)
     scrap = Scrap.objects.filter(store=store_detail)
-    rev = Crawling.objects.filter(store=store_detail)
+    revs = blog_search(store_detail.name, store_detail.addr)
+    rev = simplejson.loads(revs)
+    rev = rev['items']
+    for r in rev:
+        r['title'] = r['title'].replace("<b>", "")
+        r['title'] = r['title'].replace("</b>", "")
+        r['description'] = r['description'].replace("<b>", "")
+        r['description'] = r['description'].replace("</b>", "")
+        r['description'] = r['description'][:40] # 내용 너무 길어서 잘랐음!! 이화야 너가 보고 적당히 숫자 조절해쥬 
     tot = 0
-    reviews = store_detail.review_set.all().order_by('-created_at')
+    reviews = store_detail.review_set.all().order_by('-created_at') #사용자 리뷰
     for i in store_detail.review_set.all():
         tot += i.star
     if store_detail.review_set.all().count():

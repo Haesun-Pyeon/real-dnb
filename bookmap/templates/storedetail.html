@@ -415,10 +415,11 @@
 
     <div class="clawling-container">
         <div class="review_hs">
-            {%for review in rev%}
+            {% for review in rev %}
             <div class="cr_review_ct">
             <h3><a href={{review.link}}>{{review.title}}</h3>
-            <h4>{{review.content}}</h4></a>
+            <h4>{{review.description}}</h4>
+            <h4>{{review.postdate}}</h4></a>
             </div>
             <hr>
             {%endfor%}

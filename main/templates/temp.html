@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- 아무것도 안뜨는 임시페이지 -->
+<html>
+    {% if tf %}
+    <!-- 카카오 로그인 시 최초1회 프사 저장 -->
+    {% load socialaccount %}
+    {% providers_media_js %}
+    <body>
+        <form method="POST" action="{% url 'social' %}" class="form">
+            {% csrf_token %}
+            <input name='img_url' id="url" type="text" value="{{ user.socialaccount_set.all.first.get_avatar_url }}" style="display:none"/>
+            <input type="submit" id='click' value="등록" style="display:none"/>
+            <script type="text/javascript">
+                document.getElementById("click").click();
+            </script>
+        </form>
+    </body>
+
+    {% else %}
+    <!-- 내위치 값 넘김 -->
+    <a href="#" style="display: none;" id='non-login'></a>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
+    <script type="text/javascript">
+    var geocoder = new kakao.maps.services.Geocoder();
+    var callback = function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var addr=result[0].address.address_name;
+            document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}".replace('123',addr));
+            document.getElementById('non-login').click();  
+        }
+    };
+    function error(e){
+        document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}");
+        document.getElementById('non-login').click();  
+    }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            let lat=position.coords.latitude;
+            let lon=position.coords.longitude;
+            geocoder.coord2Address(lon,lat,callback);
+        },error)
+    } else { error('e') }
+    </script>
+    {% endif %}
+</html>
