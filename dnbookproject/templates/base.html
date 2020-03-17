@@ -27,7 +27,7 @@
                     <div class="bar"></div>
                </label>
 
-               {% if not request.PC %} <!--휴대폰으로 접속했을 때-->
+               {% if request.user_agent.is_mobile %} <!--휴대폰으로 접속했을 때-->
                <nav class="openmenu">
                     <ul class='items'>
                          <li><a href="{% url 'home' %}">HOME</a></li>
@@ -63,25 +63,24 @@
                </nav>
                {% endif %}
 
-               {% if request.PC %} <!--PC로 접속했을 때-->
+               {% if request.user_agent.is_pc %} <!--PC로 접속했을 때-->
                     <nav class="openmenu-pc">
                     <ul class='items-pc'>
                          <li><a href="{% url 'home' %}">홈</a></li>
                          <li><a href="{% url 'realmap' %}">책방 지도</a></li>
                          <li><a href="{% url 'board' %}">책방 소식</a></li>
-                         <!--<li><a href="{% url 'guide' %}">출판물 제작 가이드</a></li>-->
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                              <li><a href="{% url 'listMessage' %}">쪽지함</a></li>
-                              <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:gray;">로그아웃</a></li>
+                              <li><a href="{% url 'chat-list' %}">쪽지함</a></li>
+                              <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:rgb(233, 233, 233);">로그아웃</a></li>
                               <form id="logout" method="POST" action="{% url 'logout' %}">
                                    {% csrf_token %} <input type="hidden" />
                               </form>
                          {% else %}
-                              <li style="float:right"><a href="{% url 'signup' %}" style="color:gray;">회원가입</a>
-                                   <span style="color:gray;">&nbsp; / &nbsp;</span>
-                                   <a href="{% url 'login' %}" style="color:gray;">로그인</a></li>
+                              <li style="float:right"><a href="{% url 'signup' %}" style="color:rgb(233, 233, 233);">회원가입</a>
+                                   <span style="color:rgb(233, 233, 233);">&nbsp; / &nbsp;</span>
+                                   <a href="{% url 'login' %}" style="color:rgb(233, 233, 233);">로그인</a></li>
                          {% endif %}
                     </ul>
                     </nav>

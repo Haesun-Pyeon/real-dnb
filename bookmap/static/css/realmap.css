@@ -280,57 +280,9 @@ input.search-box-pc:focus + span {
     font-family: 'YiSunShinDotumM';
 }
 
-/* 나중에 PC버전 프론트 할때 다시 살리기
+
 @media(min-width:1025px){
-    .realmap{
-        padding: 0px 100px;
-    }
-    .map-container{
-        display: inline;
-        min-width: 100%;
-    }
-    .map{
-        display: inline;
-        float: left;
-        width: 50%;
-        height: 410px;
-    }
-    .list{
-        display: inline;
-        float: left;
-        width: 50%;
-        height: 400px;
-        padding-left: 10px;
-        padding-right: 0px;
-    }
-    .table{
-        font-size: 1rem;
-    }
-    .seeall, .seetheme{
-        width: 60px;
-        height: 60px;   
-        line-height: 60px;     
-    }
-    .seeall a, .seetheme a{
-        font-size: 20px;
-    }
-    .seetheme{
-        margin-top: 85px;
-    }
-    .smallinfo{
-        white-space:nowrap;
-        width: 300px;
-        height: 100px;
-        font-family: 'YiSunShinDotumM';
-        font-size: 15px;
-        text-align: center;
-        color: #615136;
-    }
-    .title{
-        font-size: 20px;
-        color: black;
-    }
-    .det-btn{
-        margin-top: 30px;
-    }
-} */
+    body {
+        background-color: lightblue;
+      }
+}

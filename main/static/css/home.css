@@ -87,16 +87,13 @@ a {
     color: rgb(109, 109, 109);
 }
 
-.post-slider .post-wrapper .post .slider-image{
+.post-slider .post-wrapper .post img{
     width: 100%;
     height: 1000px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 #slick-slide-control00, .slick-dots{
     display: none;
 }
-@media(min-width:1024px){
-
-}
-

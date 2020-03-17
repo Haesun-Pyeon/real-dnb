@@ -57,3 +57,17 @@ body{
 .gotosignup{
     font-size: 1.5rem;
 }
+.logo-img{
+    width: 16rem; margin-top: 6rem;
+}
+
+@media only screen and (min-width: 1025px){
+    .loginbox{
+        width: 50%;
+        height: 40rem;
+    }
+    .logo-img{
+        margin-top: 2.5rem;
+    }
+
+}
