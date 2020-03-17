@@ -9,7 +9,6 @@ from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Q
-
 import boto3
 
 def s3_delete(key):
@@ -18,7 +17,6 @@ def s3_delete(key):
     path='media/'+str(key)
     s3.Object(bucket_name, path).delete()
 
-# Create your views here.
 def home(request):
     tf = False
     if request.user.is_authenticated:
