@@ -32,7 +32,7 @@
             let pk={{s.bookstore_id}};
             let url="https://dnbook.live/bookmap/store/";
             let result=url.concat(pk);
-            document.getElementById('detail').setAttribute('href',result)
+            document.getElementById('detail').setAttribute('href',result);
           </script>
             {% if s.img == 'nan' %}
             <img src="{% static 'images/greenlogo.png' %}" alt="" class="slider-image">  
