@@ -33,7 +33,7 @@ if __name__ == '__main__':
             if(rescode==200):
                 response_body = response.read()
                 sim = simplejson.loads(response_body.decode('utf-8'))
-                img = sim['result']['url']
+                img = sim['result']['url'].replace('http://','https://')
             else:
                 print("Error Code:" + rescode)
         else:
