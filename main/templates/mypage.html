@@ -105,11 +105,9 @@
 </div>
 <script>
     function detail(id,tf){
+        let url="https://dnbook.live/bookmap/themadetail/";
         if (tf === 0){
-            let url="https://dnbook.live/bookmap/store/";
-        }
-        else {
-            let url="https://dnbook.live/bookmap/themadetail/";
+            url="https://dnbook.live/bookmap/store/";
         }
         let result=url.concat(id);
         location.href=result;
