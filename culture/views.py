@@ -17,9 +17,7 @@ def board(request,
             insta.append(a.insta)
         else: pass
     random.shuffle(insta)
-    instalist = simplejson.dumps(insta)
     context = {
-        'instalist':instalist, 
         'insta':insta,
     }
     if extra_context is not None:
