@@ -1,1 +1,2 @@
-web: daphne dnbookproject.asgi:application --port $PORT --bind 0.0.0.0 -v2
+web: gunicorn dnbookproject.asgi:asgi_channel -b 0.0.0.0:$PORT -w 4 -k
+worker: uvicorn.workers.UvicornWorker — forwarded-allow-ips “*”

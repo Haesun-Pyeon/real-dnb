@@ -34,6 +34,7 @@ docutils==0.15.2
 future==0.18.2
 get==2019.4.13
 gunicorn==20.0.4
+h11==0.9.0
 hiredis==1.0.1
 hyperlink==19.0.0
 idna==2.8
@@ -74,5 +75,8 @@ txaio==20.1.1
 ua-parser==0.10.0
 urllib3==1.25.6
 user-agents==2.1
+uvicorn==0.11.3
+websockets==8.1
+whitenoise==4.1.4
 xlrd==1.2.0
 zope.interface==4.7.1
