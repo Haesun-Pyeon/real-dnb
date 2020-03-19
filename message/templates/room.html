@@ -35,11 +35,7 @@
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
 
     <!--안보이는 부분임-->
-    {% if msg.sender.profile.profileimg %}
-        <img id="chat-img" src="{{msg.sender.profile.profileimg.url}}" style="visibility: hidden; height: 0px;">
-    {% else %}
-        <img id="chat-img" src="{% static 'images/basic-profile-img.png' %}" style="visibility: hidden; height: 0px;">
-    {% endif %}
+    <img id="chat-img" src="{% static 'images/basic-profile-img.png' %}" style="visibility: hidden; height: 0px;">
     
     <form method="POST">
     {% csrf_token %}
@@ -63,7 +59,9 @@
     <script>
         let roomName = {{ room_name_json }};
         var request_user = {{ name }};
-        let img_src = document.querySelector('#chat-img').getAttribute('src')
+        var proimg = {{ other }};
+        
+        // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
             'ws://' + window.location.host +
             '/ws/chat/' + roomName + '/');
@@ -74,6 +72,9 @@
             var from = data['name']; 
             var cur = new Date();
             let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+            if(proimg != "nan") img_src = proimg;
+            else img_src = document.querySelector('#chat-img').getAttribute('src');
 
             if(from != request_user){ // 남이 보낸 문자
                 var img = document.createElement('img');
