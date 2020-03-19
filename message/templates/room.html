@@ -24,7 +24,7 @@
                 <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
             {% endif %}
             <!--남이 보낸 문자 왼쪽정렬-->
-            {{msg.sender}}<br>
+            {{msg.sender.profile.nickname}}<br>
             <div class="chatcontent">{{msg.content}}</div>
             <div class="chat_time">{{msg.sentAt}}</div>
         {% endif %}
@@ -60,6 +60,7 @@
         let roomName = {{ room_name_json }};
         var request_user = {{ name }};
         var proimg = {{ other }};
+        var nickname = {{ nick }};
         
         // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
@@ -83,7 +84,7 @@
                 document.getElementById("chatbody").appendChild(img);
 
                 var div1 = document.createElement('div');
-                var text1 = document.createTextNode(from);
+                var text1 = document.createTextNode(nickname);
                 div1.appendChild(text1);
                 document.getElementById("chatbody").appendChild(div1);
 
