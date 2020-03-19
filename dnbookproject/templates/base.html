@@ -39,7 +39,7 @@
                          <div class="items-login-box">
                               <a href="{% url 'mypage' %}" class="items-login">마이페이지</a>
                               <span style="font-size:30px"> &nbsp;  /  &nbsp;</span>
-                              <a href="http://dnbook.live/chat" class="items-login">쪽지함</a>
+                              <a href="javascript:chat_link();" class="items-login">쪽지함</a>
                               <span style="font-size:30px"> &nbsp;  /  &nbsp;</span>
                               <a href="{% url 'mytag' %}" class="items-login">취향목록</a>
                          </div>
@@ -73,7 +73,7 @@
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                              <li><a href="http://dnbook.live/chat">쪽지함</a></li>
+                              <li><a href="javascript:chat_link();">쪽지함</a></li>
                               <a href="{% url 'mytag' %}" class="items-login">취향목록</a>
                               <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:rgb(233, 233, 233);">로그아웃</a></li>
                               <form id="logout" method="POST" action="{% url 'logout' %}">
@@ -88,7 +88,13 @@
                     </nav>
                {% endif %}
           </header>
-     
+          <script>
+               function chat_link(){
+                    let url="http://dnbook.live/chat/";
+                    location.href=url;
+               }
+          </script>
+           
      {% block content %}
      <!--다른 템플릿에 글을 쓰면 이 사이로 들어옵니다~!-->
      {% endblock content%}
