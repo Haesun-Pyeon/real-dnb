@@ -73,7 +73,7 @@
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                              <li><a href="{% url 'chat-list' %}">쪽지함</a></li>
+                              <li><a href="http://dnbook.live/chat">쪽지함</a></li>
                               <a href="{% url 'mytag' %}" class="items-login">취향목록</a>
                               <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:rgb(233, 233, 233);">로그아웃</a></li>
                               <form id="logout" method="POST" action="{% url 'logout' %}">
