@@ -5,6 +5,7 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/room.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8"/>
 </head>
@@ -30,6 +31,12 @@
         {% endif %}
     {% endfor %}
     </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
+        });
+    </script>
 
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
@@ -46,7 +53,10 @@
     <!--여기까지-->
 
     <!--목록으로 돌아가기-->
-    <a class="listlink" href="{% url 'chat-list' %}">목록으로 돌아가기</a>
+    <a class="listlink" href="{% url 'chat-list' %}">
+        <i class="fas fa-chevron-left prev" style="color: #FFFFFF; font-size: 55px; position : absolute; z-index: 0; top: 30px; left: 30px;"></i>
+    </a>
+    
         <script type="text/javascript">
             function enter() { 
                 if (window.event.keyCode == 13) {
@@ -86,6 +96,7 @@
                 var div1 = document.createElement('div');
                 var text1 = document.createTextNode(nickname);
                 div1.appendChild(text1);
+                div1.setAttribute('class','msg-sender-name');
                 document.getElementById("chatbody").appendChild(div1);
 
                 //내용
@@ -127,7 +138,6 @@
                 div3.appendChild(text3);
                 div3.setAttribute('class','chat_time');
                 div.appendChild(div3);
-
                 document.getElementById("chatbody").appendChild(div);
             }
         };

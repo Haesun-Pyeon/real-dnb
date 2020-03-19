@@ -51,9 +51,7 @@ span{
 }
 
 @media (min-width: 1025px){
-    div{
-        display: inline;
-    }
+
     .instagram_gallery{
         width: 30%;
         display: inline-block;

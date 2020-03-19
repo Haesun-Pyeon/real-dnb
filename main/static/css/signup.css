@@ -58,3 +58,19 @@ body{
 .gotosignup{
     font-size: 1.5rem;
 }
+
+@media only screen and (min-width: 1025px){
+    .signup-box{
+        height: 47rem;
+    }
+    #inp{
+        height: 4rem;
+        display: block;
+    }
+    .sign-content{
+        padding-left: 38%;
+    }
+    .signup-btn{
+        float: left;
+    }
+}
