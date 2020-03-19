@@ -136,7 +136,7 @@ def del_user(request):
         os.remove(profile.profileimg.path)
     user.delete()
     auth.logout(request)
-    return render(request, 'home.html')
+    return redirect('home')
     
 def user_change(request):
     if request.method == "POST":
@@ -171,16 +171,20 @@ def user_change(request):
 def mypage(request):
     user = request.user
     if user.is_superuser:
-        return render(request, 'home.html')
+        return redirect('home')
+
+    if not user.has_usable_password(): #카카오로그인
+        kakao = True
     else:
-        profile = Profile.objects.get(user=request.user)
-        mystamp = profile.stampcount()
-        level = profile.level
-        if level==3:
-            next_level = None
-        else:
-            next_level = level + 1
-        more = level*10-mystamp
+        kakao = None
+    profile = Profile.objects.get(user=request.user)
+    mystamp = profile.stampcount()
+    level = profile.level
+    if level==3:
+        next_level = None
+    else:
+        next_level = level + 1
+    more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
     return render(request,'mypage.html', {
                         'scraps':scraps, 
@@ -190,6 +194,7 @@ def mypage(request):
                         'more':more,
                         'user':user,
                         'profile': profile,
+                        'kakao':kakao,
                         })
 
 def test(request):
