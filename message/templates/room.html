@@ -5,6 +5,7 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/room.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8"/>
 </head>
@@ -46,7 +47,10 @@
     </form>
 
     <!--목록으로 돌아가기-->
-    <a class="listlink" href="{% url 'chat-list' %}">목록으로 돌아가기</a>
+    <a class="listlink" href="{% url 'chat-list' %}">
+        <i class="fas fa-chevron-left prev" style="color: #FFFFFF;"></i>
+    </a>
+    
         <script type="text/javascript">
             function enter() { 
                 if (window.event.keyCode == 13) {

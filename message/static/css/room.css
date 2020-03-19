@@ -101,7 +101,7 @@ input#chat-message-input.sending-box:focus{
     margin-right: 20px;
     float:right;
 }
-.listlink{
+/* .listlink{
     font-family: 'YiSunShinDotumM';
     font-size: 1.5rem;
     color: #ffffff;
@@ -111,7 +111,7 @@ input#chat-message-input.sending-box:focus{
     border-radius: 5px;
     width: fit-content;
     margin: 0px 310px;
-}
+} */
 @media (min-width: 1025px){
     .chatcontent, .chatcontent_r{
         font-size: 1.3rem;
