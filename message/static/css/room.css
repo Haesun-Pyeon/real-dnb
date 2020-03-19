@@ -8,7 +8,7 @@ body{
     font-family: 'NanumSquareRound';
     font-size: 35px;
     color: #3c281b;
-    height: 1430px;
+    height: 1500px;
     overflow:auto;
     margin:0 30px;
     padding-top: 10px;
@@ -45,11 +45,12 @@ img.mypage-prof-img {
 }
 .chatcontent{
     font-size: 25px;
-    display: inline-block;
+    /* display: inline-block; */
     background-color:rgba(235, 221, 202, 0.4);
     border-radius: 50px;
     padding: 20px 50px;
     margin: 10px 20px;
+    width: fit-content;
 }
 .sendchat{
     text-align:right;
@@ -112,6 +113,11 @@ input#chat-message-input.sending-box:focus{
     width: fit-content;
     margin: 0px 310px;
 } */
+.msg-sender-name{
+    display: inline;
+    margin-left: 15px;
+}
+
 @media (min-width: 1025px){
     .chatcontent, .chatcontent_r{
         font-size: 1.3rem;

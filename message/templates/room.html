@@ -31,6 +31,12 @@
         {% endif %}
     {% endfor %}
     </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
+        });
+    </script>
 
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
@@ -48,7 +54,7 @@
 
     <!--목록으로 돌아가기-->
     <a class="listlink" href="{% url 'chat-list' %}">
-        <i class="fas fa-chevron-left prev" style="color: #FFFFFF;"></i>
+        <i class="fas fa-chevron-left prev" style="color: #FFFFFF; font-size: 55px; position : absolute; z-index: 0; top: 30px; left: 30px;"></i>
     </a>
     
         <script type="text/javascript">
@@ -89,6 +95,7 @@
                 var div1 = document.createElement('div');
                 var text1 = document.createTextNode(from);
                 div1.appendChild(text1);
+                div1.setAttribute('class','msg-sender-name');
                 document.getElementById("chatbody").appendChild(div1);
 
                 //내용
@@ -130,7 +137,6 @@
                 div3.appendChild(text3);
                 div3.setAttribute('class','chat_time');
                 div.appendChild(div3);
-
                 document.getElementById("chatbody").appendChild(div);
             }
         };
