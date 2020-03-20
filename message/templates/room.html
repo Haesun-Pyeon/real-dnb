@@ -19,24 +19,22 @@
                 <div class="chat_time">{{msg.sentAt}}</div>
             </div>
         {% else %}
-            {% if msg.sender.profile.profileimg %}
-                <img src="{{msg.sender.profile.profileimg.url}}" alt="" class='mypage-prof-img'>
-            {% else %}
-                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
-            {% endif %}
-            <!--남이 보낸 문자 왼쪽정렬-->
-            {{msg.sender}}<br>
-            <div class="chatcontent">{{msg.content}}</div>
-            <div class="chat_time">{{msg.sentAt}}</div>
+            <div class="recieve-message">
+                {% if msg.sender.profile.profileimg %}
+                    <img src="{{msg.sender.profile.profileimg.url}}" alt="" class='mypage-prof-img'>
+                {% else %}
+                    <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+                {% endif %}
+                <!--남이 보낸 문자 왼쪽정렬-->
+                {{msg.sender}}<br>
+                <div class="chatcontent">{{msg.content}}</div>
+                <div class="chat_time">{{msg.sentAt}}</div>
+            </div>
         {% endif %}
     {% endfor %}
     </div>
     
-    <script>
-        $(document).ready(function(){
-            $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
-        });
-    </script>
+
 
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
@@ -166,6 +164,12 @@
             messageInputDom.value = '';
         };
     </script>
+
+    <script>
+        const $messageTextBox = $('#chatbody'); 
+        $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
+    </script>
+
 </body>
 {% endblock %}
 </html>
