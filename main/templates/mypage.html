@@ -30,10 +30,10 @@
                 </div>
                 <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
                 <div class='mypage-profile-info'>
-                    <input class='mypage-profile-input' type='password' name='password1' placeholder='비밀번호 변경' {%if kakao %}disabled{% endif %}/>
+                    <input class='mypage-profile-input' type='password' name='password1' placeholder='비밀번호 변경' {%if kakao %}readonly{% endif %}/>
                 </div>
                 <div class='mypage-profile-info'>
-                    <input class='mypage-profile-input' type='password' name='password2' placeholder='비밀번호 확인' {%if kakao %}disabled{% endif %}/>
+                    <input class='mypage-profile-input' type='password' name='password2' placeholder='비밀번호 확인' {%if kakao %}readonly{% endif %}/>
                 </div>
                 <input type="file" name="img_file" id="img_file" style="display:none" accept=".jpg,.jpeg,.png,.gif"/>
                 <input type='submit' class='mypage-submit-btn' value='SAVE'/>
