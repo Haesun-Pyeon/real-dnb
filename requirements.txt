@@ -22,11 +22,10 @@ daphne==2.4.1
 decorator==4.4.1
 defusedxml==0.6.0
 dj-database-url==0.5.0
-Django==2.2.6
+Django==2.2.11
 django-allauth==0.41.0
 django-bootstrap4==1.0.1
 django-detect==1.0.16
-django-el-pagination==3.2.4
 django-six==1.0.4
 django-storages==1.8
 django-user-agents==0.4.0
