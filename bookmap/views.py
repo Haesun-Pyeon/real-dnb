@@ -8,7 +8,7 @@ from .forms import ReviewForm, AddThemaForm
 from django.db.models import Avg, Count
 import os
 from datetime import datetime
-from .blogsearch import blog_search
+from .blogsearch import blog_search, cleaning
 
 # Create your views here.
 
@@ -44,12 +44,7 @@ def detail(request, bookstore_id):
     revs = blog_search(store_detail.name, store_detail.addr)
     rev = simplejson.loads(revs)
     rev = rev['items']
-    for r in rev:
-        r['title'] = r['title'].replace("<b>", "")
-        r['title'] = r['title'].replace("</b>", "")
-        r['description'] = r['description'].replace("<b>", "")
-        r['description'] = r['description'].replace("</b>", "")
-        r['description'] = r['description'][:40] # 내용 너무 길어서 잘랐음!! 이화야 너가 보고 적당히 숫자 조절해쥬 
+    rev = cleaning(rev)
     tot = 0
     reviews = store_detail.review_set.all().order_by('-created_at') #사용자 리뷰
     for i in store_detail.review_set.all():
