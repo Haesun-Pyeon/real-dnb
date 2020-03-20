@@ -19,7 +19,7 @@ class BookStore(models.Model):
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['bookstore_id']
 
     def __str__(self):
         return self.name

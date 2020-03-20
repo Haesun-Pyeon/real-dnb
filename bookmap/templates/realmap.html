@@ -167,8 +167,11 @@
                 selectedmk=cur_marker;
                 map.setCenter(locPosition);
                 map.setLevel(5,{animate: true});
-            });
+            },error);
         };
+    }
+    function error(e){
+        alert("현재 위치를 받아올 수 없습니다.")
     }
     function addrStoN(address,title,i){ //주소를 위도경도로 변환후 마킹
         geocoder.addressSearch(address,function(result, status){

@@ -295,6 +295,34 @@
         {% endif %}
     </div>
     <script type="text/javascript">
+        function get_stamp(){   //도장찍기
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    let lat=position.coords.latitude;
+                    let lon=position.coords.longitude;
+                    let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
+                    let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
+                    let stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
+                    let geocoder = new kakao.maps.services.Geocoder();
+                    let addr = document.getElementById('addr').innerHTML;
+                    geocoder.addressSearch(addr,function(result, status){
+                        if (status === kakao.maps.services.Status.OK){
+                            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                            if (stamp_bounds.contain(coords)){
+                                location.href="{%url 'stamp' store.bookstore_id %}";
+                            }
+                            else{
+                                alert("책방 근처에서 적립 가능합니다.");
+                            }
+                        };
+    
+                    });
+                },error);
+            }
+            function error(e){
+                alert("현재 위치를 받아올 수 없습니다.")
+            }
+        };
         window.onload=function(){
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
@@ -323,33 +351,7 @@
                 });
             }
             addrStoN(addr,name);
-    
         }
-        function get_stamp(){   //도장찍기
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    let lat=position.coords.latitude;
-                    let lon=position.coords.longitude;
-                    let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
-                    let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
-                    let stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
-                    let geocoder = new kakao.maps.services.Geocoder();
-                    let addr = document.getElementById('addr').innerHTML;
-                    geocoder.addressSearch(addr,function(result, status){
-                        if (status === kakao.maps.services.Status.OK){
-                            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-                            if (stamp_bounds.contain(coords)){
-                                location.href="{%url 'stamp' store.bookstore_id %}";
-                            }
-                            else{
-                                alert("책방 근처에서 적립 가능합니다.");
-                            }
-                        };
-    
-                    });
-                });
-            }
-        };
     </script>
 
     <br>
@@ -414,14 +416,20 @@
             <a href="{% url 'reviewdelete' review.id %}">삭제</a>
         </div>
         {% else %}
-        <a href="{% url 'chat-temp' review.user.id %}" class="send-btn">쪽지보내기</a>
+        <a href="javascript:chat_link('{{review.user.id}}');" class="send-btn">쪽지보내기</a>
     </div>
         {% endif %} 
         {% endif %}
         <hr>
     {% endfor %}
 </div>
-
+<script>
+    function chat_link(id){
+      let url="http://dnbook.live/chat/temp/";
+      let result=url.concat(id);
+      location.href=result;
+    }
+</script>
     <div class="clawling-container">
         <div class="review_hs">
             {% for review in rev %}
