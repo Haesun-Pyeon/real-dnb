@@ -5,6 +5,7 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/room.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8"/>
 </head>
@@ -24,22 +25,24 @@
                 <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
             {% endif %}
             <!--남이 보낸 문자 왼쪽정렬-->
-            {{msg.sender}}<br>
+            {{msg.sender.profile.nickname}}<br>
             <div class="chatcontent">{{msg.content}}</div>
             <div class="chat_time">{{msg.sentAt}}</div>
         {% endif %}
     {% endfor %}
     </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
+        });
+    </script>
 
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
 
     <!--안보이는 부분임-->
-    {% if msg.sender.profile.profileimg %}
-        <img id="chat-img" src="{{msg.sender.profile.profileimg.url}}" style="visibility: hidden; height: 0px;">
-    {% else %}
-        <img id="chat-img" src="{% static 'images/basic-profile-img.png' %}" style="visibility: hidden; height: 0px;">
-    {% endif %}
+    <img id="chat-img" src="{% static 'images/basic-profile-img.png' %}" style="visibility: hidden; height: 0px;">
     
     <form method="POST">
     {% csrf_token %}
@@ -50,7 +53,10 @@
     <!--여기까지-->
 
     <!--목록으로 돌아가기-->
-    <a class="listlink" href="{% url 'chat-list' %}">목록으로 돌아가기</a>
+    <a class="listlink" href="{% url 'chat-list' %}">
+        <i class="fas fa-chevron-left prev" style="color: #FFFFFF; font-size: 55px; position : absolute; z-index: 0; top: 30px; left: 30px;"></i>
+    </a>
+    
         <script type="text/javascript">
             function enter() { 
                 if (window.event.keyCode == 13) {
@@ -63,7 +69,10 @@
     <script>
         let roomName = {{ room_name_json }};
         var request_user = {{ name }};
-        let img_src = document.querySelector('#chat-img').getAttribute('src')
+        var proimg = {{ other }};
+        var nickname = {{ nick }};
+        
+        // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
             'ws://' + window.location.host +
             '/ws/chat/' + roomName + '/');
@@ -75,6 +84,9 @@
             var cur = new Date();
             let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
+            if(proimg != "nan") img_src = proimg;
+            else img_src = document.querySelector('#chat-img').getAttribute('src');
+
             if(from != request_user){ // 남이 보낸 문자
                 var img = document.createElement('img');
                 img.setAttribute('src', img_src);
@@ -82,8 +94,9 @@
                 document.getElementById("chatbody").appendChild(img);
 
                 var div1 = document.createElement('div');
-                var text1 = document.createTextNode(from);
+                var text1 = document.createTextNode(nickname);
                 div1.appendChild(text1);
+                div1.setAttribute('class','msg-sender-name');
                 document.getElementById("chatbody").appendChild(div1);
 
                 //내용
@@ -125,7 +138,6 @@
                 div3.appendChild(text3);
                 div3.setAttribute('class','chat_time');
                 div.appendChild(div3);
-
                 document.getElementById("chatbody").appendChild(div);
             }
         };

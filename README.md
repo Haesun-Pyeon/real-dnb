@@ -7,13 +7,11 @@
 
 ## pip
 - django
-- bs4
 - simplejson
 - django-bootstrap4
 - pillow
 - requests
-- selenium
-- django-el-pagination
+- request
 - django-detect
 - django-allauth
 - channels

@@ -1,17 +1,12 @@
 from django.shortcuts import render
 from bookmap.models import BookStore
-import simplejson
-import random
+from django.core.paginator import Paginator
+from django.db.models import Q
 # Create your views here.
 
 def board(request):
-    bookstores = BookStore.objects.all()
-    insta = []
-    for a in bookstores:
-        if (a.insta != 'nan') and (a.insta not in insta):
-            insta.append(a.insta)
-        else: pass
-    random.shuffle(insta)
-    insta=insta[:10]
-    instalist = simplejson.dumps(insta)
-    return render(request, 'board.html', {'instalist':instalist, 'insta':insta,})
+    insta_book = BookStore.objects.filter(~Q(insta='nan')).order_by('?')
+    paginator = Paginator(insta_book,10)
+    page = request.GET.get('page')
+    pageposts=paginator.get_page(page)
+    return render(request, 'board.html', {'pageposts':pageposts,})

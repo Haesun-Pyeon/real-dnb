@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        {% if not request.PC %}
+        {% if request.user_agent.is_pc %}
             <br><br><br>
         {% else %}
             <br>

@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html>
-{% extends 'base.html' %}
-{% block content %}
-{% load staticfiles %}
+{% extends 'base.html' %} {% block content %} {% load staticfiles %}
 
 <head>
-    <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}" />
 </head>
 
 <body>
+  <h2 class="ment">동네 책방의 최근 소식을 살펴보세요!</h2>
 
-    <h2 class="ment">동네 책방의 최근 소식을 살펴보세요!</h2>
+  <script src="{% static 'js/InfiniteScroll.js' %}"></script>
+  <script type="text/javascript">
+    var postWrapperId = "card-wrapper";
+    var paginatePath = '?page=';
+    var lastPage = {{ pageposts.paginator.num_pages }};
+    new InfiniteScroll(paginatePath, postWrapperId, lastPage);
+  </script>
 
-    <div class="card-container">
-        {% for i in insta %}
-        <div id="{{i}}"></div>
-        {% endfor %}
-    </div>
+  <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
+  <script type="text/javascript">
+    function insta(name) {
+      $.instagramFeed({
+        username: name,
+        container: "#123".replace("123", name),
+        display_profile: false,
+        display_biography: false,
+        items: 1,
+        items_per_row: 4,
+        margin: 0.5,
+        styling: false
+      });
+    }
+  </script>
 
-    <script type='text/javascript'>
-        let arr = {{ instalist | safe }};
-        for(let i=0; i< arr.length;i++){
-            $(window).on('load', insta(arr[i]));
-        }
-        function insta(name){
-            $.instagramFeed({
-                'username': name,
-                'container': "#123".replace('123',name),
-                'display_profile': false,
-                'display_biography': false,
-                'items': 1,
-                'items_per_row': 4,
-                'margin': 0.5,
-                'styling': false,
-            });
-        }
-    </script>
+  <div class="card-container" id="card-wrapper">
+    {% for i in pageposts %}
+    <div id="{{i.insta}}"></div>
+    <button id="{{i.bookstore_id}}" style="display: none;" onclick="insta('{{i.insta}}');"></button>
+    <script>document.getElementById("{{i.bookstore_id}}").click();</script>
+    {% endfor %}
+  </div>
 </body>
 
 {% endblock %}
+
 </html>
