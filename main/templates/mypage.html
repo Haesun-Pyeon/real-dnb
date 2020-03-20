@@ -25,7 +25,9 @@
         <div class="col infobody">
             <form method="POST" action="{% url 'user_change' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class='mypage-profile-info'>닉네임 {{profile.nickname}}</div>
+                <div class='mypage-profile-info'>닉네임
+                    <input class='mypage-profile-input' style="width: 80%;" type='text' value='{{profile.nickname}}' name='nickname'/>
+                </div>
                 <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
                 <div class='mypage-profile-info'>
                     <input class='mypage-profile-input' type='password' name='password1' placeholder='비밀번호 변경' {%if kakao %}disabled{% endif %}/>
