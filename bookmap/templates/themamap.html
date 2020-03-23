@@ -23,22 +23,24 @@
 
 <div class="allthema-box">
 {% for i in thema %}
-
-    {% if i.user.profile.profileimg %}
-        <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
-    {% else %}
-        <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
-    {% endif %}
-    <span class="writer">{{i.user.profile.nickname}}</span>
-   
-    <div class="like">
-    {% if request.user in i.like.all %}
-    <i class="fas fa-heart" style='color:#E29B78;'></i>
-    {% else %}
-    <i class="far fa-heart" style='color:#E29B78;'></i>
-    {% endif %}
-    <span class="count">{{i.total_like}}</span>
-    <br></div>
+    <div class="eachthema">
+        <div class="profile" style="height: fit-content;">
+        {% if i.user.profile.profileimg %}
+            <img src="{{i.user.profile.profileimg.url}}" alt="" class="myprofile_img">
+        {% else %}
+            <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
+        {% endif %}
+        <span class="writer">{{i.user.profile.nickname}}</span>
+    
+        <div class="like">
+        {% if request.user in i.like.all %}
+        <i class="fas fa-heart" style='color:#E29B78;'></i>
+        {% else %}
+        <i class="far fa-heart" style='color:#E29B78;'></i>
+        {% endif %}
+        <span class="count">{{i.total_like}}</span>
+        <br></div>
+        </div>
 
     {% if i.img %}
     <div class="themaimg-box">
@@ -54,10 +56,9 @@
     </a>
     
     {% endif %}
-    
-
+    <hr>   
+    </div>
         
-    <hr>
     {% endfor %}
 </div>
 </body>

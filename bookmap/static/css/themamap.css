@@ -82,3 +82,14 @@ i.fas.fa-heart, i.far.fa-heart{
     margin-top: 20px;
     margin-right: 5px;
 }
+
+@media only screen and (min-width: 1025px){
+    .eachthema{
+        display: inline-block;
+        width: 30%;
+        margin: 20px;
+       }
+    .themaimg{
+        height: 500px;
+    }
+}
