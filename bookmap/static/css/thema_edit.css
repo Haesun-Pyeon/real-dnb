@@ -74,5 +74,10 @@ input{
     border-radius: 5px;
     float: right;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
+    .newbody{
+        overflow: auto;
+        height: 800px;
+        width: 70%;
+    }
 }

@@ -25,6 +25,10 @@
         {% endif %}
         <span class="writer">{{thema.user.profile.nickname}}</span>
         <hr>
+
+        {% if thema.img %}
+            <img src="{{thema.img.url}}" alt="" class="thema-img">
+        {% endif %}      
         <h4>{{thema.description|linebreaks}}</h4>
     </div> 
 

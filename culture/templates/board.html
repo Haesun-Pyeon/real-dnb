@@ -17,6 +17,11 @@
     new InfiniteScroll(paginatePath, postWrapperId, lastPage);
   </script>
 
+    <div class="card-container">
+        {% for i in insta %}
+        <div id="{{i}}" class="gallery-box"></div>
+        {% endfor %}
+    </div>
   <script src="{% static 'js/jquery.instagramFeed.js' %}"></script>
   <script type="text/javascript">
     function insta(name) {

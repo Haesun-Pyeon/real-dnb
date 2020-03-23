@@ -162,11 +162,13 @@ tr a:hover { color: white; text-decoration: none;}
     padding: 10px;
     margin-bottom: 40px;
 }
+.thema-img{
+    width: 100%;
+}
 
-
-@media(min-width:1025px){
+@media only screen and (min-width: 1025px){
     .description{
-        padding: 1rem;
+        padding: 3rem 6rem;
     }
     .description h1{
         font-size: 2.5rem;
@@ -211,4 +213,10 @@ tr a:hover { color: white; text-decoration: none;}
     .det-btn{
         margin-top: 30px;
     }
+    .thema-img{
+        width: 60%;
+        margin: 0px auto;
+    }
+
+    
 }

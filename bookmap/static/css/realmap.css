@@ -19,7 +19,7 @@ input.search-box{
     border-radius: 10px;
     position: relative;
     font-size: 40px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     margin-bottom: 15px;
 }
 
@@ -63,7 +63,7 @@ input.search-box:focus + span {
     color: white;
     line-height: 80px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     position: absolute;
     z-index: 2;
     margin: 15px 0px 0px 15px;
@@ -89,7 +89,7 @@ a:not([href]):not([tabindex]){
     text-align: center;
     line-height: 80px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     position: absolute;
     z-index: 3;
     margin: 105px 0px 0px 15px;
@@ -121,7 +121,7 @@ a:not([href]):not([tabindex]){
     padding-right: 40px;
 }
 table {
-    border-top: 1px solid #615136;
+    border-top: 1px solid #272727;
     border-collapse: collapse;
     font-size: 25px;
     table-layout: fixed;
@@ -151,7 +151,7 @@ table {
 }
 
 .sub-btn{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     background-color: #569377;
     border: 0px;
     color:white;
@@ -160,7 +160,7 @@ table {
 }
 
 .label{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     margin-left: 10px;
     margin-right: 5px;
@@ -169,7 +169,7 @@ table {
     white-space:nowrap;
     width: 450px;
     height: 160px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     text-align: center;
     color: #000000;
@@ -179,7 +179,7 @@ table {
     color: black;
 }
 .det-btn{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     background-color: #569377;
     border: 0px;
     color:white;
@@ -223,11 +223,13 @@ table {
     box-shadow: 4px 4px 8px lightgrey;
     border-radius: 10px;
     font-size: 20px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
+    width: 400px;
+    right: 20px;
 }
 
 .search-mark-pc{
-    width: 40px;
+    width: 80px;
 }
 
 input.search-box-pc:not(:placeholder-shown) + span {
@@ -244,14 +246,21 @@ input.search-box-pc:focus + span {
 }
 .topbar-pc{
     height: 5%;
-    margin: 2%;
+    margin: 10px;
 }
-
+.pc-ment{
+    font-size: 2rem;
+    display: inline-block;
+    font-family: 'BBTreeGL';
+}
+.fa-lightbulb{
+    color: rgb(254,197,14);
+}
 /* 라디오버튼 PC버전 */
 .rbtn-pc{
     display: inline-block;
     margin-top: 10px;
-    margin-left: 55%;
+    margin-left: 25%;
     z-index: -1;
 }
 .rbtn-pc input[type='radio'] {
@@ -277,13 +286,16 @@ input.search-box-pc:focus + span {
     background:#615136;
 }
 .label-pc{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
+    font-size: 20px;
 }
 
 
 @media only screen and (min-width: 1025px){
     .realmap{
         padding: 0px 100px;
+        position: relative;
+        height: 850px;
     }
     .map-container{
         display: inline;
@@ -293,13 +305,13 @@ input.search-box-pc:focus + span {
         display: inline;
         float: left;
         width: 50%;
-        height: 410px;
+        height: 800px;
     }
     .list{
         display: inline;
         float: left;
         width: 50%;
-        height: 400px;
+        height: 800px;
         padding-left: 10px;
         padding-right: 0px;
     }
@@ -321,7 +333,7 @@ input.search-box-pc:focus + span {
         white-space:nowrap;
         width: 300px;
         height: 100px;
-        font-family: 'YiSunShinDotumM';
+        font-family: 'BBTreeGL';
         font-size: 15px;
         text-align: center;
         color: #615136;
@@ -331,6 +343,13 @@ input.search-box-pc:focus + span {
         color: black;
     }
     .det-btn{
-        margin-top: 30px;
+        margin-top: 40px;
     }
+    .line-content:hover{
+        background-color: rgb(254,234,168);
+    }
+}
+.source{
+    position:absolute; bottom:0px;
+    font-family: 'BBTreeGL';
 }
