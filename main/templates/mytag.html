@@ -13,62 +13,114 @@
         <tr>
             <td>
                 <h1>나의 태그</h1><br>
-                <select name='mytag' multiple>
-                    {% for i in mytag %}
-                        <option value='{{i.title}}'>{{i.title}}</option>
-                    {% endfor %}
-                </select><br>        
+                <div id='mytags' style="overflow: auto; width:200px; height:500px; text-align:left;">
+                {% for i in mytag %}
+                <input type="checkbox" id='{{i.id}}' name='mytag' value='{{i.title}}'>
+                <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label><br>
+                {% endfor %}
+                </div>
             </td>
             <td>
                 <i onclick="right();" class="fas fa-angle-double-right"></i><br>
                 <i onclick="left();" class="fas fa-angle-double-left"></i>
             </td>
             <td>
-                <h1>나머지 태그</h1><br> <!--전체태그에서 내태그 뺀거 (뭐라말할지 모르겠음,,,)-->
-                <select name='alltag' multiple>
+                <h1>나머지 태그</h1><br>
+                <div id='alltags' style="overflow: auto; width:200px; height:500px; text-align:left;">
                     {% for i in alltag %}
-                        <option value='{{i.title}}'>{{i.title}}</option>
+                    <input type="checkbox" id='{{i.id}}' name='alltag' value='{{i.title}}'>
+                    <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label><br>
                     {% endfor %}
-                </select><br>
+                </div>    
             </td>
         </tr>
         </table>
+        <br>
         <a href="javascript:submit();" class="save-btn">저장</a>
         <input type="submit" id='submit' style="display: none;">
     </form>
-    <div class="pcinfo">(PC버전) Ctrl이나 Shift 누르면서 클릭 하면 다중선택 가능</div>
 </div>
 
 <script>
     function right(){
-        let j = document.tag_form.alltag.length;
-        for (var i=document.tag_form.mytag.length-1;i>=0;i--){
-            if (document.tag_form.mytag.options[i].selected){
-                val=document.tag_form.mytag.options[i].value;
-                document.tag_form.mytag.options[i]=null;
-                document.tag_form.alltag.options[j]=new Option(val,val);
-                j++;
+        let mytag_box = document.getElementsByName('mytag');
+        let alldiv=document.getElementById('alltags');
+        let mydiv=document.getElementById('mytags');
+        let chkArr=new Array();
+        let lbArr=new Array();
+        let brArr=new Array();
+        mytag_box.forEach(function(element, idx){
+            if (element.checked){
+                br=mydiv.getElementsByTagName('br');
+                myval=element.value;
+                myid=element.id;
+                lb=document.getElementById(myval);
+                chkArr.push(element);
+                lbArr.push(lb);
+                brArr.push(br[idx]);
+                chk=document.createElement('input');
+                chk.type='checkbox';
+                chk.name='alltag';
+                chk.id=myid;
+                chk.value=myval;
+                alldiv.appendChild(chk);
+                lbl=document.createElement('label');
+                lbl.htmlFor = myid;
+                lbl.innerHTML=myval;
+                lbl.id=myval;
+                alldiv.appendChild(lbl);
+                alldiv.appendChild(document.createElement("br"));
             }
+        });
+        for (var i=0;i<chkArr.length;i++){
+            chkArr[i].remove();
+            lbArr[i].remove();
+            brArr[i].remove();
         }
     }
     function left(){
-        let j=document.tag_form.mytag.length;
-        for (var i=document.tag_form.alltag.length-1;i>=0;i--){
-            if (document.tag_form.alltag.options[i].selected){
-                val=document.tag_form.alltag.options[i].value;
-                document.tag_form.alltag.options[i]=null;
-                document.tag_form.mytag.options[j]=new Option(val,val);
-                j++;
+        let alltag_box = document.getElementsByName('alltag');
+        let alldiv=document.getElementById('alltags');
+        let mydiv=document.getElementById('mytags');
+        let chkArr=new Array();
+        let lbArr=new Array();
+        let brArr=new Array();
+        alltag_box.forEach(function(element, idx){
+            if (element.checked){
+                br=alldiv.getElementsByTagName('br');
+                allval=element.value;
+                allid=element.id;
+                lb=document.getElementById(allval);
+                chkArr.push(element);
+                lbArr.push(lb);
+                brArr.push(br[idx]);
+                chk=document.createElement('input');
+                chk.type='checkbox';
+                chk.name='mytag';
+                chk.id=allid;
+                chk.value=allval;
+                mydiv.appendChild(chk);
+                lbl=document.createElement('label');
+                lbl.htmlFor = allid;
+                lbl.innerHTML=allval;
+                lbl.id=allval;
+                mydiv.appendChild(lbl);
+                mydiv.appendChild(document.createElement("br"));
             }
+        });
+        for (var i=0;i<chkArr.length;i++){
+            chkArr[i].remove();
+            lbArr[i].remove();
+            brArr[i].remove();
         }
     }
     function submit(){
-        for (var i=document.tag_form.mytag.length-1;i>=0;i--){
-            document.tag_form.mytag.options[i].selected="selected";
-        }
+        let mytag_box = document.getElementsByName('mytag');
+        mytag_box.forEach(function(element){
+            element.setAttribute('checked','checked');
+        });
         document.getElementById('submit').click();
     }
 </script>
 </body>
 {% endblock %}
-

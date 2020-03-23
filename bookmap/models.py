@@ -34,9 +34,6 @@ class BookStore(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=30, unique=True)
 
-    class Meta:
-        ordering = ['title']
-
     def __str__(self):
         return self.title
     
