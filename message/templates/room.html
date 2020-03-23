@@ -138,6 +138,8 @@
                 div.appendChild(div3);
                 document.getElementById("chatbody").appendChild(div);
             }
+            const $messageTextBox = $('#chatbody'); 
+            $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
         };
 
         chatSocket.onclose = function(e) {
