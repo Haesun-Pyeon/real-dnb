@@ -46,6 +46,17 @@ option{
     text-align: center;
 }
 
+label.check-box:before{
+    content: "\f0c8";
+    font-family: "Font Awesome 5 Free";
+    color: #569377;
+}
+input:checked + label.check-box:before{
+    content: "\f14a";
+    font-family: "Font Awesome 5 Free";
+    color: #569377;
+}
+
 i.fas.fa-angle-double-right, i.fas.fa-angle-double-left{
     font-size: 3rem;
     margin: 10px 10px;
