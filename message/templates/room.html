@@ -70,6 +70,9 @@
         var proimg = {{ other }};
         var nickname = {{ nick }};
         
+        const $messageTextBox = $('#chatbody'); 
+        $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
+
         // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
             'ws://' + window.location.host +
@@ -138,6 +141,8 @@
                 div.appendChild(div3);
                 document.getElementById("chatbody").appendChild(div);
             }
+            const $messageTextBox = $('#chatbody'); 
+            $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
         };
 
         chatSocket.onclose = function(e) {
@@ -165,12 +170,6 @@
             messageInputDom.value = '';
         };
     </script>
-
-    <script>
-        const $messageTextBox = $('#chatbody'); 
-        $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
-    </script>
-
 </body>
 {% endblock %}
 </html>
