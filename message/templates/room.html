@@ -68,6 +68,7 @@
         let roomName = {{ room_name_json }};
         var request_user = {{ name }};
         var proimg = {{ other }};
+        var nickname = {{ nick }};
         
         // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
@@ -91,7 +92,7 @@
                 document.getElementById("chatbody").appendChild(img);
 
                 var div1 = document.createElement('div');
-                var text1 = document.createTextNode(from);
+                var text1 = document.createTextNode(nickname);
                 div1.appendChild(text1);
                 div1.setAttribute('class','msg-sender-name');
                 document.getElementById("chatbody").appendChild(div1);

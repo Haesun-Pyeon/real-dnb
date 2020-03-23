@@ -54,7 +54,7 @@ def room(request, room_name):
     name = request.user.username
     messages = Message.objects.filter(room=group)
     messages = messages.order_by('sentAt')
-    
+    nick = other.profile.nickname
     if other.profile.profileimg:
         other = other.profile.profileimg.url
     else:
@@ -65,4 +65,5 @@ def room(request, room_name):
         'name' : mark_safe(json.dumps(name)),
         'messages': messages,
         'other': mark_safe(json.dumps(other)),
+        'nick' : mark_safe(json.dumps(nick)),
     })

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'message',
     'culture',
     'bootstrap4',
-    'el_pagination',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

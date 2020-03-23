@@ -21,3 +21,10 @@ def blog_search(name, addr):
         return response_body.decode('utf-8')
     else:
         return "Error Code:" + rescode
+
+def cleaning(rev):
+    for r in rev:
+        r['title'] = r['title'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
+        r['description'] = r['description'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
+        r['description'] = r['description'][:40] # 내용 너무 길어서 잘랐음!! 이화야 너가 보고 적당히 숫자 조절해쥬 
+    return rev

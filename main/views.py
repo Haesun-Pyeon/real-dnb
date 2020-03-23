@@ -140,10 +140,18 @@ def del_user(request):
     
 def user_change(request):
     if request.method == "POST":
+        nick = False
+        pw = False
+        new_img = None
         user = request.user
+        profile = Profile.objects.get(user=user)
+        nickname = request.POST.get('nickname')
+        if (nickname != profile.nickname) and (nickname != ""): #닉네임변경
+            nick = True
+            profile.nickname = nickname
+            profile.save()
         try:
             new_img = request.FILES['img_file']
-            profile = Profile.objects.get(user=user)
             if profile.profileimg:
                 os.remove(profile.profileimg.path)
             profile.profileimg = new_img
@@ -152,17 +160,32 @@ def user_change(request):
             pass
         new_pwd = request.POST.get("password1")
         pwd_confirm = request.POST.get("password2")
-        if new_pwd == "":
+        if new_pwd == "": #비번변경은 안함
             if (new_img):
-                message = "프로필 사진이 성공적으로 변경되었습니다."
-                return render(request,'popup.html',{'message':message})
+                if (nick == False):
+                    message = "프로필사진이 성공적으로 변경되었습니다."
+                else:
+                    message = "프로필사진과 닉네임이 성공적으로 변경되었습니다."
             else:
-                return redirect('mypage')
-        if new_pwd == pwd_confirm:
+                if (nick==False): #셋 다 안바꾸고 그냥 잘못누른경우
+                    return redirect('mypage')
+                else:
+                    message = "닉네임이 성공적으로 변경되었습니다."
+            return render(request, 'popup.html', {'message': message})
+                
+        if new_pwd == pwd_confirm: #비번 변경
+            pw = True
             user.set_password(new_pwd)
             user.save()
-            auth.login(request, user)
-            message = "비밀번호가 성공적으로 변경되었습니다."
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            if (new_img) and (nick == True) and (pw == True):
+                message = "프로필사진, 닉네임, 비밀번호가 성공적으로 변경되었습니다."
+            elif (new_img) and (pw == True):
+                message = "프로필사진, 비밀번호가 성공적으로 변경되었습니다."
+            elif (nick==True) and (pw==True):
+                message = "닉네임, 비밀번호가 성공적으로 변경되었습니다."
+            else:
+                message = "비밀번호가 성공적으로 변경되었습니다."
             return render(request,'popup.html',{'message':message})
         else:
             message = "비밀번호가 일치하지 않습니다."
