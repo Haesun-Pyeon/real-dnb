@@ -24,6 +24,10 @@
             <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
         {% endif %}
         <span class="writer">{{thema.user.profile.nickname}}</span>
+        {% if request.user.is_active %}
+        {% if thema.user != request.user %}
+        <a href="{% url 'chat-temp' thema.user.id %}" class="send-btn">쪽지보내기</a>
+        {% endif %}{% endif %}
         <hr>
 
         {% if thema.img %}
