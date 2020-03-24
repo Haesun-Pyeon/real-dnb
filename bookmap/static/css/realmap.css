@@ -3,7 +3,6 @@
 @font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 
-a:link { color:white; text-decoration: none;}
 a:visited { color: white; text-decoration: none;}
 a:hover { color: white; text-decoration: none;}
 
@@ -77,12 +76,10 @@ input.search-box:focus + span {
     font-size: 27px;
     z-index: 2;
     font-weight: 900;
+    color: white;
 }
 .seeall:visited, .seeall:hover{
     background-color: white; color: #569377;
-}
-.seeall a:visited, .seeall a:hover{
-    color: #569377;
 }
 .seetheme{
     width: 80px;
@@ -103,13 +100,11 @@ input.search-box:focus + span {
     font-size: 27px;
     z-index: 3;
     font-weight: 900;
+    color: white;
 }
 
 .seetheme:visited, .seetheme:hover{
     background-color: white; color: #E29B78;
-}
-.seetheme a:hover{
-    color: #E29B78;
 }
 
 .map{
@@ -167,11 +162,18 @@ table {
 
 .sub-btn{
     font-family: 'BBTreeGL';
-    background-color: #569377;
-    border: 0px;
-    color:white;
+    background-color: white;
+    border: 2px solid #569377;
+    color:#569377;
     border-radius: 100px;
     padding: 7px;
+    cursor: pointer;
+    font-weight: 900;
+}
+.sub-btn:visited, .sub-btn:hover{
+    color: white;
+    background-color: #569377;
+    text-decoration: none;
 }
 
 .label{
@@ -188,6 +190,7 @@ table {
     font-size: 27px;
     text-align: center;
     color: #000000;
+    line-height: 180%;
 }
 .title{
     font-size: 40px;
@@ -196,11 +199,18 @@ table {
 .det-btn{
     font-family: 'BBTreeGL';
     background-color: #569377;
-    border: 0px;
+    border: 2px solid #569377;
     color:white;
     border-radius: 100px;
     padding: 8px;
     margin-top: 15px;
+    cursor: pointer;
+}
+.det-btn:visited, .det-btn:hover{
+	color: #569377; 
+	background-color: white; 
+    text-decoration: none;
+    font-weight: 900;
 }
 
 .rbtn{
@@ -276,7 +286,7 @@ input.search-box-pc:focus + span {
     display: inline-block;
     margin-top: 10px;
     margin-left: 290px;
-    z-index: -1;
+    /* z-index: -1; */
     position: absolute;
     left: 30%;
 }
@@ -357,6 +367,7 @@ input.search-box-pc:focus + span {
         font-size: 15px;
         text-align: center;
         color: #615136;
+        line-height: 200%;
     }
     .title{
         font-size: 20px;
