@@ -14,7 +14,7 @@
         {% if request.user_agent.is_mobile %}
         <div class="topbar">
         <form action="{% url 'mapsearch' %}" method="get" class="search-act">
-        <div>             
+        <div class="ment">             
             <i class="fas fa-lightbulb"></i>
             {% if tf %}
             #{{tf}} 태그가 포함된 책방입니다!
@@ -77,7 +77,7 @@
     <div class="map-container">
         <div id="map" class="map">
             <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
-            <div class="seetheme"><a onclick="current();">현위치</a></div>
+            <div class="seetheme"><a onclick="current();" href="#">현위치</a></div>
         </div>
 
         <div id="list" class="list">

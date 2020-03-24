@@ -47,30 +47,10 @@ span{
 .instagram_gallery img {
 /* 피드 개별 이미지 크기 및 속성 */
     width: 100%;
-    border-radius: 10px;
 }
 
 @media only screen and (min-width: 1025px){
-
-    .gallery-box{
-        display: inline-block;
-        width: 30%;
-        margin: 20px;
-    }
-    /*
-    .instagram_gallery, .gallery-box{
-        display: inline-block;
-        width: 30%;
-        margin: 20px;
-    }*/
-    .instagram_gallery img {
-    /* 피드 개별 이미지 크기 및 속성 */
-        width: 100%;
-        border-radius: 10px;
-    }
-    .card-container{
-        overflow: hidden;
-        margin: auto;
-        width: 90%;
+    strong{
+        font-size: 1.5rem;
     }
 }

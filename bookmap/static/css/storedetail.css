@@ -109,6 +109,7 @@ td.data{
 }
 .add-btn:visited, .add-btn:hover, .delete-btn:visited, .delete-btn:hover
 {color: #FFD757; background-color: white; text-decoration: none;}
+
 /* 카카오톡으로 공유하기 버튼 */
 #kakao-link-btn{
     background-color: rgb(250, 227, 0);
