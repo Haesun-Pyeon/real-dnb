@@ -135,7 +135,7 @@
         <tr>
             <td class="icon"><i class="fas fa-tags"></i></td>
             <td class="colname">태그목록</td>
-            <td class="data">{%for t in store.tag_set.all%} #{{t}} {% endfor %}</td>
+            <td class="data">{%for t in store.tag_set.all%} <a href="{% url 'tag_search' t.id %}">#{{t}}</a> {% endfor %}</td>
         </tr>
     </table>
 
@@ -393,7 +393,7 @@
 
         <div class="rev_write">
         {{form.as_table}}
-        <button type='submit' class="button">등록</button>
+        <button type='submit' class="button" id="send">등록</button>
         </div>
     </form> 
     {% endif %}
@@ -402,7 +402,7 @@
     
     {% for review in reviews %}
     <div class="user_review">
-        <div class="uname">{{review.user}} |</div>
+        <div class="uname">{{review.user.profile.nickname}} |</div>
         <div class="ustar">
         <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
         {{ review.star }}</div>
@@ -436,6 +436,13 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    document.querySelector('#id_content').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#send').click();
+            }
+        };
+</script>
 
 
 </body>

@@ -18,4 +18,5 @@ urlpatterns = [
     path('ranking/', views.ranking, name='ranking'),
     path('store_thema/<int:bookstore_id>/<int:tf>', views.store_thema, name='store_thema'),
     path('thema_like/<int:tag_id>/like', views.thema_like, name='thema_like'),
+    path('tag_search/<int:tag_id>', views.tag_search, name='tag_search'),
 ]

@@ -6,7 +6,7 @@ from django.db.models import Q
 
 def board(request):
     insta_book = BookStore.objects.filter(~Q(insta='nan')).order_by('?')
-    paginator = Paginator(insta_book,10)
+    paginator = Paginator(insta_book,9)
     page = request.GET.get('page')
     pageposts=paginator.get_page(page)
     return render(request, 'board.html', {'pageposts':pageposts,})
