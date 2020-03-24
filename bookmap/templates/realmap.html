@@ -76,10 +76,35 @@
         
     <div class="map-container">
         <div id="map" class="map">
-            <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
-            <div class="seetheme"><a onclick="current();" href="#">현위치</a></div>
+            <div class="seeall" onmouseover="hover(0);" onmouseout="hover(3);"><a href="{%url 'realmap'%}" id='all'>ALL</a></div>
+            <div class="seetheme" onmouseover="hover(1);" onmouseout="hover(4);"><a onclick="current();" href="#" id='loc'>현위치</a></div>
         </div>
-
+        <script>
+            function hover(id){
+                let col='';
+                if (id == 0){
+                    col='#569377';
+                    let div_a = document.getElementById('all');
+                    div_a.style.color=col;
+                }
+                if (id==1){
+                    col='#E29B78';
+                    let div_a = document.getElementById('loc');
+                    div_a.style.color=col;
+                }
+                else{
+                    col='white';
+                    if (id==3){
+                        let div_a = document.getElementById('all');
+                        div_a.style.color=col;    
+                    }
+                    else{
+                        let div_a = document.getElementById('loc');
+                        div_a.style.color=col;    
+                    }
+                }
+            }
+        </script>
         <div id="list" class="list">
         <table class="table">
             <thead>
