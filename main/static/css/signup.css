@@ -38,15 +38,17 @@ body{
     height: 5rem;
     border-radius: 5px;
     border: 4px solid #569377; 
-    background-color: rgba(0,0,0,0); 
-    color: #569377; 
+    background-color: #569377; 
+    color: white; 
     padding: 3px;
     font-size: 2rem;
     font-weight: 700;
+    text-decoration: none;
 }
-.login-btn:hover{
-    color: white;
-    background-color: #569377;
+.signup-btn:hover{
+    color: #569377;
+    background-color: white;
+    text-decoration: none;
 }
 
 .kakao{
