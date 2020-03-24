@@ -14,6 +14,14 @@
         {% if request.user_agent.is_mobile %}
         <div class="topbar">
         <form action="{% url 'mapsearch' %}" method="get" class="search-act">
+        <div>             
+            <i class="fas fa-lightbulb"></i>
+            {% if tf %}
+            #{{tf}} 태그가 포함된 책방입니다!
+            {% else %}
+            지도에서 원하는 책방을 찾아보세요
+            {% endif %}
+        </div>
         <div class="rbtn">
                 <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
                 <label for="f-option" class="label">이름검색</label>
@@ -40,7 +48,11 @@
         <form action="{% url 'mapsearch' %}" method="get" class="search-act-pc">
             <div class="pc-ment">             
                 <i class="fas fa-lightbulb"></i>
+                {% if tf %}
+                #{{tf}} 태그가 포함된 책방입니다!
+                {% else %}
                 지도에서 원하는 책방을 찾아보세요
+                {% endif %}
             </div>
         <div class="rbtn-pc">
             <input type='radio' name="searchtype" value='searchname' id="f-option" checked>

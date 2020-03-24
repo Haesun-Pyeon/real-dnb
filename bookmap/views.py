@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib.auth.models import User
-from .models import BookStore, Scrap, Review, Thema, Stamp
+from .models import BookStore, Scrap, Review, Thema, Stamp, Tag
 from main.models import Profile
 from django.core import serializers
 import simplejson
@@ -375,3 +375,25 @@ def thema_like(request, tag_id):
     else:
         thema.like.add(user)
     return HttpResponse(str(thema.total_like()))
+
+
+def tag_search(request, tag_id):
+    tag = Tag.objects.get(id=tag_id)
+    tf = tag.title
+    bookstores = BookStore.objects.filter(tag_set=tag_id)
+    addr = []
+    name = []
+    storepk = []
+    for a in bookstores:
+        addr.append(a.addr)
+        name.append(a.name)
+        storepk.append(a.bookstore_id)
+    addrlist = simplejson.dumps(addr)
+    namelist = simplejson.dumps(name)
+    pklist = simplejson.dumps(storepk)
+    return render(request, 'realmap.html', {
+        'bs':bookstores, 
+        'bsaddr' : addrlist, 
+        'bsname' : namelist,
+        'pklist' : pklist,
+        'tf' : tf})

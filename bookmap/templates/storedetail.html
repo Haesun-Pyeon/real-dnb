@@ -135,7 +135,7 @@
         <tr>
             <td class="icon"><i class="fas fa-tags"></i></td>
             <td class="colname">태그목록</td>
-            <td class="data">{%for t in store.tag_set.all%} #{{t}} {% endfor %}</td>
+            <td class="data">{%for t in store.tag_set.all%} <a href="{% url 'tag_search' t.id %}">#{{t}}</a> {% endfor %}</td>
         </tr>
     </table>
 
