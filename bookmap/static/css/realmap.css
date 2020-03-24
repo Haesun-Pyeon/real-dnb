@@ -1,6 +1,6 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 
 a:link { color:white; text-decoration: none;}
@@ -23,14 +23,16 @@ input.search-box{
     margin-bottom: 15px;
 }
 
+.ment{
+    width: fit-content;
+    margin: 5px auto;
+    font-size: 1.8rem;
+    font-family: 'MapoPeacefull'; 
+}
 .sbox, .sbox-pc{
     float: right;
 }
-.sbox-pc{
-    margin-right: 1%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+
 form.search-act-pc{
     display: inline;
 }
@@ -51,7 +53,7 @@ input.search-box:focus + span {
 .search-mark{
     height: 70px;
     position: absolute;
-    top: 140px;
+    top: 183px;
     left: 830px;
 }
 
@@ -59,6 +61,7 @@ input.search-box:focus + span {
     width: 80px;
     height: 80px;
     background: #569377;
+    border: 2px solid #569377;
     border-radius: 100px;
     text-align: center;
     color: white;
@@ -68,19 +71,24 @@ input.search-box:focus + span {
     position: absolute;
     z-index: 2;
     margin: 15px 0px 0px 15px;
+    cursor: pointer;
 }
 .seeall a{
     font-size: 27px;
     z-index: 2;
+    font-weight: 900;
 }
-
-a:not([href]):not([tabindex]){
-    color: white;
+.seeall:visited, .seeall:hover{
+    background-color: white; color: #569377;
+}
+.seeall a:visited, .seeall a:hover{
+    color: #569377;
 }
 .seetheme{
     width: 80px;
     height: 80px;
     background: #E29B78;
+    border: 2px solid #E29B78;
     border-radius: 100px;
     text-align: center;
     line-height: 80px;
@@ -89,11 +97,19 @@ a:not([href]):not([tabindex]){
     position: absolute;
     z-index: 3;
     margin: 105px 0px 0px 15px;
+    cursor: pointer;
 }
 .seetheme a{
-    color: white;
     font-size: 27px;
     z-index: 3;
+    font-weight: 900;
+}
+
+.seetheme:visited, .seetheme:hover{
+    background-color: white; color: #E29B78;
+}
+.seetheme a:hover{
+    color: #E29B78;
 }
 
 .map{
@@ -115,6 +131,9 @@ a:not([href]):not([tabindex]){
     font-family: 'NanumSquareRound';
     padding-left: 40px;
     padding-right: 40px;
+}
+.list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 table {
     border-top: 1px solid #272727;
@@ -220,7 +239,7 @@ table {
     border-radius: 10px;
     font-size: 20px;
     font-family: 'BBTreeGL';
-    width: 400px;
+    width: 200px;
     right: 20px;
 }
 
@@ -245,7 +264,7 @@ input.search-box-pc:focus + span {
     margin: 10px;
 }
 .pc-ment{
-    font-size: 2rem;
+    font-size: 1.5rem;
     display: inline-block;
     font-family: 'BBTreeGL';
 }
@@ -255,11 +274,11 @@ input.search-box-pc:focus + span {
 /* 라디오버튼 PC버전 */
 .rbtn-pc{
     display: inline-block;
-    margin-top: 14px;
+    margin-top: 10px;
     margin-left: 290px;
     z-index: -1;
     position: absolute;
-    left: 40%;
+    left: 30%;
 }
 .rbtn-pc input[type='radio'] {
     margin-top: -1px;
@@ -285,7 +304,7 @@ input.search-box-pc:focus + span {
 }
 .label-pc{
     font-family: 'BBTreeGL';
-    font-size: 20px;
+    font-size: 15px;
     margin: 0px 5px;
 }
 
@@ -294,7 +313,7 @@ input.search-box-pc:focus + span {
     .realmap{
         padding: 0px 100px;
         position: relative;
-        height: 880px;
+        height: 550px;
     }
     .map-container{
         display: inline;
@@ -304,19 +323,20 @@ input.search-box-pc:focus + span {
         display: inline;
         float: left;
         width: 50%;
-        height: 800px;
+        height: 90%;
     }
     .list{
         display: inline;
         float: left;
         width: 50%;
-        height: 800px;
+        height: 88%;
         padding-left: 10px;
         padding-right: 0px;
     }
     .table{
         font-size: 1rem;
     }
+    
     .seeall, .seetheme{
         width: 60px;
         height: 60px;   
@@ -347,6 +367,9 @@ input.search-box-pc:focus + span {
     }
     .line-content:hover{
         background-color: rgb(254,234,168);
+    }
+    .table tr{
+        font-size: 0.8rem;
     }
 }
 .source{

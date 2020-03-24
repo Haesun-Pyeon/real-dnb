@@ -39,11 +39,23 @@
   </script>
 
   <div class="card-container" id="card-wrapper">
+  {% if request.user_agent.is_mobile %}
     {% for i in pageposts %}
     <div id="{{i.insta}}"></div>
     <button id="{{i.bookstore_id}}" style="display: none;" onclick="insta('{{i.insta}}');"></button>
     <script>document.getElementById("{{i.bookstore_id}}").click();</script>
     {% endfor %}
+  {% endif %}
+
+  {% if request.user_agent.is_pc %}
+    {% for i in pageposts %}
+    <div class="row">
+      <div id="{{i.insta}}" class="col-4"></div>
+    </div>
+    <button id="{{i.bookstore_id}}" style="display: none;" onclick="insta('{{i.insta}}');"></button>
+    <script>document.getElementById("{{i.bookstore_id}}").click();</script>
+    {% endfor %}
+  {% endif %}
   </div>
 </body>
 
