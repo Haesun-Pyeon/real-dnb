@@ -27,8 +27,9 @@ input.search-box{
     float: right;
 }
 .sbox-pc{
-    margin-bottom: 20px;
     margin-right: 1%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 form.search-act-pc{
     display: inline;
@@ -72,12 +73,7 @@ input.search-box:focus + span {
     font-size: 27px;
     z-index: 2;
 }
-/* 모든 a태그 다 흰색으로 걸어줄거임
-.seeall a:link, .seetheme a:link { color:white; text-decoration: none;}
-.seeall a:visited, .seetheme a:visited { color: white; text-decoration: none;}
-.seeall a:hover, .seetheme a:hover { color: white; text-decoration: none;}
-*/
-/* href 없는 a태그 설정*/
+
 a:not([href]):not([tabindex]){
     color: white;
 }
@@ -259,9 +255,11 @@ input.search-box-pc:focus + span {
 /* 라디오버튼 PC버전 */
 .rbtn-pc{
     display: inline-block;
-    margin-top: 10px;
-    margin-left: 25%;
+    margin-top: 14px;
+    margin-left: 290px;
     z-index: -1;
+    position: absolute;
+    left: 40%;
 }
 .rbtn-pc input[type='radio'] {
     margin-top: -1px;
@@ -269,10 +267,10 @@ input.search-box-pc:focus + span {
     -webkit-appearance:none;
     width:20px;
     height:20px;
-    border:1px solid #EBDDCA;
+    border:1px solid #569377;
     border-radius:50%;
     outline:none;
-    background:#EBDDCA;
+    background: white;
 }
 .rbtn-pc input[type='radio']:before {
     content:'';
@@ -283,11 +281,12 @@ input.search-box-pc:focus + span {
     border-radius:50%;  
 }
 .rbtn-pc input[type='radio']:checked:before {
-    background:#615136;
+    background:#569377;
 }
 .label-pc{
     font-family: 'BBTreeGL';
     font-size: 20px;
+    margin: 0px 5px;
 }
 
 
@@ -295,7 +294,7 @@ input.search-box-pc:focus + span {
     .realmap{
         padding: 0px 100px;
         position: relative;
-        height: 850px;
+        height: 880px;
     }
     .map-container{
         display: inline;
@@ -325,6 +324,7 @@ input.search-box-pc:focus + span {
     }
     .seeall a, .seetheme a{
         font-size: 20px;
+        cursor: pointer;
     }
     .seetheme{
         margin-top: 85px;

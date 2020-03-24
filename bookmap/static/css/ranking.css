@@ -11,7 +11,7 @@ body{
     padding-top: 50px;
     font-family: 'YiSunShinDotumM'
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .ranking{
         padding-top: 20px;
         height: 500px;
@@ -48,7 +48,7 @@ h3{
     font-size:25px;
     color: gray;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .ment{
         font-size: 2em;
         margin-bottom: 0;
@@ -58,7 +58,7 @@ h3{
         color: gray;
     }
     .back-square{
-        height: 800px;
+        height: 130%;
         margin: 10px auto;
         padding:10px 0;
     }
@@ -87,7 +87,7 @@ h3{
     border-radius: 100%;
     border: 7px solid #F2C60C;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .rankmember{
         margin: 0px 70px;
         font-size: 20px;

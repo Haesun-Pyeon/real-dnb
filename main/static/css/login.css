@@ -64,10 +64,10 @@ body{
 @media only screen and (min-width: 1025px){
     .loginbox{
         width: 50%;
-        height: 40rem;
+        height: 25rem;
     }
     .logo-img{
-        margin-top: 2.5rem;
+        margin-top: 2rem;
     }
 
 }
