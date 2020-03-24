@@ -60,20 +60,20 @@ p{
     z-index: 3;
     margin: 15px 0px 0px 15px;
     color: white;
+    border: 2px solid #569377;
+    cursor: pointer;
 }
 div.loc a{
     color: white;
     font-size: 27px;
     z-index: 3;
 }
-.table {
-    border-top: 1px solid #615136;
+table {
+    border-top: 1px solid #272727;
     border-collapse: collapse;
     font-size: 25px;
     table-layout: fixed;
     word-break: break-all;
-    margin: 0px auto;
-    width: 90%;
 }
 .table-seemore{
     width: 20%;
@@ -81,15 +81,13 @@ div.loc a{
 .table-sname{
     width: 30%;
 }
-.table th{
-    background-color: whitesmoke
-}
 .table tr{
     text-align: center;
+    /* font-size: 30px; */
     color: #000000;
 }
+
 .table td {
-    font-family: 'NanumSquareRound';
     border-top: 1px solid #615136;
     border-bottom: 1px solid #615136;
     padding: 10px;
@@ -97,24 +95,26 @@ div.loc a{
 }
 .table thead th{
     border-bottom: 2px solid #615136;
-    border-top: 2px solid #615136;
+    /* border-top: 2px solid #615136; */
 }
-
-tr a:link { color:white; text-decoration: none;}
-tr a:visited { color: white; text-decoration: none;}
-tr a:hover { color: white; text-decoration: none;}
-
 .sub-btn{
-    font-family: 'NanumSquareRound';
-    background-color: #615136;
-    border: 0px;
-    color:white;
+    font-family: 'BBTreeGL';
+    background-color: white;
+    border: 2px solid #569377;
+    cursor: pointer;
+    color:#569377;
     border-radius: 100px;
     padding: 7px;
+    font-weight: 900;
+}
+.sub-btn:visited, .sub-btn:hover{
+    color: white;
+    background-color: #569377;
+    text-decoration: none;
 }
 
 .label{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     margin-left: 10px;
     margin-right: 5px;
@@ -123,7 +123,7 @@ tr a:hover { color: white; text-decoration: none;}
     white-space:nowrap;
     width: 450px;
     height: 160px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     text-align: center;
     color: #000000;
@@ -133,9 +133,10 @@ tr a:hover { color: white; text-decoration: none;}
     color: black;
 }
 .det-btn{
-    font-family: 'YiSunShinDotumM';
-    background-color: #615136;
-    border: 0px;
+    font-family: 'BBTreeGL';
+    background-color: #569377;
+    border: 2px solid #569377;
+    cursor: pointer;
     color:white;
     border-radius: 100px;
     padding: 8px;
@@ -148,15 +149,22 @@ tr a:hover { color: white; text-decoration: none;}
 }
 .update, .delete{
     background-color: #FFD757;
-    border: 0px;
+    border: 3px solid #FFD757;
     color:white;
     border-radius: 10px;
     padding: 10px;
+    cursor: pointer;
+}
+.update:visited, .update:hover, .delete:visited, .delete:hover{
+	color: #FFD757; 
+	background-color: white; 
+	text-decoration: none;
 }
 .seelist{
     float: right;
     background-color: #569377;
-    border: 0px;
+    border: 2px solid #569377;
+    cursor: pointer;
     color:white;
     border-radius: 10px;
     padding: 10px;
@@ -164,6 +172,32 @@ tr a:hover { color: white; text-decoration: none;}
 }
 .thema-img{
     width: 100%;
+}
+/* det-btn loc seelist 초록버튼*/
+.det-btn:visited, .det-btn:hover, .loc:visited, .loc:hover, .seelist:visited, .seelist:hover{
+	color: #569377; 
+	background-color: white; 
+    text-decoration: none;
+    font-weight: 900;
+}
+.send-btn{
+    background-color: #E29B78;
+    font-family: 'YiSunShinDotumM';
+    padding: 10px 15px;
+    font-size: 1.3rem;
+    border: 3px solid #E29B78;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    float: right;
+    right: 10px;
+}
+.send-btn:visited, .send-btn:hover{
+    color: #E29B78; 
+	background-color: white; 
+	text-decoration: none;
 }
 
 @media only screen and (min-width: 1025px){
@@ -217,6 +251,7 @@ tr a:hover { color: white; text-decoration: none;}
         width: 60%;
         margin: 0px auto;
     }
-
-    
+    .line-content:hover{
+        background-color: rgb(254,234,168);
+    }
 }
