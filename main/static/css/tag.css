@@ -41,6 +41,9 @@ body{
     display: flex;
     flex-wrap: wrap;
 }
+.tag-container::-webkit-scrollbar{
+    display: none;
+}
 
 .inner-container{
     margin: 10px;
@@ -65,7 +68,7 @@ input[type='checkbox'] {
 .name-span{
     position: relative;
     display: inline-block;
-    background: #fff;
+    background: white;
     font-weight: 600;
     border: 2px solid #569377;
     padding: 15px 30px;
@@ -76,6 +79,7 @@ input[type='checkbox'] {
     transition: 0.5s;
     user-select: none;
 }
+
 input[type='checkbox']:before {
     content:'';
     display:block;
@@ -93,14 +97,29 @@ input[type='checkbox']:checked ~ span {
     height: 5rem;
     border-radius: 5px;
     border: 4px solid #569377; 
-    background-color: rgba(0,0,0,0); 
-    color: #569377; 
+    background-color: #569377;
+    color: white; 
     padding: 3px;
     font-size: 2rem;
     font-weight: 700;
 }
+
+.signup-btn:visited, .signup-btn:hover{
+    color: #569377;
+    background-color: white; 
+    text-decoration: none;
+}
+
 a.bookstore{
     text-decoration: none;
     color: #569377;
     font-weight: 500;
+}
+
+@media only screen and (min-width: 1025px){
+    .name-span:hover{
+        color: white; 
+        background-color: #569377; 
+        text-decoration: none;
+    }
 }
