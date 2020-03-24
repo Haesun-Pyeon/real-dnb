@@ -20,7 +20,6 @@
             {% else %}
                 <img src="{% static 'images/basic-profile-img.png' %}" id="img_show" class='mypage-prof-img' onclick="img_click();">
             {% endif %}
-            <div class='mypage-userid'>{{user.username}}</div>
         </div>
         <div class="col infobody">
             <form method="POST" action="{% url 'user_change' %}" enctype="multipart/form-data">
@@ -109,14 +108,14 @@
 </div>
 <div class="quitwrapper">
     <button onclick="del_user();" class="quitbtn">탈퇴하기</button>
-        <script type="text/javascript">
-            function del_user(){
-                let tf = confirm("정말로 탈퇴하시겠습니까?");
-                if (tf === true){
-                    location.href="{%url 'del_user' %}";
-                    alert("성공적으로 탈퇴되었습니다.");
-                };
+    <script type="text/javascript">
+        function del_user(){
+            let tf = confirm("정말로 탈퇴하시겠습니까?");
+            if (tf === true){
+                location.href="{%url 'del_user' %}";
+                alert("성공적으로 탈퇴되었습니다.");
             };
-        </script>
+        };
+    </script>
 </div>
 {% endblock %}
