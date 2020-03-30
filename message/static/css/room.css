@@ -8,7 +8,7 @@ body{
     font-family: 'NanumSquareRound';
     font-size: 35px;
     color: #3c281b;
-    height: 1500px;
+    height: 1480px;
     overflow:auto;
     margin:0 30px;
     padding-top: 10px;
@@ -28,11 +28,14 @@ img.mypage-prof-img {
     width: 50px;
     height:50px;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .chatbody{
         font-size: 1rem;
-        height: 300px;
-        margin:0 40px;
+        height: 420px;
+        margin:0 150px;
+    }
+    .chatbody::-webkit-scrollbar{
+        display: none;
     }
     .receiver{
         font-size: 1.5rem;
@@ -48,8 +51,8 @@ img.mypage-prof-img {
     /* display: inline-block; */
     background-color:rgba(235, 221, 202, 0.4);
     border-radius: 50px;
-    padding: 20px 50px;
-    margin: 10px 20px;
+    padding: 15px 35px;
+    margin: 0px 40px;
     width: fit-content;
 }
 .sendchat{
@@ -60,13 +63,13 @@ img.mypage-prof-img {
     display: inline-block;
     background-color:rgba(242, 198, 12, 0.6);
     border-radius: 50px;
-    padding: 20px 50px;
-    margin-right: 30px;
+    padding: 15px 35px;
+    margin: 10px 30px 10px 100px;
 }
 .chat_time{
     font-size: 20px;
     color: gray;
-    margin: 0 30px;
+    margin: 4px 40px;
 }
 .chatform{
     height: 100px;
@@ -75,11 +78,12 @@ img.mypage-prof-img {
 input#chat-message-input.sending-box{
     font-family: 'BBTreeGL';
     font-size: 30px;
-    width:85%;
+    width:80%;
     height: 110px;
     float: left;
     box-shadow: 5px 5px 10px #EBDDCA;
-    margin-left:10px;
+    margin-left:20px;
+    margin-top:20px;
     border: 2px solid #EBDDCA;
     border-radius: 20px;
 }
@@ -99,38 +103,34 @@ input#chat-message-input.sending-box:focus{
     font-size: 30px;
     color: #3c281b;
     padding-top:60px;
-    margin-right: 20px;
+    margin-right: 40px;
+    margin-top: 30px;
     float:right;
 }
-/* .listlink{
-    font-family: 'YiSunShinDotumM';
-    font-size: 1.5rem;
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #E29B78;
-    padding: 10px 90px;
-    border-radius: 5px;
-    width: fit-content;
-    margin: 0px 310px;
-} */
+
 .msg-sender-name{
     display: inline;
     margin-left: 15px;
 }
 
-@media (min-width: 1025px){
+.listlink{
+    color: #FFFFFF; 
+    font-size: 3rem; 
+    position : absolute; 
+    z-index: 0; 
+    top: 10px; 
+    left: 30px;
+}
+@media only screen and (min-width: 1025px){
     .chatcontent, .chatcontent_r{
-        font-size: 1.3rem;
+        font-size: 1.1rem;
         padding: 10px 25px;
+    }
+    .chatcontent_r{
+        margin: 8px 30px 0px 100px;
     }
     .chat_time{
         font-size: 0.8rem;
-        color: gray;
-        margin: 0 30px;
-    }
-    .chatform{
-        height: 100px;
-        margin: 0 40px;
     }
     .writechat textarea{
         font-family: 'NanumSquareRound';
@@ -138,20 +138,27 @@ input#chat-message-input.sending-box:focus{
         width:88%;
         height: 90px;
         padding-left:10px;
+        margin: 0px 150px;
         outline:none;
     }
     .btnsend{
         background-size: 80px;
-        width: 90px;
         height:90px;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         padding-top: 60px;
-        margin-right: 20px;
+        margin-right: 180px;
+        margin-top: 20px;
+    }
+    .listlink:hover, .listlink:visited{
+        text-decoration: none;
+        color: white;
     }
     .listlink{
-        font-size: 1.2rem;
-        margin: 0;
-        position:absolute;
-        left: 48%;
+        font-size: 2rem;
+    }
+    input#chat-message-input.sending-box{
+        height: 80px;
+        margin: 20px 0px 0px 150px;
+        width: 65%;
     }
 }

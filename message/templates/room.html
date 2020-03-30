@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="width: 100%;">
+<html>
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <!--목록으로 돌아가기-->
+    <a class="listlink" href="{% url 'chat-list' %}">
+        <i class="fas fa-chevron-left prev"></i>
+    </a>
+    
     <div class="chatbody" id="chatbody">
     {% for msg in messages.all %}
         {% if msg.sender == user %} <!--내가 보낸 문자 오른쪽정렬-->
@@ -34,8 +39,6 @@
     {% endfor %}
     </div>
     
-
-
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
 
@@ -44,16 +47,13 @@
     
     <form method="POST">
     {% csrf_token %}
-        <input id="chat-room" name="room" type="text" style="visibility: hidden;"/>
-        <input id="chat-text" name="message" type="text" style="visibility: hidden;"/>
-        <input id="save" type="submit" style="visibility: hidden;"/>
+        <input id="chat-room" name="room" type="text" style="visibility: hidden; height: 0px;"/>
+        <input id="chat-text" name="message" type="text" style="visibility: hidden; height: 0px;"/>
+        <input id="save" type="submit" style="visibility: hidden; height: 0px;"/>
     </form>
     <!--여기까지-->
 
-    <!--목록으로 돌아가기-->
-    <a class="listlink" href="{% url 'chat-list' %}">
-        <i class="fas fa-chevron-left prev" style="color: #FFFFFF; font-size: 55px; position : absolute; z-index: 0; top: 30px; left: 30px;"></i>
-    </a>
+
     
     <script>
         let roomName = {{ room_name_json }};
