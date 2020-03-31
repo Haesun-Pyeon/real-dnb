@@ -19,18 +19,12 @@
 
     <div class="storename">
         <span id='name'>{{store.name}}</span>
-       <!--{% if request.PC %}
-            <div class="introduce"><i class="fas fa-quote-left"></i>
-                <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
-                <i class="fas fa-quote-right"></i>
-            </div>
-        {% endif %}-->
     </div>
     
     <div class="like">
         <i onclick="like();" id='like' class="{%if scrap %}fas fa-heart{%else%}far fa-heart{%endif%}" style='color:#E29B78;'></i>
-        <span id="like-count">{{store.like_count}}</span>
-    <br></div>
+        <span id="like-count">{{store.like_count}}</span><br>
+    </div>
 
     <script type="text/javascript">
     //스크랩 AJAX 관련
