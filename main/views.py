@@ -30,6 +30,8 @@ def home(request):
     if tf == True:
         email = user.email
         nick = user.username
+        user.username = email
+        user.save()
         profile = Profile(user=user, email=email, nickname=nick)
         profile.save()
         return render(request, 'temp.html', {'tf': tf})

@@ -24,7 +24,15 @@
             <img src="{% static 'images/basic-profile-img.png' %}" class="myprofile_img">
         {% endif %}
         <span class="writer">{{thema.user.profile.nickname}}</span>
+        {% if request.user.is_active %}
+        {% if thema.user != request.user %}
+        <a href="{% url 'chat-temp' thema.user.id %}" class="send-btn">쪽지보내기</a>
+        {% endif %}{% endif %}
         <hr>
+
+        {% if thema.img %}
+            <img src="{{thema.img.url}}" alt="" class="thema-img">
+        {% endif %}      
         <h4>{{thema.description|linebreaks}}</h4>
     </div> 
 
@@ -43,7 +51,7 @@
     </thead>
     <tbody>
         {% for store in stores %}
-        <tr onclick="list_click('{{store.addr}}');">
+        <tr onclick="list_click('{{store.addr}}');" class="line-content">
             <td class="table-sname">{{store.name}}</td>
             <td>{{store.addr}}</td>
             <td class="table-seemore"><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>

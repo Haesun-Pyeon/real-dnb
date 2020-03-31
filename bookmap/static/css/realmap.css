@@ -1,9 +1,8 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 
-a:link { color:white; text-decoration: none;}
 a:visited { color: white; text-decoration: none;}
 a:hover { color: white; text-decoration: none;}
 
@@ -19,17 +18,20 @@ input.search-box{
     border-radius: 10px;
     position: relative;
     font-size: 40px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     margin-bottom: 15px;
 }
 
+.ment{
+    width: fit-content;
+    margin: 5px auto;
+    font-size: 1.8rem;
+    font-family: 'MapoPeacefull'; 
+}
 .sbox, .sbox-pc{
     float: right;
 }
-.sbox-pc{
-    margin-bottom: 20px;
-    margin-right: 1%;
-}
+
 form.search-act-pc{
     display: inline;
 }
@@ -50,7 +52,7 @@ input.search-box:focus + span {
 .search-mark{
     height: 70px;
     position: absolute;
-    top: 140px;
+    top: 183px;
     left: 830px;
 }
 
@@ -58,46 +60,51 @@ input.search-box:focus + span {
     width: 80px;
     height: 80px;
     background: #569377;
+    border: 2px solid #569377;
     border-radius: 100px;
     text-align: center;
     color: white;
     line-height: 80px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     position: absolute;
     z-index: 2;
     margin: 15px 0px 0px 15px;
+    cursor: pointer;
 }
 .seeall a{
     font-size: 27px;
     z-index: 2;
-}
-/* 모든 a태그 다 흰색으로 걸어줄거임
-.seeall a:link, .seetheme a:link { color:white; text-decoration: none;}
-.seeall a:visited, .seetheme a:visited { color: white; text-decoration: none;}
-.seeall a:hover, .seetheme a:hover { color: white; text-decoration: none;}
-*/
-/* href 없는 a태그 설정*/
-a:not([href]):not([tabindex]){
+    font-weight: 900;
     color: white;
+}
+.seeall:visited, .seeall:hover{
+    background-color: white; color: #569377;
 }
 .seetheme{
     width: 80px;
     height: 80px;
     background: #E29B78;
+    border: 2px solid #E29B78;
     border-radius: 100px;
     text-align: center;
     line-height: 80px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     position: absolute;
     z-index: 3;
     margin: 105px 0px 0px 15px;
+    cursor: pointer;
 }
 .seetheme a{
-    color: white;
     font-size: 27px;
     z-index: 3;
+    font-weight: 900;
+    color: white;
+}
+
+.seetheme:visited, .seetheme:hover{
+    background-color: white; color: #E29B78;
 }
 
 .map{
@@ -120,8 +127,11 @@ a:not([href]):not([tabindex]){
     padding-left: 40px;
     padding-right: 40px;
 }
+.list::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
 table {
-    border-top: 1px solid #615136;
+    border-top: 1px solid #272727;
     border-collapse: collapse;
     font-size: 25px;
     table-layout: fixed;
@@ -151,16 +161,23 @@ table {
 }
 
 .sub-btn{
-    font-family: 'YiSunShinDotumM';
-    background-color: #569377;
-    border: 0px;
-    color:white;
+    font-family: 'BBTreeGL';
+    background-color: white;
+    border: 2px solid #569377;
+    color:#569377;
     border-radius: 100px;
     padding: 7px;
+    cursor: pointer;
+    font-weight: 900;
+}
+.sub-btn:visited, .sub-btn:hover{
+    color: white;
+    background-color: #569377;
+    text-decoration: none;
 }
 
 .label{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     margin-left: 10px;
     margin-right: 5px;
@@ -169,23 +186,31 @@ table {
     white-space:nowrap;
     width: 450px;
     height: 160px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     font-size: 27px;
     text-align: center;
     color: #000000;
+    line-height: 180%;
 }
 .title{
     font-size: 40px;
     color: black;
 }
 .det-btn{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
     background-color: #569377;
-    border: 0px;
+    border: 2px solid #569377;
     color:white;
     border-radius: 100px;
     padding: 8px;
     margin-top: 15px;
+    cursor: pointer;
+}
+.det-btn:visited, .det-btn:hover{
+	color: #569377; 
+	background-color: white; 
+    text-decoration: none;
+    font-weight: 900;
 }
 
 .rbtn{
@@ -223,11 +248,13 @@ table {
     box-shadow: 4px 4px 8px lightgrey;
     border-radius: 10px;
     font-size: 20px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
+    width: 200px;
+    right: 20px;
 }
 
 .search-mark-pc{
-    width: 40px;
+    width: 80px;
 }
 
 input.search-box-pc:not(:placeholder-shown) + span {
@@ -244,15 +271,24 @@ input.search-box-pc:focus + span {
 }
 .topbar-pc{
     height: 5%;
-    margin: 2%;
+    margin: 10px;
 }
-
+.pc-ment{
+    font-size: 1.5rem;
+    display: inline-block;
+    font-family: 'BBTreeGL';
+}
+.fa-lightbulb{
+    color: rgb(254,197,14);
+}
 /* 라디오버튼 PC버전 */
 .rbtn-pc{
     display: inline-block;
     margin-top: 10px;
-    margin-left: 55%;
-    z-index: -1;
+    margin-left: 290px;
+    /* z-index: -1; */
+    position: absolute;
+    left: 30%;
 }
 .rbtn-pc input[type='radio'] {
     margin-top: -1px;
@@ -260,10 +296,10 @@ input.search-box-pc:focus + span {
     -webkit-appearance:none;
     width:20px;
     height:20px;
-    border:1px solid #EBDDCA;
+    border:1px solid #569377;
     border-radius:50%;
     outline:none;
-    background:#EBDDCA;
+    background: white;
 }
 .rbtn-pc input[type='radio']:before {
     content:'';
@@ -274,16 +310,20 @@ input.search-box-pc:focus + span {
     border-radius:50%;  
 }
 .rbtn-pc input[type='radio']:checked:before {
-    background:#615136;
+    background:#569377;
 }
 .label-pc{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'BBTreeGL';
+    font-size: 15px;
+    margin: 0px 5px;
 }
 
 
 @media only screen and (min-width: 1025px){
     .realmap{
         padding: 0px 100px;
+        position: relative;
+        height: 550px;
     }
     .map-container{
         display: inline;
@@ -293,19 +333,20 @@ input.search-box-pc:focus + span {
         display: inline;
         float: left;
         width: 50%;
-        height: 410px;
+        height: 90%;
     }
     .list{
         display: inline;
         float: left;
         width: 50%;
-        height: 400px;
+        height: 88%;
         padding-left: 10px;
         padding-right: 0px;
     }
     .table{
         font-size: 1rem;
     }
+    
     .seeall, .seetheme{
         width: 60px;
         height: 60px;   
@@ -313,6 +354,7 @@ input.search-box-pc:focus + span {
     }
     .seeall a, .seetheme a{
         font-size: 20px;
+        cursor: pointer;
     }
     .seetheme{
         margin-top: 85px;
@@ -321,16 +363,27 @@ input.search-box-pc:focus + span {
         white-space:nowrap;
         width: 300px;
         height: 100px;
-        font-family: 'YiSunShinDotumM';
+        font-family: 'BBTreeGL';
         font-size: 15px;
         text-align: center;
         color: #615136;
+        line-height: 200%;
     }
     .title{
         font-size: 20px;
         color: black;
     }
     .det-btn{
-        margin-top: 30px;
+        margin-top: 40px;
     }
+    .line-content:hover{
+        background-color: rgb(254,234,168);
+    }
+    .table tr{
+        font-size: 0.8rem;
+    }
+}
+.source{
+    position:absolute; bottom:0px;
+    font-family: 'BBTreeGL';
 }

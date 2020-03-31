@@ -18,7 +18,7 @@ html, body {width: 100%; height: 100%;}
     padding: 15px 30px;
     font-size: 2rem;
     margin: 20px 10px 10px 10px;
-    border: none;
+    border: 3px solid #569377;
     color: #FFFFFF;
     text-align: center;
     text-decoration: none;
@@ -26,9 +26,19 @@ html, body {width: 100%; height: 100%;}
     cursor: pointer;
     border-radius: 90px;
 }
-
+.publicthema-btn:visited, .publicthema-btn:hover, .mythema-btn:visited, .mythema-btn:hover{
+	color: #569377; 
+	background-color: white; 
+	text-decoration: none;
+}
 .addthema-btn{
-    background-color: #FFD757
+    background-color: #FFD757;
+    border: 3px solid #FFD757;
+}
+.addthema-btn:visited, .addthema-btn:hover{
+    color: #FFD757;
+    background-color: white; 
+	text-decoration: none;
 }
 
 .title{
@@ -81,4 +91,15 @@ i.fas.fa-heart, i.far.fa-heart{
     float: right;
     margin-top: 20px;
     margin-right: 5px;
+}
+
+@media only screen and (min-width: 1025px){
+    .eachthema{
+        display: inline-block;
+        width: 30%;
+        margin: 20px;
+       }
+    .themaimg{
+        height: 500px;
+    }
 }

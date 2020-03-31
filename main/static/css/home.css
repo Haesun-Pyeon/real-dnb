@@ -1,11 +1,12 @@
 @font-face { font-family: 'MapoDPPA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'Arita-buri-SemiBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
 h1,h2,h3,h4,h5,h6{
     color: #444;
     margin: 5px;
 }
+
 a {
     text-decoration: none;
     color: inherit;
@@ -76,8 +77,8 @@ a {
     padding: 0px 5px;
 }
 .post-slider .post-wrapper .post .post-info h4{
-    font-family: 'YiSunShinDotumM';
-    font-size: 3rem;
+    font-family: 'MapoPeacefull';
+    font-size: 2.5rem;
     font-weight: 900;
     color: #000000;
 }
@@ -86,7 +87,7 @@ a {
     margin: 0px 15px;
     font-size: 2rem;
     color: rgb(109, 109, 109);
-    font-family: 'YiSunShinDotumM';
+    font-family: 'MapoPeacefull';
 }
 
 .post-slider .post-wrapper .post img{
@@ -103,7 +104,7 @@ a {
 
 .post-slider .post-wrapper-pc{
     width: 84%;
-    height: 700px;
+    height: 400px;
     margin: 20px auto;
     overflow: hidden;
     padding: 10px 0px 10px 0px;
@@ -112,7 +113,7 @@ a {
 
 .post-slider .post-wrapper-pc .post{
     width: 300px;
-    height: 700px;
+    height: 400px;
     margin: 0px 10px;
     background: #FFFFFF;
     display: inline-block;
@@ -124,22 +125,22 @@ a {
     padding: 0px 5px;
 }
 .post-slider .post-wrapper-pc .post .post-info h4{
-    font-family: 'YiSunShinDotumM';
-    font-size: 3rem;
+    font-family: 'MapoPeacefull';
+    font-size: 1.9rem;
     font-weight: 900;
     color: #000000;
 }
 
 .post-slider .post-wrapper-pc .post .post-info .p{
     margin: 0px 15px;
-    font-size: 1.5rem;
+    font-size: 15px;
     color: rgb(109, 109, 109);
-    font-family: 'YiSunShinDotumM';
+    font-family: 'MapoPeacefull';
 }
 
 .post-slider .post-wrapper-pc .post img{
     width: 100%;
-    height: 500px;
+    height: 260px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -153,6 +154,7 @@ a {
 
 @media only screen and (min-width: 1025px){
     #ment{
-        margin: 20px 0px;
+        font-size: 1.6rem;
+        margin: 0px;
     }
 }

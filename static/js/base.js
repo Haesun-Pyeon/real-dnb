@@ -4,7 +4,7 @@ if (path.includes('thema')) {
     result = 'THEME MAP'
 } else if (path.includes('bookmap/store')) {
     result = 'INFORMATION'
-} else if (path.includes('realmap')) {
+} else if (path.includes('realmap') | path.includes('search')) {
     result = 'MAP'
 } else if (path.includes('board')) {
     result = 'DAILY NEWS'

@@ -19,18 +19,12 @@
 
     <div class="storename">
         <span id='name'>{{store.name}}</span>
-       <!--{% if request.PC %}
-            <div class="introduce"><i class="fas fa-quote-left"></i>
-                <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
-                <i class="fas fa-quote-right"></i>
-            </div>
-        {% endif %}-->
     </div>
     
     <div class="like">
         <i onclick="like();" id='like' class="{%if scrap %}fas fa-heart{%else%}far fa-heart{%endif%}" style='color:#E29B78;'></i>
-        <span id="like-count">{{store.like_count}}</span>
-    <br></div>
+        <span id="like-count">{{store.like_count}}</span><br>
+    </div>
 
     <script type="text/javascript">
     //스크랩 AJAX 관련
@@ -69,17 +63,7 @@
     
 
 <div class="contents">  
-    <!-- 아이폰기준 -->
-    <!--
-    {% if not request.PC %}
-    <div class="infotext">
-        <div class="introduce"><i class="fas fa-quote-left"></i>
-            <span>보스 없애니까 소갯말도 없으므로 일단 양식만 남겨둠</span>
-            <i class="fas fa-quote-right"></i>
-        </div>
-    {% endif %} -->
-
-    <table class="table">
+    <table>
         {% if store.phone_number != 'nan' %}
         <tr>
             <td class="icon"><i class="fas fa-mobile-alt"></i></td>
@@ -94,9 +78,9 @@
             <td class="colname">홈페이지</td>
             <td class="data">
             {% if 'http' in store.site %}
-                <a href="{{store.site}}"><i class="fas fa-external-link-alt" style="font-size: 30px; color: grey; margin-left: 10px;"></i></a>
+                <a href="{{store.site}}"><i class="fas fa-external-link-alt"></i></a>
             {% else %}
-                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a>
+                <a href="http://{{store.site}}"><i class="fas fa-external-link-alt"></i></a>
             {% endif %}</td>
         </tr>
         {% endif %}
@@ -120,7 +104,7 @@
             <td class="icon"><i class="fab fa-instagram"></i></td>
             <td class="colname">인스타그램</td>
             <td><a href="https://www.instagram.com/{{store.insta}}">
-            <i class="fas fa-external-link-alt"style="font-size: 30px; color: grey;margin-left: 10px;"></i></a></td>
+            <i class="fas fa-external-link-alt"></i></a></td>
         </tr>
         {% endif %}
         
@@ -135,7 +119,7 @@
         <tr>
             <td class="icon"><i class="fas fa-tags"></i></td>
             <td class="colname">태그목록</td>
-            <td class="data">{%for t in store.tag_set.all%} #{{t}} {% endfor %}</td>
+            <td class="data">{%for t in store.tag_set.all%} <a href="{% url 'tag_search' t.id %}">#{{t}}</a> {% endfor %}</td>
         </tr>
     </table>
 
@@ -175,8 +159,9 @@
 
                 <input type="submit" id='submit' class="sub-btn"/>
             </form>
-            <a href="javascript:Close();" class="close-btn">닫기</a>
-            <hr>
+            <div id="close-btn">
+            <a href="javascript:Close();" class="close-btn greenhover">닫기</a>
+            </div><hr>
         </div>
 
         <script type="text/javascript">
@@ -213,10 +198,11 @@
                 }
         </script>
     {% endif %}
-
+    <div id="box">
     <a id="kakao-link-btn" href="javascript:sendLink();" class="share-kakao"> 카카오톡으로 공유하기
         <img src="{% static 'images/talk.png' %}"/>
     </a>
+    </div>
     <script type='text/javascript'>
         //카톡공유
         let name='{{store.name}}';
@@ -291,7 +277,7 @@
     <!--해당서점 지도 표시-->
     <div id="map">
         {% if user.is_authenticated %}
-        <div class="stamp"><a href="javascript:get_stamp();">도장<br>찍기</a></div>
+        <div><a class="greenhover stamp" href="javascript:get_stamp();">도장<br>찍기</a></div>
         {% endif %}
     </div>
     <script type="text/javascript">
@@ -364,87 +350,84 @@
 
     <!-- 리뷰 -->
     <div class="review-container">
-    <div class="review">REVIEW | 
+        <div class="review">REVIEW | 
             <i class="fas fa-star" id="rev-star"></i> {{star_avg}}
-    </div>
-    
-    {% if user.is_authenticated %}
-    <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
-        {% csrf_token %}
-        <div class="radio_star" id="star">
-            <input type="radio" name="star" id="shipadd1" value="1" checked/>
-            <label for="shipadd1"><i class="fas fa-star"></i></label>
-            <input type="radio" name="star" id="shipadd2" value="2" />
-            <label for="shipadd2"><i class="fas fa-star"></i></label>
-            <input type="radio" name="star" id="shipadd3" value="3" />
-            <label for="shipadd3"><i class="fas fa-star"></i></label>
-            <input type="radio" name="star" id="shipadd4" value="4" />
-            <label for="shipadd4"><i class="fas fa-star"></i></label>
-            <input type="radio" name="star" id="shipadd5" value="5" />
-            <label for="shipadd5"><i class="fas fa-star"></i></label>
         </div>
-
-        <script>
-            $('#star i').click(function(){
-                $('#star').children('label').children('i').removeClass('on');
-                $(this).addClass('on').parent().prevAll('label').children('i').addClass('on');
-                $(this).parent().click();
-                return false;
-            })
-        </script>
-
-        <div class="rev_write">
-        {{form.as_table}}
-        <button type='submit' class="button">등록</button>
-        </div>
-    </form> 
-    {% endif %}
-    <hr>
-
-    
-    {% for review in reviews %}
-    <div class="user_review">
-        <div class="uname">{{review.user}} |</div>
-        <div class="ustar">
-        <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
-        {{ review.star }}</div>
-        <div class="ucontent">{{ review.content }}</div>
         
         {% if user.is_authenticated %}
-        {% if review.user == user %}
-        <div class="delete">
-            <a href="{% url 'reviewdelete' review.id %}">삭제</a>
-        </div>
-        {% else %}
-        <a href="javascript:chat_link('{{review.user.id}}');" class="send-btn">쪽지보내기</a>
-    </div>
-        {% endif %} 
+        <form method="POST" action="{% url 'reviewcreate' store.bookstore_id %}" style="display: block;">
+            {% csrf_token %}
+            <div class="radio_star" id="star">
+                <input type="radio" name="star" id="shipadd1" value="1" checked/>
+                <label for="shipadd1"><i class="fas fa-star"></i></label>
+                <input type="radio" name="star" id="shipadd2" value="2" />
+                <label for="shipadd2"><i class="fas fa-star"></i></label>
+                <input type="radio" name="star" id="shipadd3" value="3" />
+                <label for="shipadd3"><i class="fas fa-star"></i></label>
+                <input type="radio" name="star" id="shipadd4" value="4" />
+                <label for="shipadd4"><i class="fas fa-star"></i></label>
+                <input type="radio" name="star" id="shipadd5" value="5" />
+                <label for="shipadd5"><i class="fas fa-star"></i></label>
+            </div>
+
+            <script type="text/javascript">
+                $('#star i').click(function(){
+                    $('#star').children('label').children('i').removeClass('on');
+                    $(this).addClass('on').parent().prevAll('label').children('i').addClass('on');
+                    $(this).parent().click();
+                    return false;
+                })
+            </script>
+
+            <div class="rev_write">
+            {{form.as_table}}
+            <button type='submit' class="button greenhover" id="send">등록</button>
+            </div>
+        </form> 
         {% endif %}
         <hr>
-    {% endfor %}
-</div>
-<script>
-    function chat_link(id){
-      let url="http://dnbook.live/chat/temp/";
-      let result=url.concat(id);
-      location.href=result;
-    }
-</script>
-    <div class="clawling-container">
-        <div class="review_hs">
-            {% for review in rev %}
-            <div class="cr_review_ct">
-            <h3><a href={{review.link}}>{{review.title}}</h3>
-            <h4>{{review.description}}</h4>
-            <h4>{{review.postdate}}</h4></a>
-            </div>
+
+        {% for review in reviews %}
+        <div class="user_review">
+            <div class="uname">{{review.user.profile.nickname}} |</div>
+            <div class="ustar">
+            <i class="fas fa-star" style="color: rgb(254,215,86); font-size: 25px;"></i>
+            {{ review.star }}</div>
+            <div class="ucontent">{{ review.content }}</div>
+            
+            {% if user.is_authenticated %}
+                {% if review.user == user %}
+                <a href="{% url 'reviewdelete' review.id %}" class="greenhover delete">삭제</a>
+                {% else %}
+                <a href="{% url 'chat-temp' review.user.id %}" class="send-btn greenhover">쪽지보내기</a>
+                {% endif %} 
+            {% endif %}
             <hr>
-            {%endfor%}
         </div>
+        {% endfor %}
+    </div>
+
+    <div class="review_hs">
+        {% for review in rev %}
+        <div class="cr_review_ct">
+            <a href={{review.link}}>
+                <p>{{review.bloggername}} | {{review.postdate}}</p>
+                <h3>{{review.title}}</h3>
+                <h4>{{review.description}}...</h4>
+            </a>
+        </div>
+        <hr>
+        {%endfor%}
     </div>
 </div>
 
-
+<script type="text/javascript">
+    document.querySelector('#id_content').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#send').click();
+            }
+        };
+</script>
 
 </body>
 {% endblock %}

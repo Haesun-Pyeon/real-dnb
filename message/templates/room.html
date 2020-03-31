@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="width: 100%;">
+<html>
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <!--목록으로 돌아가기-->
+    <a class="listlink" href="{% url 'chat-list' %}">
+        <i class="fas fa-chevron-left prev"></i>
+    </a>
+    
     <div class="chatbody" id="chatbody">
     {% for msg in messages.all %}
         {% if msg.sender == user %} <!--내가 보낸 문자 오른쪽정렬-->
@@ -19,25 +24,21 @@
                 <div class="chat_time">{{msg.sentAt}}</div>
             </div>
         {% else %}
-            {% if msg.sender.profile.profileimg %}
-                <img src="{{msg.sender.profile.profileimg.url}}" alt="" class='mypage-prof-img'>
-            {% else %}
-                <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
-            {% endif %}
-            <!--남이 보낸 문자 왼쪽정렬-->
-            {{msg.sender.profile.nickname}}<br>
-            <div class="chatcontent">{{msg.content}}</div>
-            <div class="chat_time">{{msg.sentAt}}</div>
+            <div class="recieve-message">
+                {% if msg.sender.profile.profileimg %}
+                    <img src="{{msg.sender.profile.profileimg.url}}" alt="" class='mypage-prof-img'>
+                {% else %}
+                    <img src="{% static 'images/basic-profile-img.png' %}" class='mypage-prof-img'>
+                {% endif %}
+                <!--남이 보낸 문자 왼쪽정렬-->
+                {{msg.sender}}<br>
+                <div class="chatcontent">{{msg.content}}</div>
+                <div class="chat_time">{{msg.sentAt}}</div>
+            </div>
         {% endif %}
     {% endfor %}
     </div>
     
-    <script>
-        $(document).ready(function(){
-            $("#chatbody").scrollTop($("#chatbody")[0].scrollHeight);
-        });
-    </script>
-
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
 
@@ -46,32 +47,23 @@
     
     <form method="POST">
     {% csrf_token %}
-        <input id="chat-room" name="room" type="text" style="visibility: hidden;"/>
-        <input id="chat-text" name="message" type="text" style="visibility: hidden;"/>
-        <input id="save" type="submit" style="visibility: hidden;"/>
+        <input id="chat-room" name="room" type="text" style="visibility: hidden; height: 0px;"/>
+        <input id="chat-text" name="message" type="text" style="visibility: hidden; height: 0px;"/>
+        <input id="save" type="submit" style="visibility: hidden; height: 0px;"/>
     </form>
     <!--여기까지-->
 
-    <!--목록으로 돌아가기-->
-    <a class="listlink" href="{% url 'chat-list' %}">
-        <i class="fas fa-chevron-left prev" style="color: #FFFFFF; font-size: 55px; position : absolute; z-index: 0; top: 30px; left: 30px;"></i>
-    </a>
+
     
-        <script type="text/javascript">
-            function enter() { 
-                if (window.event.keyCode == 13) {
-                    document.getElementById('send').click();
-                }
-            }
-        </script>
-
-
     <script>
         let roomName = {{ room_name_json }};
         var request_user = {{ name }};
         var proimg = {{ other }};
         var nickname = {{ nick }};
         
+        const $messageTextBox = $('#chatbody'); 
+        $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
+
         // let img_src = document.querySelector('#chat-img').getAttribute('src')
         var chatSocket = new WebSocket(
             'ws://' + window.location.host +
@@ -140,6 +132,8 @@
                 div.appendChild(div3);
                 document.getElementById("chatbody").appendChild(div);
             }
+            const $messageTextBox = $('#chatbody'); 
+            $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
         };
 
         chatSocket.onclose = function(e) {

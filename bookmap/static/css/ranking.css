@@ -1,4 +1,4 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 
@@ -9,9 +9,9 @@ body{
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 50px;
-    font-family: 'YiSunShinDotumM'
+    font-family: 'MapoPeacefull';
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .ranking{
         padding-top: 20px;
         height: 500px;
@@ -32,7 +32,7 @@ body{
 .back-square{
     background-color: rgb(255, 251, 248);
     width: 95%;
-    height: 1350px;
+    height: 1200px;
     border-radius: 4rem;
     margin: 30px auto;
     padding: 30px 0;
@@ -48,9 +48,9 @@ h3{
     font-size:25px;
     color: gray;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .ment{
-        font-size: 2em;
+        font-size: 1.5rem;
         margin-bottom: 0;
     }
     p.ment{
@@ -58,15 +58,17 @@ h3{
         color: gray;
     }
     .back-square{
-        height: 800px;
+        height: 90%;
         margin: 10px auto;
         padding:10px 0;
     }
     .middle-ment{
-        font-size: 35px;
+        font-size: 25px;
+        margin-top: 70px;
     }
     h3{
-        font-size: 25px;
+        font-size: 15px;
+        margin-bottom: 20px;
     }
 }
 .rankmember{
@@ -87,19 +89,19 @@ h3{
     border-radius: 100%;
     border: 7px solid #F2C60C;
 }
-@media (min-width: 1025px){
+@media only screen and (min-width: 1025px){
     .rankmember{
-        margin: 0px 70px;
+        margin: 0px 10px;
         font-size: 20px;
     }
     .rankerimg{
-        width: 25%;
-        height: 25%;
+        width: 60%;
+        height: 60%;
         border-width: 3px;
     }
     .toprankerimg{
-        width: 35%;
-        height: 35%;
+        width: 70%;
+        height: 70%;
         border-width: 5px;
     }
 }

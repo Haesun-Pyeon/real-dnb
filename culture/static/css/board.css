@@ -47,20 +47,10 @@ span{
 .instagram_gallery img {
 /* 피드 개별 이미지 크기 및 속성 */
     width: 100%;
-    border-radius: 10px;
 }
 
-@media (min-width: 1025px){
-
-    .instagram_gallery{
-        width: 30%;
-        display: inline-block;
-        margin: 0px;
-        height: 750px;
-    }
-    .instagram_gallery img {
-    /* 피드 개별 이미지 크기 및 속성 */
-        width: 100%;
-        border-radius: 10px;
+@media only screen and (min-width: 1025px){
+    strong{
+        font-size: 1.5rem;
     }
 }

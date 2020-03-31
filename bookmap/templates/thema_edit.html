@@ -4,7 +4,7 @@
     {% block content %}
     {% load staticfiles %}
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/thema_edit.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/thema_add_edit.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     </head>
     <body>
@@ -14,18 +14,20 @@
             <form method="POST" action="{% url 'thema_change' thema.id%}" enctype="multipart/form-data" class="themaform">
                 {% csrf_token %}
                 {{form}}
+                <label for='priv' class='check-box'></label>
                 <br>
                 <div>
                     <h4>∙ 책방 선택</h4>
-                <select name='store' class="select-box" multiple>
-                    {% for store in stores %}
-                        <option value='{{store.name}}' {% if thema in store.thema_set.all %} selected {% endif %}>{{store.name}}</option>
-                    {% endfor %}
-                </select><br>
-                <div class="info">
-                    <i>(PC) Ctrl+클릭 시 중복 선택됩니다.</i><br>
-                    <i>테마 등록 후 책방 상세페이지에서도 추가/삭제 가능합니다.</i>
-                </div>
+                    <div class='select-box'>
+                        {% for store in stores %}
+                        <input type="checkbox" id="{{store.bookstore_id}}" name='store' value='{{store.name}}' {% if thema in store.thema_set.all %} checked {% endif %}>
+                        <label for="{{store.bookstore_id}}" class="check-box"></label>
+                        <label for="{{store.bookstore_id}}">{{store.name}}</label><br>
+                        {% endfor %}
+                    </div>
+                    <div class="info">
+                        <i>테마 등록 후 책방 상세페이지에서도 추가/삭제 가능합니다.</i>
+                    </div>
                 </div>
                 <br>
                 <input type="submit" value="등록" class="submit"/>
