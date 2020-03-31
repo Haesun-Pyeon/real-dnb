@@ -399,14 +399,20 @@
                 {% if review.user == user %}
                 <a href="{% url 'reviewdelete' review.id %}" class="greenhover delete">삭제</a>
                 {% else %}
-                <a href="{% url 'chat-temp' review.user.id %}" class="send-btn greenhover">쪽지보내기</a>
+                <a href="javascript:chat_link('{{review.user.id}}');" class="send-btn greenhover">쪽지보내기</a>
                 {% endif %} 
             {% endif %}
             <hr>
         </div>
         {% endfor %}
     </div>
-
+    <script>
+        function chat_link(id){
+          let url="http://dnbook.live/chat/temp/";
+          let result=url.concat(id);
+          location.href=result;
+        }
+    </script>
     <div class="review_hs">
         {% for review in rev %}
         <div class="cr_review_ct">
