@@ -246,8 +246,7 @@
         <div>
             <span>1위 </span>
             {% if first.name != '없음' %}
-                <span>닉네임: {{first.name}}</span>
-                <span>갯수: {{first.count}}개</span>
+                <span><i class="fas fa-running"></i> {{first.name}} ({{first.count}}개)</span>
             {% else %}
                 <span>없음</span>
             {% endif %}
@@ -255,8 +254,7 @@
         <div>
             <span>2위 </span>
             {% if second.name != '없음' %}
-                <span>닉네임: {{second.name}}</span>
-                <span>갯수: {{second.count}}개</span>
+                <span><i class="fas fa-running"></i> {{second.name}} ({{second.count}}개)</span>
             {% else %}
                 <span>없음</span>
             {% endif %}
@@ -264,8 +262,7 @@
         <div>
             <span>3위 </span>
             {% if third.name != '없음' %}
-                <span>닉네임: {{third.name}}</span>
-                <span>갯수: {{third.count}}개</span>
+                <span><i class="fas fa-running"></i> {{third.name}} ({{third.count}}개)</span>
             {% else %}
                 <span>없음</span>
             {% endif %}

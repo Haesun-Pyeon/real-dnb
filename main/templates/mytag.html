@@ -13,7 +13,7 @@
         <tr>
             <td>
                 <h1>나의 태그</h1><br>
-                <div id='mytags' style="overflow: auto; width:200px; height:500px; text-align:left;">
+                <div id='mytags' class="tag-box">
                 {% for i in mytag %}
                 <input type="checkbox" id='{{i.id}}' name='mytag' value='{{i.title}}' style="display: none;">
                 <label for="{{i.id}}" class="check-box"></label>
@@ -27,7 +27,7 @@
             </td>
             <td>
                 <h1>나머지 태그</h1><br>
-                <div id='alltags' style="overflow: auto; width:200px; height:500px; text-align:left;">
+                <div id='alltags' class="tag-box">
                     {% for i in alltag %}
                     <input type="checkbox" id='{{i.id}}' name='alltag' value='{{i.title}}' style="display: none;">
                     <label for="{{i.id}}" class="check-box"></label>

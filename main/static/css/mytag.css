@@ -34,18 +34,15 @@ table{
     font-family: 'YiSunShinDotumM';
 }
 
-select{
+.tag-box{
+    overflow: auto;
     width: 200px;
     height: 500px;
-    border-radius: 10px;
+    text-align: left;
+    font-size: 1.5rem;
     margin-bottom: 20px;
     background-color: white;
 }
-option{
-    font-size: 2rem;
-    text-align: center;
-}
-
 label.check-box:before{
     content: "\f0c8";
     font-family: "Font Awesome 5 Free";
@@ -82,4 +79,21 @@ i.fas.fa-angle-double-right, i.fas.fa-angle-double-left{
     color: grey;
     font-size: 1.3rem;
     margin-top: 20px;
+}
+
+@media only screen and (min-width: 1025px){
+    .tag-container{
+        height: 80%;
+        width: 80%;
+        margin-top: 15px;
+    }
+    .tag-box{
+        width: 350px;
+        height: 200px;
+        font-size: 2rem;
+        padding-left: 20px;
+    }
+    h1{
+        margin-left: 70px;
+    }
 }
