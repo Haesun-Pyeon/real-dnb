@@ -33,7 +33,7 @@ body{
 
 .tag-container{
     height: 53rem;
-    margin: 10px 20px 20px 20px;
+    margin: 20px;
     overflow: scroll;
     font-size: 2rem;
     font-family: 'NanumSquareRound';
@@ -100,7 +100,7 @@ input[type='checkbox']:checked ~ span {
     background-color: #569377;
     color: white; 
     padding: 3px;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
 }
 
@@ -115,11 +115,42 @@ a.bookstore{
     color: #569377;
     font-weight: 500;
 }
+img{
+    width: 17rem;
+    margin-top: 2rem;
+}
 
 @media only screen and (min-width: 1025px){
     .name-span:hover{
         color: white; 
         background-color: #569377; 
         text-decoration: none;
+    }
+    img{
+        float: left;
+        margin-left: 100px;
+        width: 13rem;
+        margin-top: 1rem;
+    }
+    .tag-box{
+        width: 90%;
+        height: 27rem;
+    }
+    .choice-ment{
+        font-size: 2rem;
+        margin-top: 37px;
+        padding-left: 33%;
+        text-align: left;
+    }
+    .tag-container{
+        height: 20rem;
+        font-size: 1rem;
+    }
+    .signup-btn{
+        height: 3rem;
+        line-height: 0px;
+        padding: 0px;
+        font-weight: 500;
+        font-size: 2rem;
     }
 }

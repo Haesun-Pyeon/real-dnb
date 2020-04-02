@@ -240,10 +240,6 @@ def tag(request):
     tag = Tag.objects.all().order_by('?')
     return render(request, 'tag.html', {'tag': tag,})
     
-def tag_count(request, tag_id):
-    tag = Tag.objects.get(id=tag_id)
-    return HttpResponse(str(tag.tag_count()))
-
 def pro_tag(request):
     tag = request.POST.getlist('tag')
     profile = Profile.objects.get(user=request.user)

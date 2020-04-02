@@ -41,6 +41,10 @@ table{
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
+.tag-box::-webkit-scrollbar{
+    display: none;
+}
+
 label.check-box:before{
     content: "\f0c8";
     font-family: "Font Awesome 5 Free";
@@ -71,6 +75,7 @@ i.fas.fa-angle-double-right, i.fas.fa-angle-double-left{
 .save-btn:hover{
     color: white;
     background-color: #569377;
+    text-decoration: none;
 }
 
 .pcinfo{
