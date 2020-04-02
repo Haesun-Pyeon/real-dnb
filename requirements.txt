@@ -43,7 +43,7 @@ msgpack==0.6.2
 numpy==1.18.1
 oauthlib==3.1.0
 pandas==1.0.0
-Pillow==6.2.0
+Pillow==6.2.2
 post==2019.4.13
 psycopg2-binary==2.8.4
 public==2019.4.13
