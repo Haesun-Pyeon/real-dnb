@@ -142,13 +142,20 @@ table {
 }
 .table-sname{
     width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-addr{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .table tr{
     text-align: center;
     /* font-size: 30px; */
     color: #000000;
 }
-
 .table td {
     border-top: 1px solid #615136;
     border-bottom: 1px solid #615136;

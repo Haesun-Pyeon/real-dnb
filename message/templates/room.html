@@ -6,7 +6,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/room.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8"/>
 </head>
 
@@ -15,7 +14,6 @@
     <a class="listlink" href="{% url 'chat-list' %}">
         <i class="fas fa-chevron-left prev"></i>
     </a>
-    
     <div class="chatbody" id="chatbody">
     {% for msg in messages.all %}
         {% if msg.sender == user %} <!--내가 보낸 문자 오른쪽정렬-->
@@ -38,10 +36,9 @@
         {% endif %}
     {% endfor %}
     </div>
-    
     <input id="chat-message-input" type="text" size="100" class="sending-box"/>
     <input id="chat-message-submit" type="button" value="Send" class="btnsend"/>
-
+    
     <!--안보이는 부분임-->
     <img id="chat-img" src="{% static 'images/basic-profile-img.png' %}" style="visibility: hidden; height: 0px;">
     
@@ -160,6 +157,20 @@
 
             messageInputDom.value = '';
         };
+
+        
+        $(document).ready(function(){
+            $(window).resize(resizeContents);
+            resizeContents();
+        })
+        function resizeContents() {
+            let h = $(window).height();
+            let w = $(window).width();
+            if (h > w) $("#chatbody").height(h-270);
+            else $("#chatbody").height(h-200);
+            $messageTextBox.scrollTop($messageTextBox[0].scrollHeight);
+        }
+        
     </script>
 </body>
 {% endblock %}

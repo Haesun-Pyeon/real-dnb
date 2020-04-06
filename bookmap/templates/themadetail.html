@@ -80,7 +80,7 @@
         {% for store in stores %}
         <tr onclick="list_click('{{store.addr}}');" class="line-content">
             <td class="table-sname">{{store.name}}</td>
-            <td>{{store.addr}}</td>
+            <td class="table-addr">{{store.addr}}</td>
             <td class="table-seemore"><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
         </tr>
         {% endfor %}

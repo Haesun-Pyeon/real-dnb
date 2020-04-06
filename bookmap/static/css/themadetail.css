@@ -81,6 +81,14 @@ table {
 }
 .table-sname{
     width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-addr{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .table tr{
     text-align: center;

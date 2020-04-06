@@ -88,6 +88,12 @@ a {
     font-size: 2rem;
     color: rgb(109, 109, 109);
     font-family: 'MapoPeacefull';
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .post-slider .post-wrapper .post img{
@@ -136,6 +142,12 @@ a {
     font-size: 15px;
     color: rgb(109, 109, 109);
     font-family: 'MapoPeacefull';
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .post-slider .post-wrapper-pc .post img{
