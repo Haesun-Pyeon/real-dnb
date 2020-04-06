@@ -12,7 +12,7 @@
 <form method="POST" action="{% url 'signup' %}" class="form">
 {% csrf_token %}
     <div class="signup-box">
-        <img src="{% static 'images/logo.jpg' %}" style="width: 16rem; margin-top: 3rem;">
+        <img src="{% static 'images/logo.jpg' %}">
         <div class="sign-content">
         <input name="username" type="text" id="inp" placeholder="아이디">
         <input name="password1" type="password" id="inp" placeholder="비밀번호">
