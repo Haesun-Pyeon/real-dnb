@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="tag-box">
-        <img src="{% static 'images/logo.jpg' %}" style="width: 15rem; margin-top: 2rem;">
+        <img src="{% static 'images/logo.jpg' %}">
         <div class="choice-ment">
             내 취향에 맞는 태그를 선택해주세요
             <i class="fas fa-lightbulb"></i>
@@ -22,7 +22,6 @@
                 <label>
                     <input name='tag' type="checkbox" value="{{t.title}}">
                     <span class="name-span"> #{{t.title}}
-                       <!--<a href="javascript:tag_count('{{t.id}}','{{t.title}}');" class="bookstore">#{{t.title}}</a>-->
                        <span id='{{t.title}}'></span>
                     </span>
                 </label>
@@ -32,19 +31,6 @@
             <input type="submit" value="등록" class="signup-btn">
         </form>
     </div>
-
-<script type="text/javascript">
-    function tag_count(id,name) {
-        id=parseInt(id);
-        $.ajax({
-            url: "{% url 'tag_count' 123%}".replace('123',id),
-            type: "get",
-        }).done(function (data) {
-            document.getElementById(name).innerHTML = data;
-        });
-    }
-</script>
-
 </body>
 
 {% endblock %}

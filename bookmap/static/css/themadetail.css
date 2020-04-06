@@ -127,6 +127,7 @@ table {
     font-size: 27px;
     text-align: center;
     color: #000000;
+    line-height: 180%;
 }
 .title{
     font-size: 40px;
@@ -239,6 +240,7 @@ table {
         font-size: 15px;
         text-align: center;
         color: #615136;
+        line-height: 200%;
     }
     .title{
         font-size: 20px;

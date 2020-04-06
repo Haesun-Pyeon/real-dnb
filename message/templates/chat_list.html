@@ -17,12 +17,19 @@
             {% for msg in msglist %}
             <tr>
                 {% if msg.sender == request.user %}
-                
-                <td class="send_content"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.content}}</a><br></td>
+                    {% if request.user_agent.is_pc %}
+                        <td class="send_content"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.content|slice:":65"}}</a><br></td>
+                    {% elif request.user_agent.is_mobile %}
+                        <td class="send_content"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.content|slice:":38"}}</a><br></td>
+                    {% endif %}
                 <td class="sender_id"><a href="{% url 'chat-temp' msg.recipient.id %}">{{msg.recipient.profile.nickname}}</a></td>
                 <td class="send_time">{{msg.sentAt}}</td>
                 {% else %}
-                <td class="send_content"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.content}}</a><br></td>
+                    {% if request.user_agent.is_pc %}
+                        <td class="send_content"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.content|slice:":65"}}</a><br></td>
+                    {% elif request.user_agent.is_mobile %}
+                        <td class="send_content"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.content|slice:":38"}}</a><br></td>
+                    {% endif %}
                 <td class="sender_id"><a href="{% url 'chat-temp' msg.sender.id %}">{{msg.sender.profile.nickname}}</a></td>
                 <td class="send_time">{{msg.sentAt}}</td>
                 {% endif %}

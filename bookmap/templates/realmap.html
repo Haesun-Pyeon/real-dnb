@@ -13,31 +13,31 @@
         <!-- 아이폰678기준 검색바 -->
         {% if request.user_agent.is_mobile %}
         <div class="topbar">
-        <form action="{% url 'mapsearch' %}" method="get" class="search-act">
-        <div class="ment">             
-            <i class="fas fa-lightbulb"></i>
-            {% if tf %}
-            #{{tf}} 태그가 포함된 책방입니다!
-            {% else %}
-            지도에서 원하는 책방을 찾아보세요
-            {% endif %}
-        </div>
-        <div class="rbtn">
-                <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
-                <label for="f-option" class="label">이름검색</label>
-                <input type='radio' name="searchtype" value='searchaddr' id="s-option">
-                <label for="s-option" class="label">주소검색</label>
-        </div>
-        <div class="sbox">
-            <input type="search" class="search-box" name="query" placeholder="검색어를 입력하세요">
-            <img src="{% static 'images/searchbtn.png' %}" class="search-mark">
-        </div>
-        </form>
-        <script>
-            $('img.search-mark').click(function(){
-                $('.search-act').submit();
-            })
-        </script>
+            <form action="{% url 'mapsearch' %}" method="get" class="search-act">
+                <div class="ment">             
+                    <i class="fas fa-lightbulb"></i>
+                    {% if tf %}
+                    #{{tf}} 태그가 포함된 책방입니다!
+                    {% else %}
+                    지도에서 원하는 책방을 찾아보세요
+                    {% endif %}
+                </div>
+                <div class="rbtn">
+                    <input type='radio' name="searchtype" value='searchname' id="f-option" checked>
+                    <label for="f-option" class="label">이름검색</label>
+                    <input type='radio' name="searchtype" value='searchaddr' id="s-option">
+                    <label for="s-option" class="label">주소검색</label>
+                </div>
+                <div class="sbox">
+                    <input type="search" class="search-box" name="query" placeholder="검색어를 입력하세요">
+                    <img src="{% static 'images/searchbtn.png' %}" class="search-mark">
+                </div>
+            </form>
+            <script>
+                $('img.search-mark').click(function(){
+                    $('.search-act').submit();
+                })
+            </script>
         </div>
         {% endif %}
 
@@ -76,10 +76,27 @@
         
     <div class="map-container">
         <div id="map" class="map">
-            <div class="seeall"><a href="{%url 'realmap'%}">ALL</a></div>
-            <div class="seetheme"><a onclick="current();" href="#">현위치</a></div>
+            <div class="seeall" onmouseover="hover(0,0);" onmouseout="hover(1,0);"><a href="{%url 'realmap'%}" id='all'>ALL</a></div>
+            <div class="seetheme" onmouseover="hover(0,1);" onmouseout="hover(1,1);"><a onclick="current();" href="#" id='loc'>현위치</a></div>
         </div>
-
+        <script>
+            function hover(mouse,div){
+                if (div==0){
+                    div_a = document.getElementById('all');
+                    color1='#569377'
+                }
+                else{
+                    div_a = document.getElementById('loc');
+                    color1='#E29B78'
+                }
+                if (mouse==0){
+                    div_a.style.color=color1;
+                }
+                else{
+                    div_a.style.color='white';
+                }
+            }
+        </script>
         <div id="list" class="list">
         <table class="table">
             <thead>

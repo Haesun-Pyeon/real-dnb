@@ -9,7 +9,7 @@ def blog_search(name, addr):
     address = addr.split()
     city = address[1]
     encText = urllib.parse.quote(city+" "+name+" 책방")
-    url = "https://openapi.naver.com/v1/search/blog?query=" + encText + "&display=5" # json 결과
+    url = "https://openapi.naver.com/v1/search/blog?query=" + encText + "&display=6" # json 결과
     # url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
     request = urllib.request.Request(url)
     request.add_header("X-Naver-Client-Id",client_id)
@@ -26,5 +26,5 @@ def cleaning(rev):
     for r in rev:
         r['title'] = r['title'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
         r['description'] = r['description'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
-        r['description'] = r['description'][:40] # 내용 너무 길어서 잘랐음!! 이화야 너가 보고 적당히 숫자 조절해쥬 
+        r['description'] = r['description'][:80]
     return rev
