@@ -14,7 +14,6 @@
     <a href="{% url 'themamap' %}" class="publicthema-btn">공개테마 보기</a>
     <a href="{% url 'my_thema' %}" class="mythema-btn">나의테마 보기</a>
     <a href="{% url 'thema_add' %}" class="addthema-btn">테마 추가하기</a>
-    <hr>
 {% else %}
     <br>
 {% endif %}
@@ -42,21 +41,18 @@
         <br></div>
         </div>
 
-    {% if i.img %}
-    <div class="themaimg-box">
-        <a href="{% url 'themadetail' i.id %}" class="title">
-            <img src='{{i.img.url}}' class="themaimg"> </div>
-            <div class="title2">{{i.title}}</div>
-        </a>
     
-    
-    {% else %}
-    <a href="{% url 'themadetail' i.id %}" class="title">
-        <div class="title2">{{i.title}}</div>
-    </a>
-    
-    {% endif %}
-    <hr>   
+        <div class="themaimg-box">
+            <a href="{% url 'themadetail' i.id %}" class="title">
+                {% if i.img %}
+                <img src='{{i.img.url}}' class="themaimg"> 
+                {% else %}
+                <img src="{% static 'images/textlogo.jpg' %}" alt="" class="themaimg">
+                {% endif %}
+            </a>
+                <div class="title2">{{i.title}}</div>
+        </div>
+
     </div>
         
     {% endfor %}

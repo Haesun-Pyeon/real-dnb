@@ -53,4 +53,7 @@ span{
     strong{
         font-size: 1.5rem;
     }
+    .instagram_gallery, .card-container{
+        width: 33%;
+    }
 }

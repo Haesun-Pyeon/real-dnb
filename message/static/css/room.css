@@ -160,5 +160,6 @@ input#chat-message-input.sending-box:focus{
         height: 80px;
         margin: 20px 0px 0px 150px;
         width: 65%;
+        font-size: 1.2rem;
     }
 }

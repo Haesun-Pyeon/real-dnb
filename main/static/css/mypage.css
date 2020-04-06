@@ -111,6 +111,7 @@ img.mypage-prof-img {
         text-align: left;
         font-size: 1rem;
         margin-bottom: 1.7rem;
+        border-bottom: 1.5px solid #402719;
     }
     .mypage-submit-btn {
         font-family: 'YiSunShinDotumM';
@@ -124,6 +125,10 @@ img.mypage-prof-img {
         top:23%; left:75%;
         border-radius: 100%;
         border: 2px solid #569377;
+    }
+    .quitbtn{
+        font-size: 1.2rem;
+        padding: 0.1rem;
     }
 }
 .stampbody{

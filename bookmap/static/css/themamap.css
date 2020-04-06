@@ -14,7 +14,7 @@ html, body {width: 100%; height: 100%;}
 }
 .publicthema-btn, .addthema-btn, .mythema-btn {
     background-color: #569377;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'NanumSquareRound';
     padding: 15px 30px;
     font-size: 2rem;
     margin: 20px 10px 10px 10px;
@@ -44,13 +44,15 @@ html, body {width: 100%; height: 100%;}
 .title{
     font-weight: 900;
     font-size: 2.5rem;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'NanumSquareRound';
     text-decoration: none;
     color: black;
     display: block;
 }
 .title2{
     margin-left: 25px;
+    text-decoration: none;
+    font-family: 'NanumSquareRound';
 }
 .writer{
     color: #727272;
@@ -97,9 +99,31 @@ i.fas.fa-heart, i.far.fa-heart{
     .eachthema{
         display: inline-block;
         width: 30%;
-        margin: 20px;
+        margin: 10px;
        }
     .themaimg{
-        height: 500px;
+        height: 300px;
+    }
+    .title2{
+        font-size: 1.5rem;
+    }
+    .publicthema-btn, .addthema-btn, .mythema-btn {
+        padding: 1px 15px;
+        font-size: 1.7rem;
+        margin: 5px 10px;
+    }
+    .myprofile_img{
+        width: 50px;
+        height: 50px;
+        margin: 0px 0px 20px 0px;
+    }
+    .writer{
+        font-size: 1.5rem;
+    }
+    .like{
+        margin: 10px 0px 0px 0px;
+    }
+    i.fas.fa-heart, i.far.fa-heart, .count{
+        font-size: 1.5rem;
     }
 }
