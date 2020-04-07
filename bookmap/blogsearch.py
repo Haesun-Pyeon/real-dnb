@@ -26,5 +26,4 @@ def cleaning(rev):
     for r in rev:
         r['title'] = r['title'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
         r['description'] = r['description'].replace("<b>", "").replace("</b>", "").replace("&lt;","<").replace("&gt;",">").replace("&amp;","&").replace("&nbsp;"," ").replace("&quot;","\"")
-        r['description'] = r['description'][:80]
     return rev

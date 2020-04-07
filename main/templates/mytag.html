@@ -17,7 +17,9 @@
                 {% for i in mytag %}
                 <input type="checkbox" id='{{i.id}}' name='mytag' value='{{i.title}}' style="display: none;">
                 <label for="{{i.id}}" class="check-box"></label>
-                <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label><br>
+                <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label>
+                <a class="link" href="{% url 'tag_search' i.id %}"><i class="fas fa-external-link-alt"></i></a>
+                <br>
                 {% endfor %}
                 </div>
             </td>
@@ -31,7 +33,9 @@
                     {% for i in alltag %}
                     <input type="checkbox" id='{{i.id}}' name='alltag' value='{{i.title}}' style="display: none;">
                     <label for="{{i.id}}" class="check-box"></label>
-                    <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label><br>
+                    <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label>
+                    <a class="link" href="{% url 'tag_search' i.id %}"><i class="fas fa-external-link-alt"></i></a>
+                    <br>
                     {% endfor %}
                 </div>    
             </td>
@@ -52,9 +56,11 @@
         let lbArr=new Array();
         let brArr=new Array();
         let boxArr=new Array();
+        let aArr=new Array();
         mytag_box.forEach(function(element, idx){
             if (element.checked){
                 br=mydiv.getElementsByTagName('br');
+                a=mydiv.getElementsByTagName('a');
                 box=mydiv.getElementsByClassName('check-box');
                 myval=element.value;
                 myid=element.id;
@@ -62,6 +68,7 @@
                 chkArr.push(element);
                 lbArr.push(lb);
                 brArr.push(br[idx]);
+                aArr.push(a[idx]);
                 boxArr.push(box[idx]); //왼쪽목록(기존) 제거를 위해
                 chk=document.createElement('input'); //체크박스 생성 및 속성 지정
                 chk.type='checkbox';
@@ -78,8 +85,16 @@
                 lbl.htmlFor = myid;
                 lbl.innerHTML=myval;
                 lbl.id=myval;
+                a2= document.createElement('a'); //태그검색 a태그
+                a2.href="{% url 'tag_search' 123 %}".replace('123',myid);
+                a2.className='link';
+                a2.innerHTML='&nbsp;'
+                ai=document.createElement('i');
+                ai.className='fas fa-external-link-alt';
                 alldiv.appendChild(boxlbl);
                 alldiv.appendChild(lbl);
+                alldiv.appendChild(a2);
+                a2.appendChild(ai);
                 alldiv.appendChild(document.createElement("br"));
             }
         });
@@ -88,6 +103,7 @@
             lbArr[i].remove();
             brArr[i].remove();
             boxArr[i].remove();
+            aArr[i].remove();
         }
     }
     function left(){
@@ -98,9 +114,11 @@
         let lbArr=new Array();
         let brArr=new Array();
         let boxArr=new Array();
+        let aArr=new Array();
         alltag_box.forEach(function(element, idx){
             if (element.checked){
                 br=alldiv.getElementsByTagName('br');
+                a=alldiv.getElementsByTagName('a');
                 box=alldiv.getElementsByClassName('check-box');
                 allval=element.value;
                 allid=element.id;
@@ -108,6 +126,7 @@
                 chkArr.push(element);
                 lbArr.push(lb);
                 brArr.push(br[idx]);
+                aArr.push(a[idx]);
                 boxArr.push(box[idx]); //오른쪽목록(기존) 제거를 위해
                 chk=document.createElement('input'); //체크박스 생성 및 속성 지정
                 chk.type='checkbox';
@@ -124,8 +143,16 @@
                 lbl.htmlFor = allid;
                 lbl.innerHTML=allval;
                 lbl.id=allval;
+                a2= document.createElement('a'); //태그검색 a태그
+                a2.href="{% url 'tag_search' 123 %}".replace('123',allid);
+                a2.className='link';
+                a2.innerHTML='&nbsp;'
+                ai=document.createElement('i');
+                ai.className='fas fa-external-link-alt';
                 mydiv.appendChild(boxlbl);
                 mydiv.appendChild(lbl);
+                mydiv.appendChild(a2);
+                a2.appendChild(ai);
                 mydiv.appendChild(document.createElement("br"));
             }
         });
@@ -134,6 +161,7 @@
             lbArr[i].remove();
             brArr[i].remove();
             boxArr[i].remove();
+            aArr[i].remove();
         }
     }
     function submit(){
