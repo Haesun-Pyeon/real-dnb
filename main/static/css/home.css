@@ -81,6 +81,9 @@ a {
     font-size: 2.5rem;
     font-weight: 900;
     color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-slider .post-wrapper .post .post-info .p{
@@ -135,6 +138,9 @@ a {
     font-size: 1.9rem;
     font-weight: 900;
     color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post-slider .post-wrapper-pc .post .post-info .p{
