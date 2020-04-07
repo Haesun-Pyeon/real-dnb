@@ -11,7 +11,7 @@ h1{
     background-color: #FFD757;
     margin-top: 50px;
     border-radius: 10px;
-    width: 200px;
+    width: 210px;
     padding: 5px;
 }
 
@@ -21,7 +21,7 @@ table{
 
 .tag-container{
     background-color: #ffffff;
-    width: 70%;
+    width: 75%;
     height: 60rem;
     border-radius: 10px;
     display: block;
@@ -44,7 +44,7 @@ a:hover, a:visited, i.fas.fa-external-link-alt:hover, i.fas.fa-external-link-alt
 
 .tag-box{
     overflow: auto;
-    width: 200px;
+    width: 260px;
     height: 670px;
     text-align: left;
     font-size: 1.5rem;

@@ -197,18 +197,14 @@ def mypage(request):
     user = request.user
     if user.is_superuser:
         return redirect('home')
-
     if not user.has_usable_password(): #카카오로그인
         kakao = True
     else:
         kakao = None
     profile = Profile.objects.get(user=request.user)
     mystamp = profile.stampcount()
-    level = profile.level
-    if level==3:
-        next_level = None
-    else:
-        next_level = level + 1
+    level=int(mystamp/10+1)
+    next_level = level + 1
     more = level*10-mystamp
     scraps = Scrap.objects.filter(user=request.user)
     return render(request,'mypage.html', {

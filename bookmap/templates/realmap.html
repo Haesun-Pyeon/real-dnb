@@ -213,12 +213,11 @@
                 });
                 bounds.extend(coords);
                 clusterer.addMarker(marker);
-                let address_short = address.substr(0,20)
                 let det_url='"{%url "storedetail" 123%}"'.replace('123',i);
                 let content = '<div id="content" class="smallinfo">' + 
                         '<div class=title>' +
                         title + '</div>' +  
-                        address_short + '<br>'+
+                        address + '<br>'+
                         '<a href='+det_url+' class="det-btn">더보기</a>'
                         '</div>';
                 let ifw = new kakao.maps.InfoWindow({

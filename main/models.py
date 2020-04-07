@@ -8,7 +8,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=10) 
     email = models.EmailField()
-    level = models.IntegerField(default=1)
     profileimg = models.ImageField(upload_to='profileimg/', blank=True, null=True)
     tag_set = models.ManyToManyField(Tag, blank=True)
 

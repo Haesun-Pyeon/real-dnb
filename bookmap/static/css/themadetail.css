@@ -1,5 +1,7 @@
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 
 .description, .description2{
     font-family: 'JSDongkang-Regular';
@@ -103,6 +105,7 @@ table {
 }
 .table thead th{
     border-bottom: 2px solid #615136;
+    font-family: 'JSDongkang-Bold';
     /* border-top: 2px solid #615136; */
 }
 .sub-btn{
@@ -127,18 +130,25 @@ table {
     margin-right: 5px;
   }
 .smallinfo{
-    white-space:nowrap;
     width: 450px;
     height: 160px;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     font-size: 27px;
     text-align: center;
     color: #000000;
     line-height: 180%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .title{
     font-size: 40px;
     color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .det-btn{
     font-family: 'BBTreeGL';
@@ -269,7 +279,7 @@ table {
     }
     .smallinfo{
         white-space:nowrap;
-        width: 300px;
+        width: 270px;
         height: 100px;
         font-family: 'JSDongkang-Regular';
         font-size: 15px;
