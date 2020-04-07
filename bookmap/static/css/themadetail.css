@@ -1,17 +1,16 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 .description, .description2{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding: 2.5rem 3rem 1rem 3rem;
 }
 .description h1{
     font-size: 3.2rem;
-    font-weight: 900;
     /*margin-bottom: 2rem;*/
 }
 .description h3{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
 }
 .like{
     float: right;
@@ -22,7 +21,7 @@
 
 .writer{
     color: #727272;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 1.7rem;
     margin-left: 1.3rem;
 }
@@ -43,7 +42,7 @@ p{
     overflow:auto;
     width:100%;
     height:450px;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -56,7 +55,7 @@ p{
     text-align: center;
     line-height: 80px;
     display: block;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     position: absolute;
     z-index: 3;
     margin: 15px 0px 0px 15px;
@@ -114,7 +113,6 @@ table {
     color:#569377;
     border-radius: 100px;
     padding: 7px;
-    font-weight: 900;
 }
 .sub-btn:visited, .sub-btn:hover{
     color: white;
@@ -153,7 +151,7 @@ table {
     margin-top: 15px;
 }
 .btn-container{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding: 1.5rem 3rem 1rem 3rem;
     font-size: 1.8rem;
 }
@@ -188,11 +186,10 @@ table {
 	color: #569377; 
 	background-color: white; 
     text-decoration: none;
-    font-weight: 900;
 }
 .send-btn{
     background-color: #E29B78;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding: 10px 15px;
     font-size: 1.3rem;
     border: 3px solid #E29B78;
@@ -254,7 +251,7 @@ table {
     }
     p{
         font-size: 1.5rem;
-        font-family: 'NanumSquareRound'; 
+        font-family: 'JSDongkang-Regular'; 
         margin: 0px auto;
     }
     .list{
@@ -267,14 +264,14 @@ table {
     }
     .table{
         font-size: 1rem;
-        font-family: 'NanumSquareRound';
+        font-family: 'JSDongkang-Regular';
 
     }
     .smallinfo{
         white-space:nowrap;
         width: 300px;
         height: 100px;
-        font-family: 'NanumSquareRound';
+        font-family: 'JSDongkang-Regular';
         font-size: 15px;
         text-align: center;
         color: #615136;

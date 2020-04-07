@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'SangSangFlowerRoad'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangFlowerRoad.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
 @font-face { font-family: 'stencil'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/stencil.woff') format('woff'); font-weight: normal; font-style: normal; }
 header .openmenu {
   background-color: #E29B78;
