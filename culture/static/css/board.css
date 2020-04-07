@@ -51,8 +51,11 @@ span{
     }
     .instagram_gallery{
         width: 30%;
-        height: 38rem;
+        height: 530px;
         margin: 1rem 20px;
         float: left;
+    }
+    span{
+        font-size: 1.3rem;
     }
 }
