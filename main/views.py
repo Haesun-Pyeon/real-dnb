@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Q
+from message.models import Group
 
 
 # Create your views here.
@@ -136,6 +137,12 @@ def del_user(request):
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
         os.remove(profile.profileimg.path)
+    try:
+        group = request.user.participants.all()
+        for g in group:
+            g.delete()
+    except:
+        pass
     user.delete()
     auth.logout(request)
     return redirect('home')

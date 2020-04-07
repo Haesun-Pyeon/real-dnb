@@ -378,7 +378,7 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     }
 
     span#name{
-        font-size: 2.5rem;
+        font-size: 2.4rem;
     }
     .heart{
         width: 30px;
@@ -479,5 +479,8 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     }
     textarea#id_content{
         font-size: 1.5rem;
+    }
+    .table-map{
+        display: flex;
     }
 }

@@ -63,7 +63,8 @@
     </script>
     
 
-<div class="contents">  
+<div class="contents">
+    <div class='table-map'>  
     <table>
         {% if store.phone_number != 'nan' %}
         <tr>
@@ -129,6 +130,7 @@
     {% if user.is_authenticated %}
     <div><a class="greenhover stamp" href="javascript:get_stamp();">도장<br>찍기</a></div>
     {% endif %}
+</div>
 </div>
 <script type="text/javascript">
     function get_stamp(){   //도장찍기
