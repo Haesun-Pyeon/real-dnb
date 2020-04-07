@@ -39,7 +39,9 @@ img.mypage-prof-img {
     margin: 40px 0px;
     cursor: pointer;
 }
-
+img.mypage-prof-img:hover {
+    border: 5px solid #569377;
+}
 
 @media only screen and (min-width: 1025px){
     img.mypage-prof-img {
