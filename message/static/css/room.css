@@ -1,11 +1,11 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 body{
     margin: 0px;
     background-color: rgb(255, 251, 248);
 }
 .chatbody{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 35px;
     color: #3c281b;
     height: 1480px;
@@ -17,7 +17,7 @@ body{
     position: sticky;
     top: 0;
     width:100%;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 35px;
     text-align: center;
     color: #3c281b;
@@ -99,7 +99,7 @@ input#chat-message-input.sending-box:focus{
     border:none;
     width: 100px;
     height:100px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     font-size: 30px;
     color: #3c281b;
     padding-top:60px;
@@ -136,7 +136,7 @@ input#chat-message-input.sending-box:focus{
         font-size: 0.8rem;
     }
     .writechat textarea{
-        font-family: 'NanumSquareRound';
+        font-family: 'JSDongkang-Regular';
         font-size: 1.2rem;
         width:88%;
         height: 90px;

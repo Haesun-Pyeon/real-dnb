@@ -1,7 +1,6 @@
-@font-face { font-family: 'MapoDPPA'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'Arita-buri-SemiBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 h1,h2,h3,h4,h5,h6{
     color: #444;
     margin: 5px;
@@ -35,7 +34,7 @@ a {
     margin: 40px auto;
 }
 .slider-title{
-    font-family: 'MapoDPPA';
+    font-family: 'JSDongkang-Regular';
 }
 
 .post-slider .next{
@@ -77,9 +76,8 @@ a {
     padding: 0px 5px;
 }
 .post-slider .post-wrapper .post .post-info h4{
-    font-family: 'MapoPeacefull';
+    font-family: 'JSDongkang-Bold';
     font-size: 2.5rem;
-    font-weight: 900;
     color: #000000;
 }
 
@@ -87,7 +85,7 @@ a {
     margin: 0px 15px;
     font-size: 2rem;
     color: rgb(109, 109, 109);
-    font-family: 'MapoPeacefull';
+    font-family: 'JSDongkang-Regular';
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -131,9 +129,8 @@ a {
     padding: 0px 5px;
 }
 .post-slider .post-wrapper-pc .post .post-info h4{
-    font-family: 'MapoPeacefull';
+    font-family: 'JSDongkang-Bold';
     font-size: 1.9rem;
-    font-weight: 900;
     color: #000000;
 }
 
@@ -141,7 +138,7 @@ a {
     margin: 0px 15px;
     font-size: 15px;
     color: rgb(109, 109, 109);
-    font-family: 'MapoPeacefull';
+    font-family: 'JSDongkang-Regular';
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -159,7 +156,7 @@ a {
 
 #ment{
     font-size: 2.5rem;
-    font-family: 'MapoDPPA';
+    font-family: 'JSDongkang-Bold';
     margin: 50px 0px;
 
 }

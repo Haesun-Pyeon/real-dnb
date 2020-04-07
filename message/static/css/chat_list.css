@@ -1,13 +1,14 @@
 @font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 .chat-title{
     font-size: 3rem;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     margin: 20px;
 }
 .mlist table{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size:28px;
     width: 100%;
     /* height: 100px; */
@@ -30,7 +31,6 @@
 }
 td.send_content a{
     color: #569377;
-    font-weight: 700;
     text-decoration: none;
 }
 td.sender_id a{

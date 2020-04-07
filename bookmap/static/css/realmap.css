@@ -1,6 +1,5 @@
-@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'MapoPeacefull'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 
 a:visited { color: white; text-decoration: none;}
@@ -8,7 +7,7 @@ a:hover { color: white; text-decoration: none;}
 
 
 input.search-box{
-    width: 650px;  
+    width: 640px;  
     height: 90px;
     margin-right: 25px; 
     margin-top: 15px;
@@ -18,7 +17,7 @@ input.search-box{
     border-radius: 10px;
     position: relative;
     font-size: 40px;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     margin-bottom: 15px;
 }
 
@@ -66,7 +65,7 @@ input.search-box:focus + span {
     color: white;
     line-height: 80px;
     display: block;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     position: absolute;
     z-index: 2;
     margin: 15px 0px 0px 15px;
@@ -75,7 +74,6 @@ input.search-box:focus + span {
 .seeall a{
     font-size: 27px;
     z-index: 2;
-    font-weight: 900;
     color: white;
 }
 .seeall:visited, .seeall:hover{
@@ -90,7 +88,7 @@ input.search-box:focus + span {
     text-align: center;
     line-height: 80px;
     display: block;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     position: absolute;
     z-index: 3;
     margin: 105px 0px 0px 15px;
@@ -99,7 +97,6 @@ input.search-box:focus + span {
 .seetheme a{
     font-size: 27px;
     z-index: 3;
-    font-weight: 900;
     color: white;
 }
 
@@ -123,7 +120,7 @@ input.search-box:focus + span {
     overflow:auto;
     width: 100%;
     height: 600px;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -168,14 +165,13 @@ table {
 }
 
 .sub-btn{
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     background-color: white;
     border: 2px solid #569377;
     color:#569377;
     border-radius: 100px;
     padding: 7px;
     cursor: pointer;
-    font-weight: 900;
 }
 .sub-btn:visited, .sub-btn:hover{
     color: white;
@@ -184,7 +180,7 @@ table {
 }
 
 .label{
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     font-size: 27px;
     margin-left: 10px;
     margin-right: 5px;
@@ -193,7 +189,7 @@ table {
     white-space:nowrap;
     width: 450px;
     height: 160px;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     font-size: 27px;
     text-align: center;
     color: #000000;
@@ -204,7 +200,7 @@ table {
     color: black;
 }
 .det-btn{
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     background-color: #569377;
     border: 2px solid #569377;
     color:white;
@@ -217,7 +213,6 @@ table {
 	color: #569377; 
 	background-color: white; 
     text-decoration: none;
-    font-weight: 900;
 }
 
 .rbtn{
@@ -255,7 +250,7 @@ table {
     box-shadow: 4px 4px 8px lightgrey;
     border-radius: 10px;
     font-size: 20px;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     width: 200px;
     right: 20px;
 }
@@ -283,7 +278,7 @@ input.search-box-pc:focus + span {
 .pc-ment{
     font-size: 1.5rem;
     display: inline-block;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
 }
 .fa-lightbulb{
     color: rgb(254,197,14);
@@ -320,7 +315,7 @@ input.search-box-pc:focus + span {
     background:#569377;
 }
 .label-pc{
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
     font-size: 15px;
     margin: 0px 5px;
 }
@@ -370,7 +365,7 @@ input.search-box-pc:focus + span {
         white-space:nowrap;
         width: 300px;
         height: 100px;
-        font-family: 'BBTreeGL';
+        font-family: 'JSDongkang-Regular';
         font-size: 15px;
         text-align: center;
         color: #615136;
@@ -392,5 +387,5 @@ input.search-box-pc:focus + span {
 }
 .source{
     position:absolute; bottom:0px;
-    font-family: 'BBTreeGL';
+    font-family: 'JSDongkang-Regular';
 }
