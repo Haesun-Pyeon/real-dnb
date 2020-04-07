@@ -17,6 +17,7 @@
 
 <body>
 
+<div class="namelike">
     <div class="storename">
         <span id='name'>{{store.name}}</span>
     </div>
@@ -25,7 +26,7 @@
         <i onclick="like();" id='like' class="{%if scrap %}fas fa-heart{%else%}far fa-heart{%endif%}" style='color:#E29B78;'></i>
         <span id="like-count">{{store.like_count}}</span><br>
     </div>
-
+</div>
     <script type="text/javascript">
     //스크랩 AJAX 관련
     var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
@@ -122,6 +123,74 @@
             <td class="data">{%for t in store.tag_set.all%} <a href="{% url 'tag_search' t.id %}">#{{t}}</a> {% endfor %}</td>
         </tr>
     </table>
+
+<!--해당서점 지도 표시-->
+<div id="map">
+    {% if user.is_authenticated %}
+    <div><a class="greenhover stamp" href="javascript:get_stamp();">도장<br>찍기</a></div>
+    {% endif %}
+</div>
+<script type="text/javascript">
+    function get_stamp(){   //도장찍기
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(position){
+                let lat=position.coords.latitude;
+                let lon=position.coords.longitude;
+                let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
+                let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
+                let stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
+                let geocoder = new kakao.maps.services.Geocoder();
+                let addr = document.getElementById('addr').innerHTML;
+                geocoder.addressSearch(addr,function(result, status){
+                    if (status === kakao.maps.services.Status.OK){
+                        let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                        if (stamp_bounds.contain(coords)){
+                            location.href="{%url 'stamp' store.bookstore_id %}";
+                        }
+                        else{
+                            alert("책방 근처에서 적립 가능합니다.");
+                        }
+                    };
+
+                });
+            },error);
+        }
+        function error(e){
+            alert("현재 위치를 받아올 수 없습니다.")
+        }
+    };
+    window.onload=function(){
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
+            level: 4, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
+            //draggable: false
+        };
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+        var geocoder = new kakao.maps.services.Geocoder();
+        map.setZoomable(true);
+        let addr = document.getElementById('addr').innerHTML;
+        let name = document.getElementById('name').innerHTML;
+    
+        function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
+            geocoder.addressSearch(address,function(result, status){
+                if (status === kakao.maps.services.Status.OK){
+                    let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                    let marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords,
+                        clickable: false,
+                        title: title
+                    });
+                    map.setCenter(coords);
+                };
+            });
+        }
+        addrStoN(addr,name);
+    }
+</script>
+
+
 
     {% if user.is_authenticated and thema %}
         <div class="themabtn-box">
@@ -271,73 +340,6 @@
 
     
     <br>
-    <!--해당서점 지도 표시-->
-    <div id="map">
-        {% if user.is_authenticated %}
-        <div><a class="greenhover stamp" href="javascript:get_stamp();">도장<br>찍기</a></div>
-        {% endif %}
-    </div>
-    <script type="text/javascript">
-        function get_stamp(){   //도장찍기
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    let lat=position.coords.latitude;
-                    let lon=position.coords.longitude;
-                    let loc1=new kakao.maps.LatLng(lat-0.0005,lon-0.0005);
-                    let loc2=new kakao.maps.LatLng(lat+0.0005,lon+0.0005);
-                    let stamp_bounds = new kakao.maps.LatLngBounds(loc1, loc2);
-                    let geocoder = new kakao.maps.services.Geocoder();
-                    let addr = document.getElementById('addr').innerHTML;
-                    geocoder.addressSearch(addr,function(result, status){
-                        if (status === kakao.maps.services.Status.OK){
-                            let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-                            if (stamp_bounds.contain(coords)){
-                                location.href="{%url 'stamp' store.bookstore_id %}";
-                            }
-                            else{
-                                alert("책방 근처에서 적립 가능합니다.");
-                            }
-                        };
-    
-                    });
-                },error);
-            }
-            function error(e){
-                alert("현재 위치를 받아올 수 없습니다.")
-            }
-        };
-        window.onload=function(){
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = {
-                center: new kakao.maps.LatLng(37.5527509,126.9648429), //센터는 서울시청
-                level: 4, // 지도의 확대 레벨 - 숫자 클수록 축소, 작을수록 확대
-                //draggable: false
-            };
-            var map = new kakao.maps.Map(mapContainer, mapOption); 
-            var geocoder = new kakao.maps.services.Geocoder();
-            map.setZoomable(true);
-            let addr = document.getElementById('addr').innerHTML;
-            let name = document.getElementById('name').innerHTML;
-        
-            function addrStoN(address,title){ //주소를 위도경도로 변환후 마킹
-                geocoder.addressSearch(address,function(result, status){
-                    if (status === kakao.maps.services.Status.OK){
-                        let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-                        let marker = new kakao.maps.Marker({
-                            map: map,
-                            position: coords,
-                            clickable: false,
-                            title: title
-                        });
-                        map.setCenter(coords);
-                    };
-                });
-            }
-            addrStoN(addr,name);
-        }
-    </script>
-
-    <br>
     <div class="img-container">
     {% if store.img != 'nan' %}
         <img src='{{store.img}}' class="storeimg">
@@ -356,7 +358,7 @@
             {% csrf_token %}
             <div class="radio_star" id="star">
                 <input type="radio" name="star" id="shipadd1" value="1" checked/>
-                <label for="shipadd1"><i class="fas fa-star"></i></label>
+                <label for="shipadd1"><i class="fas fa-star" style="color: #FFD757;"></i></label>
                 <input type="radio" name="star" id="shipadd2" value="2" />
                 <label for="shipadd2"><i class="fas fa-star"></i></label>
                 <input type="radio" name="star" id="shipadd3" value="3" />
@@ -416,7 +418,7 @@
             <a href={{review.link}}>
                 <p>{{review.bloggername}} | {{review.postdate}}</p>
                 <h3>{{review.title}}</h3>
-                <h4>{{review.description}}...</h4>
+                <h4>{{review.description}}</h4>
             </a>
         </div>
         <hr>

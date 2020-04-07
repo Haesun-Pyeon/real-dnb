@@ -25,7 +25,7 @@
             <form method="POST" action="{% url 'user_change' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class='mypage-profile-info'>닉네임
-                    <input class='mypage-profile-input' style="width: 80%;" type='text' value='{{profile.nickname}}' name='nickname'/>
+                    <input class='mypage-profile-input' style="width: fit-content;" type='text' value='{{profile.nickname}}' name='nickname'/>
                 </div>
                 <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
                 <div class='mypage-profile-info'>

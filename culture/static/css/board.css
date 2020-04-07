@@ -1,7 +1,5 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 body{
     background-color: #FFFFFF;
@@ -10,8 +8,7 @@ body{
 .ment{
     text-align: center;
     color: #131313;
-    font-family: 'YiSunShinDotumM';
-    font-weight: 500;
+    font-family: 'JSDongkang-Regular';
     margin-top: 20px;
 }
 
@@ -32,8 +29,7 @@ body{
 strong{
     display: block;
     font-size: 2.2rem;
-    font-family: 'NanumSquareRound';
-    font-weight: 1000;
+    font-family: 'JSDongkang-Bold';
     padding: 10px;
 }
 span{
@@ -52,5 +48,11 @@ span{
 @media only screen and (min-width: 1025px){
     strong{
         font-size: 1.5rem;
+    }
+    .instagram_gallery{
+        width: 30%;
+        height: 38rem;
+        margin: 1rem 20px;
+        float: left;
     }
 }

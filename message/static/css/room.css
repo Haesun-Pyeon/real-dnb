@@ -1,11 +1,11 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal,bold; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+
 body{
     margin: 0px;
     background-color: rgb(255, 251, 248);
 }
 .chatbody{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 35px;
     color: #3c281b;
     height: 1480px;
@@ -17,7 +17,7 @@ body{
     position: sticky;
     top: 0;
     width:100%;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 35px;
     text-align: center;
     color: #3c281b;
@@ -65,6 +65,7 @@ img.mypage-prof-img {
     border-radius: 50px;
     padding: 15px 35px;
     margin: 10px 30px 10px 100px;
+    word-break: break-all;
 }
 .chat_time{
     font-size: 20px;
@@ -77,7 +78,7 @@ img.mypage-prof-img {
 }
 input#chat-message-input.sending-box{
     font-family: 'BBTreeGL';
-    font-size: 30px;
+    font-size: 2.7rem;
     width:80%;
     height: 110px;
     float: left;
@@ -99,7 +100,7 @@ input#chat-message-input.sending-box:focus{
     border:none;
     width: 100px;
     height:100px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     font-size: 30px;
     color: #3c281b;
     padding-top:60px;
@@ -121,6 +122,9 @@ input#chat-message-input.sending-box:focus{
     top: 10px; 
     left: 30px;
 }
+.fa-chevron-left:hover, .fa-chevron-left:visited{
+    color: #569377;
+}
 @media only screen and (min-width: 1025px){
     .chatcontent, .chatcontent_r{
         font-size: 1.1rem;
@@ -133,7 +137,7 @@ input#chat-message-input.sending-box:focus{
         font-size: 0.8rem;
     }
     .writechat textarea{
-        font-family: 'NanumSquareRound';
+        font-family: 'JSDongkang-Regular';
         font-size: 1.2rem;
         width:88%;
         height: 90px;
@@ -145,9 +149,8 @@ input#chat-message-input.sending-box:focus{
         background-size: 80px;
         height:90px;
         font-size: 1.2rem;
-        padding-top: 60px;
         margin-right: 180px;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     .listlink:hover, .listlink:visited{
         text-decoration: none;
@@ -158,7 +161,8 @@ input#chat-message-input.sending-box:focus{
     }
     input#chat-message-input.sending-box{
         height: 80px;
-        margin: 20px 0px 0px 150px;
+        margin: 10px 0px 0px 150px;
         width: 65%;
+        font-size: 1.2rem;
     }
 }

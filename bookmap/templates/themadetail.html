@@ -29,7 +29,31 @@
         <a href="{% url 'chat-temp' thema.user.id %}" class="send-btn">쪽지보내기</a>
         {% endif %}{% endif %}
         <hr>
+    </div>
 
+
+    {% if request.user_agent.is_pc %} <!--PC로 접속했을 때-->
+    <div class="row">
+        <div class="col-6">
+            <div class="description2">
+                {% if thema.img %}
+                    <img src="{{thema.img.url}}" alt="" class="thema-img">
+                {% else %}
+                    <img src="{% static 'images/textlogo.jpg' %}" alt="" class="thema-img">
+                {% endif %}      
+            </div> 
+        </div>
+        <div class="col-6">
+            <div id="map" class="map">
+                <div class="loc"><a onclick="current();">현위치</a></div>
+            </div>
+        </div>
+        <h4>{{thema.description|linebreaks}}</h4>
+    </div>
+    {% endif %}
+
+    {% if request.user_agent.is_mobile %}
+    <div class="description2">
         {% if thema.img %}
             <img src="{{thema.img.url}}" alt="" class="thema-img">
         {% endif %}      
@@ -37,11 +61,14 @@
     </div> 
 
 
-<div id="map" class="map" style="width:90%;height:700px;z-index: 0; margin: 0px auto;">
-    <div class="loc"><a onclick="current();">현위치</a></div>
-</div>
+    <div id="map" class="map">
+        <div class="loc"><a onclick="current();">현위치</a></div>
+    </div>
+    {% endif %}
 
-<table class="table">
+
+
+    <table class="table">
     <thead>
         <tr>
         <th class="table-sname">책방이름</th>
@@ -53,7 +80,7 @@
         {% for store in stores %}
         <tr onclick="list_click('{{store.addr}}');" class="line-content">
             <td class="table-sname">{{store.name}}</td>
-            <td>{{store.addr}}</td>
+            <td class="table-addr">{{store.addr}}</td>
             <td class="table-seemore"><a class="sub-btn" href="{%url 'storedetail' store.bookstore_id%}">더보기</a></td>
         </tr>
         {% endfor %}

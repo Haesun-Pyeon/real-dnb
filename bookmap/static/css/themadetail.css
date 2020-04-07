@@ -1,17 +1,16 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
 @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
-.description{
-    font-family: 'YiSunShinDotumM';
+.description, .description2{
+    font-family: 'JSDongkang-Regular';
     padding: 2.5rem 3rem 1rem 3rem;
 }
 .description h1{
     font-size: 3.2rem;
-    font-weight: 900;
     /*margin-bottom: 2rem;*/
 }
 .description h3{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
 }
 .like{
     float: right;
@@ -22,7 +21,7 @@
 
 .writer{
     color: #727272;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     font-size: 1.7rem;
     margin-left: 1.3rem;
 }
@@ -34,15 +33,16 @@
 }
 
 p{
-    margin: 0;
+    margin: 10px 0px;
     text-align: center;
     font-size: 2rem;
 }
+
 .list{
     overflow:auto;
     width:100%;
     height:450px;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -55,7 +55,7 @@ p{
     text-align: center;
     line-height: 80px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     position: absolute;
     z-index: 3;
     margin: 15px 0px 0px 15px;
@@ -80,6 +80,14 @@ table {
 }
 .table-sname{
     width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-addr{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .table tr{
     text-align: center;
@@ -105,7 +113,6 @@ table {
     color:#569377;
     border-radius: 100px;
     padding: 7px;
-    font-weight: 900;
 }
 .sub-btn:visited, .sub-btn:hover{
     color: white;
@@ -144,7 +151,7 @@ table {
     margin-top: 15px;
 }
 .btn-container{
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 1.5rem 3rem 1rem 3rem;
     font-size: 1.8rem;
 }
@@ -179,11 +186,10 @@ table {
 	color: #569377; 
 	background-color: white; 
     text-decoration: none;
-    font-weight: 900;
 }
 .send-btn{
     background-color: #E29B78;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 10px 15px;
     font-size: 1.3rem;
     border: 3px solid #E29B78;
@@ -200,17 +206,39 @@ table {
 	background-color: white; 
 	text-decoration: none;
 }
-
+.row{
+    width: 80%;
+    margin: 0px auto;
+    text-align: center;
+    margin: 0px auto;
+}
+.row h4{
+    text-align: center;
+    margin: 10px auto;
+}
+#map{
+    width:90%;height:700px;z-index: 0; margin: 0px auto;
+}
 @media only screen and (min-width: 1025px){
     .description{
-        padding: 3rem 6rem;
+        padding: 1.2rem 6rem 0rem 6rem;
+    }
+    .description2{
+        padding: 0px;
     }
     .description h1{
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
     }
     .description h3{
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+    .myprofile_img{
+        width: 50px;
+        height: 50px;
+    }
+    #like{
+        font-size: 2rem;
     }
     .realmap{
         padding: 0px 100px;
@@ -218,8 +246,13 @@ table {
     .map-container{
         margin: 0 40px;
     }
-    .map{
-
+    #map{
+        width:100%;height:470px;z-index: 0; margin: 0px auto;
+    }
+    p{
+        font-size: 1.5rem;
+        font-family: 'JSDongkang-Regular'; 
+        margin: 0px auto;
     }
     .list{
         display: inline;
@@ -231,12 +264,14 @@ table {
     }
     .table{
         font-size: 1rem;
+        font-family: 'JSDongkang-Regular';
+
     }
     .smallinfo{
         white-space:nowrap;
         width: 300px;
         height: 100px;
-        font-family: 'YiSunShinDotumM';
+        font-family: 'JSDongkang-Regular';
         font-size: 15px;
         text-align: center;
         color: #615136;
@@ -250,7 +285,7 @@ table {
         margin-top: 30px;
     }
     .thema-img{
-        width: 60%;
+        width: 100%;
         margin: 0px auto;
     }
     .line-content:hover{

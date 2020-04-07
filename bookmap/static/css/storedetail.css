@@ -1,8 +1,5 @@
-@font-face { font-family: 'YiSunShinDotumM'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'UhBeepuding'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'Cafe24Dangdanghae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.2/Cafe24Dangdanghae.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
-@font-face { font-family: 'BBTreeGL'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGL.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'TmonMonsori'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 a {
     text-decoration: none;
@@ -29,7 +26,7 @@ div#map{
 }
 span#name{
     font-size: 3.5rem;
-    font-family: 'Cafe24Dangdanghae';
+    font-family: 'TmonMonsori';
 }
 
 .like{
@@ -39,7 +36,7 @@ span#name{
     margin-top: 10px;
 }
 #like{font-size: 2.5rem;}
-#like-count{font-size: 2rem; margin-left: 10px; margin-bottom: 20px; font-family: 'BBTreeGL';}
+#like-count{font-size: 2rem; margin-left: 10px; margin-bottom: 20px; font-family: 'JSDongkang-Regular';}
 
 .contents{
     width: 80%;
@@ -47,25 +44,6 @@ span#name{
     margin-right: auto;
     display: block;
 }
-/*.introduce{
-    text-align: center;
-    font-size: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'UhBeepuding';
-}
-.modify{
-    text-align:center;
-    border-radius: 100px;
-    background-color: rgba(235,221,202,0.6);
-    width: 100%;
-}
-.modify-btn{
-    letter-spacing: 2rem;
-    font-family: 'BBTreeGL';
-    font-size: 18px;
-    color: gray;
-}*/
 
  /* 책방정보 테이블 */
 table{
@@ -76,7 +54,7 @@ tr{
     height: fit-content;
 }
 td{
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
     border-top: 1px solid #615136;
     border-bottom: 1px solid #615136;
     padding: 10px;
@@ -111,7 +89,7 @@ td.data{
 /* 테마에 추가, 삭제 버튼*/
 .add-btn, .delete-btn{
     background-color: #FFD757;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 5px 30px;
     font-size: 1.5rem;
     margin: 10px;
@@ -129,7 +107,7 @@ td.data{
 /* 카카오톡으로 공유하기 버튼 */
 #kakao-link-btn{
     background-color: rgb(250, 227, 0);
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 5px 135px;
     font-size: 1.5rem;
     margin: 10px auto;
@@ -151,12 +129,11 @@ td.data{
 }
 div#thema_list{
     width: 70%;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
 }
 .nowthema,.selectthema{
     font-size: 1.8rem;
     text-align: center;
-    font-weight: 900;
     color: #569377;
 }
 li{
@@ -199,7 +176,7 @@ input#submit.sub-btn:hover, input#submit.sub-btn:visited{
 }
 .close-btn{
     background-color: #569377;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 2px 8px;
     font-size: 1.4rem;
     border: 2px solid #569377;
@@ -218,7 +195,7 @@ input#submit.sub-btn:hover, input#submit.sub-btn:visited{
 /*단골리스트*/
 details{
     font-size: 1.5rem;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     background-color: #E29B78;
     width: 30%;
     margin-left: auto;
@@ -238,7 +215,7 @@ details{
     text-align: center;
     line-height: 30px;
     display: block;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     position: absolute;
     z-index: 3;
     margin: 15px 0px 0px 15px;
@@ -250,7 +227,7 @@ details{
 }
 div.review{
     font-size: 40px;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
 }
 .user_review{
     font-size: 1.5rem;
@@ -258,11 +235,10 @@ div.review{
 
 .uname, .ucontent, .ustar{
     display: inline;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
 }
 
 .uname{
-    font-weight: 900;
     color: #615136
 }
 .ucontent{
@@ -276,7 +252,7 @@ div.review{
     font-size: 30px;
     border-radius: 10px;
     box-shadow: 5px 5px 4px lightgrey;
-    font-family: 'YiSunShinDotumM';   
+    font-family: 'JSDongkang-Regular';   
 } */
 
 /*
@@ -292,8 +268,10 @@ textarea#id_content{
     width: 89%;
     height: 100px;
     outline: 2px solid #999;
-    font-size: 17px;
-    font-family: 'YiSunShinDotumM';
+
+    font-size: 2.7rem;
+    font-family: 'JSDongkang-Regular';
+
 }
 textarea#id_content::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
@@ -303,20 +281,18 @@ textarea#id_content::-webkit-scrollbar {
     margin-top: 10px;
 }
 .button{
-    /* font-family: 'YiSunShinDotumM';
-    font-size: 30px; */
     position: absolute;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .delete, .button{
-    font-family: 'YiSunShinDotumM';
-    font-size: 1.3rem;
+    font-family: 'JSDongkang-Regular';
+    font-size: 1.2rem;
     background-color: #569377;
     border: 2px solid #569377;
     color:white;
     border-radius: 10px;
-    padding: 7px 8px;
+    padding: 7px 10px;
 }
 
 .delete a:link { color:white; text-decoration: none;}
@@ -341,9 +317,9 @@ label i.fas.fa-star.on{
 } */
 .send-btn{
     background-color: #569377;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     padding: 7px 8px;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     border: 2px solid #569377;
     color: #FFFFFF;
     text-align: center;
@@ -353,58 +329,37 @@ label i.fas.fa-star.on{
     float: right;
     right: 10px;
 }
- /* 라디오버튼 별점 이미지가 아니라 icon 불러와서 보여주기
-input[type="radio"] + label{
-     background-image:url(../img/gray_star.png);
-     background-size: 60px 60px;
-     height: 60px;
-     width: 60px;
-     display:inline-block;
-     padding: 0 0 0 0px;
-     cursor:pointer;
- }
- 
-input[type="radio"]:checked + label{
-     background-image:url(../img/full_star.png);
-     background-size: 60px 60px;
- }*/
-
 .review_hs{
     width: 100%;
-    padding-right: 30px;
-    padding-left: 30px;
     margin-top: 30px;
 }
 .cr_review_ct p{
     color: gray;
     font-size: 1.3rem;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
 }
 .cr_review_ct h3{
-    font-weight: 800;
-    font-family: 'YiSunShinDotumM';
+    font-family: 'JSDongkang-Regular';
     font-size: 1.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .cr_review_ct h4{
     color: gray;
     font-size: 1.5rem;
-    font-family: 'NanumSquareRound';
+    font-family: 'JSDongkang-Regular';
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .cr_review_ct a:link { color:black; text-decoration: none;}
 .cr_review_ct a:visited { color: #569377; text-decoration: none;}
 .cr_review_ct a:hover { color: #569377; text-decoration: none;}
 
-/*
-.count-num{
-    font-family: 'YiSunShinDotumM';
-    display: inline-flex;
-    font-size: 42px;
-    margin-left: 10px;
-    vertical-align: middle;
-    font-size: 40px;
-    float: right;
-    display: table-cell;
-}*/
 i.fas.fa-quote-left, i.fas.fa-quote-right{
     display: inline-block; color: lightgray; font-size: 30px;
 }
@@ -414,26 +369,16 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
 
 @media only screen and (min-width: 1025px){
     div#map{
-        width: 80%;
-        height: 200px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 49%;
+        height: 300px;
+        display: inline-block;
     }
     .img-container{
         text-align: center;
     }
-    
-    .square{
-        float: left;
-        width: 10px;
-        height: 40px;
-        background-color: #615136;
-        margin-right: 1rem;
-        margin-top: 0.5rem;
-    }
+
     span#name{
         font-size: 2.5rem;
-        font-weight: 600;
     }
     .heart{
         width: 30px;
@@ -448,16 +393,28 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     }
     .storename{
         margin-top: 10px;
+        float: left;
+        margin-left: 150px;
+    }
+    .like{
+        float: right;
+        margin-right: 150px;
+    }
+    .namelike{
+        display: flex;
+    }
+    .contents{
+        margin-top: 20px;
     }
     table{
-        width: 80%;
-        margin-top: 1px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 49%;
+        margin-top: 0px;
+        font-size: 1rem;
+        display: inline-block;
     }
     td{
-        font-size: 1.2rem;
-        font-family: 'YiSunShinDotumM';
+        font-size: 1rem;
+        font-family: 'JSDongkang-Regular';
     }
     table td{
         padding: 0.4rem;
@@ -465,12 +422,12 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     td.icon{
         width: 10%;
     }
-    td.data{
-       font-size: 1.5rem;
+    td.data, td.colname{
+       font-size: 1rem;
     }
 
     i.fas.fa-external-link-alt{
-        font-size: 30px;
+        font-size: 1.2rem;
         color: grey;
         margin-left: 10px;
     }
@@ -479,7 +436,7 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
         margin-right: auto;
     }
     .review-container{
-        width: 80%;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -506,7 +463,21 @@ i.fas.fa-quote-left, i.fas.fa-quote-right{
     #like-count{font-size: 2rem;}
     #kakao-link-btn{margin: 10px auto;}
     .storeimg{
-        width: 80%;
+        width: 50%;
     }
-
+    .send-btn{
+        padding: 7px 10px;
+    }
+    .cr_review_ct p{
+        font-size: 1rem;
+    }
+    .cr_review_ct h3{
+        font-size: 1.5rem;
+    }
+    .cr_review_ct h4{
+        font-size: 1.2rem;
+    }
+    textarea#id_content{
+        font-size: 1.5rem;
+    }
 }
