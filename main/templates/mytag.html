@@ -18,7 +18,7 @@
                 <input type="checkbox" id='{{i.id}}' name='mytag' value='{{i.title}}' style="display: none;">
                 <label for="{{i.id}}" class="check-box"></label>
                 <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label>
-                <a class="link" href="{% url 'tag_search' i.id %}"><i class="fas fa-external-link-alt"></i></a>
+                <i class="fas fa-external-link-alt" onclick="new_open('{{i.id}}');"></i>
                 <br>
                 {% endfor %}
                 </div>
@@ -34,7 +34,7 @@
                     <input type="checkbox" id='{{i.id}}' name='alltag' value='{{i.title}}' style="display: none;">
                     <label for="{{i.id}}" class="check-box"></label>
                     <label for="{{i.id}}" id='{{i.title}}'>{{i.title}}</label>
-                    <a class="link" href="{% url 'tag_search' i.id %}"><i class="fas fa-external-link-alt"></i></a>
+                    <i class="fas fa-external-link-alt" onclick="new_open('{{i.id}}');"></i>
                     <br>
                     {% endfor %}
                 </div>    
@@ -48,6 +48,9 @@
 </div>
 
 <script>
+    function new_open(id){
+        window.open("{% url 'tag_search' 123 %}".replace('123',id));
+    }
     function right(){
         let mytag_box = document.getElementsByName('mytag');
         let alldiv=document.getElementById('alltags');
@@ -56,11 +59,11 @@
         let lbArr=new Array();
         let brArr=new Array();
         let boxArr=new Array();
-        let aArr=new Array();
+        let iArr=new Array();
         mytag_box.forEach(function(element, idx){
             if (element.checked){
                 br=mydiv.getElementsByTagName('br');
-                a=mydiv.getElementsByTagName('a');
+                i=mydiv.getElementsByTagName('i');
                 box=mydiv.getElementsByClassName('check-box');
                 myval=element.value;
                 myid=element.id;
@@ -68,7 +71,7 @@
                 chkArr.push(element);
                 lbArr.push(lb);
                 brArr.push(br[idx]);
-                aArr.push(a[idx]);
+                iArr.push(i[idx]);
                 boxArr.push(box[idx]); //왼쪽목록(기존) 제거를 위해
                 chk=document.createElement('input'); //체크박스 생성 및 속성 지정
                 chk.type='checkbox';
@@ -83,18 +86,16 @@
                 boxlbl.innerHTML='&nbsp;'
                 lbl=document.createElement('label'); //태그이름라벨
                 lbl.htmlFor = myid;
-                lbl.innerHTML=myval;
+                lbl.innerHTML=myval+'&nbsp;';
                 lbl.id=myval;
-                a2= document.createElement('a'); //태그검색 a태그
-                a2.href="{% url 'tag_search' 123 %}".replace('123',myid);
-                a2.className='link';
-                a2.innerHTML='&nbsp;'
-                ai=document.createElement('i');
-                ai.className='fas fa-external-link-alt';
+                i2= document.createElement('i'); //태그검색
+                i2.className='fas fa-external-link-alt'
+                i2.onclick=function(){
+                    new_open(myid);
+                }                
                 alldiv.appendChild(boxlbl);
                 alldiv.appendChild(lbl);
-                alldiv.appendChild(a2);
-                a2.appendChild(ai);
+                alldiv.appendChild(i2);
                 alldiv.appendChild(document.createElement("br"));
             }
         });
@@ -103,7 +104,7 @@
             lbArr[i].remove();
             brArr[i].remove();
             boxArr[i].remove();
-            aArr[i].remove();
+            iArr[i].remove();
         }
     }
     function left(){
@@ -114,11 +115,11 @@
         let lbArr=new Array();
         let brArr=new Array();
         let boxArr=new Array();
-        let aArr=new Array();
+        let iArr=new Array();
         alltag_box.forEach(function(element, idx){
             if (element.checked){
                 br=alldiv.getElementsByTagName('br');
-                a=alldiv.getElementsByTagName('a');
+                i=alldiv.getElementsByTagName('i');
                 box=alldiv.getElementsByClassName('check-box');
                 allval=element.value;
                 allid=element.id;
@@ -126,7 +127,7 @@
                 chkArr.push(element);
                 lbArr.push(lb);
                 brArr.push(br[idx]);
-                aArr.push(a[idx]);
+                iArr.push(i[idx]);
                 boxArr.push(box[idx]); //오른쪽목록(기존) 제거를 위해
                 chk=document.createElement('input'); //체크박스 생성 및 속성 지정
                 chk.type='checkbox';
@@ -141,18 +142,16 @@
                 boxlbl.innerHTML='&nbsp;'
                 lbl=document.createElement('label'); //태그이름라벨
                 lbl.htmlFor = allid;
-                lbl.innerHTML=allval;
+                lbl.innerHTML=allval+'&nbsp;';
                 lbl.id=allval;
-                a2= document.createElement('a'); //태그검색 a태그
-                a2.href="{% url 'tag_search' 123 %}".replace('123',allid);
-                a2.className='link';
-                a2.innerHTML='&nbsp;'
-                ai=document.createElement('i');
-                ai.className='fas fa-external-link-alt';
+                i2= document.createElement('i'); //태그검색
+                i2.className='fas fa-external-link-alt'
+                i2.onclick=function(){
+                    new_open(allid);
+                }                
                 mydiv.appendChild(boxlbl);
                 mydiv.appendChild(lbl);
-                mydiv.appendChild(a2);
-                a2.appendChild(ai);
+                mydiv.appendChild(i2);
                 mydiv.appendChild(document.createElement("br"));
             }
         });
@@ -161,7 +160,7 @@
             lbArr[i].remove();
             brArr[i].remove();
             boxArr[i].remove();
-            aArr[i].remove();
+            iArr[i].remove();
         }
     }
     function submit(){

@@ -33,12 +33,12 @@
             {% else %}
             <img src="{{s.img}}" alt="" class="slider-image">
             {% endif %}
-          </a>
-          <div class="post-info">
-            <h4>{{s.name}}</h4>
-            <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>
-          </div>
           
+            <div class="post-info">
+              <h4>{{s.name}}</h4>
+              <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>
+            </div>
+          </a>
         </div>
         {% endfor %}
       </div>
@@ -55,11 +55,11 @@
             {% else %}
             <img src="{{s.img}}" alt="" class="slider-image">
             {% endif %}
+            <div class="post-info">
+              <h4>{{s.name}}</h4>
+              <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>
+            </div>
           </a>
-          <div class="post-info">
-            <h4>{{s.name}}</h4>
-            <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>
-          </div>
          
         </div>
         {% endfor %}
