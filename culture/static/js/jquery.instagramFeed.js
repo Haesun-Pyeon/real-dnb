@@ -142,7 +142,7 @@
                         html += "<img src='" + image +"'" + styles.gallery_image +" />";
                         html += "</a>";
                         html += "<strong>" + options.username + "</strong>";
-                        html += "<span>" + caption + "</span>";
+                        html += "<span class='insta-content'>" + caption + "</span>";
                     }
                     html += "</div>";
                 }

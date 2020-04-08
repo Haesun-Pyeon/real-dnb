@@ -32,7 +32,7 @@ strong{
     font-family: 'JSDongkang-Bold';
     padding: 10px;
 }
-span{
+.insta-content{
     font-size: 1.8rem;
     font-family: 'NanumSquareRound';
     padding: 10px;
@@ -62,7 +62,7 @@ span{
         margin: 1rem 20px;
         float: left;
     }
-    span{
+    .insta-content{
         font-size: 1.3rem;
     }
 }
