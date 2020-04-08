@@ -48,16 +48,16 @@
                {% if request.user_agent.is_mobile %} <!--휴대폰으로 접속했을 때-->
                <nav class="openmenu">
                     <ul class='items'>
-                         <li><a href="{% url 'home' %}">HOME</a></li>
-                         <li><a href="{% url 'realmap' %}">책방 지도</a></li>
-                         <li><a href="{% url 'themamap' %}">테마 지도</a></li>
+                         <li><a href="https://dnbook.live/">HOME</a></li>
+                         <li><a href="https://dnbook.live/bookmap/realmap">책방 지도</a></li>
+                         <li><a href="https://dnbook.live/bookmap/themamap">테마 지도</a></li>
                          <li><a href="{% url 'board' %}">책방 소식</a></li>
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                          <div class="items-login-box">
                               <a href="{% url 'mypage' %}" class="items-login">마이페이지</a>
                               <span style="font-size:30px"> &nbsp;  /  &nbsp;</span>
-                              <a href="{% url 'chat-list' %}" class="items-login">쪽지함</a>
+                              <a href="javascript:chat_link();" class="items-login">쪽지함</a>
                               <span style="font-size:30px"> &nbsp;  /  &nbsp;</span>
                               <a href="{% url 'mytag' %}" class="items-login">취향목록</a>
                          </div>
@@ -84,14 +84,14 @@
                {% if request.user_agent.is_pc %} <!--PC로 접속했을 때-->
                     <nav class="openmenu-pc">
                     <ul class='items-pc'>
-                         <li><a href="{% url 'home' %}">홈</a></li>
-                         <li><a href="{% url 'realmap' %}">책방 지도</a></li>
-                         <li><a href="{% url 'themamap' %}">테마 지도</a></li>
+                         <li><a href="https://dnbook.live/">홈</a></li>
+                         <li><a href="https://dnbook.live/bookmap/realmap">책방 지도</a></li>
+                         <li><a href="https://dnbook.live/bookmap/themamap">테마 지도</a></li>
                          <li><a href="{% url 'board' %}">책방 소식</a></li>
                          <li><a href="{% url 'ranking' %}">랭킹</a></li>
                          {% if user.is_authenticated %}
                               <li><a href="{% url 'mypage' %}">마이페이지</a></li>
-                              <li><a href="{% url 'chat-list' %}">쪽지함</a></li>
+                              <li><a href="javascript:chat_link();">쪽지함</a></li>
                               <li><a href="{% url 'mytag' %}">취향목록</a></li>
                               <li style="float:right"><a href="javascript:{document.getElementById('logout').submit()}" style="color:rgb(233, 233, 233);">로그아웃</a></li>
                               <form id="logout" method="POST" action="{% url 'logout' %}">
@@ -106,7 +106,13 @@
                     </nav>
                {% endif %}
           </header>
-     
+          <script>
+               function chat_link(){
+                    let url="http://dnbook.live/chat/";
+                    location.href=url;
+               }
+          </script>
+           
      {% block content %}
      <!--다른 템플릿에 글을 쓰면 이 사이로 들어옵니다~!-->
      {% endblock content%}
