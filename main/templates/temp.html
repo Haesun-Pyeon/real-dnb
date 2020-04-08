@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+{% load staticfiles %}
 <!-- 아무것도 안뜨는 임시페이지 -->
 <html>
+    <img src="{% static 'images/textlogo.jpg' %}" alt="" style="width: 100%;">  
     {% if tf %}
     <!-- 카카오 로그인 시 최초1회 프사 저장 -->
     {% load socialaccount %}
@@ -17,11 +21,11 @@
     </body>
 
     {% else %}
+    <body>
     <!-- 내위치 값 넘김 -->
     <a href="#" style="display: none;" id='non-login'></a>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
     <script type="text/javascript">
-    var geocoder = new kakao.maps.services.Geocoder();
     var callback = function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var addr=result[0].address.address_name;
@@ -37,9 +41,12 @@
         navigator.geolocation.getCurrentPosition(function(position){
             let lat=position.coords.latitude;
             let lon=position.coords.longitude;
+            var geocoder = new kakao.maps.services.Geocoder();
             geocoder.coord2Address(lon,lat,callback);
         },error)
     } else { error('e') }
     </script>
+    </body>
     {% endif %}
+    {% endblock %}
 </html>

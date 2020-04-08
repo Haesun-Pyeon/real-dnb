@@ -22,7 +22,7 @@
     border-top: 2px dashed #615136;
 }
 .send_content{
-    width:50%;
+    width:47%;
     padding-left: 20px;
     white-space: nowrap;
     overflow: hidden;
@@ -32,6 +32,9 @@
 .sender_id{
     padding-right:10px;
     text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 td.send_content a{
     color: #569377;
