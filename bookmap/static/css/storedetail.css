@@ -485,4 +485,7 @@ label i.fas.fa-star.on{
     .table-map{
         display: flex;
     }
+    details{
+        width: 55%;
+    }
 }
