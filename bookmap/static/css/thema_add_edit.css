@@ -73,7 +73,7 @@ input[type='checkbox']{
 .info{
     font-size: 1.4rem;
 }
-.submit{
+.submit, .submit:visited{
     background-color: #569377;
     padding: 5px 20px;
     font-size: 2.2rem;
@@ -87,7 +87,7 @@ input[type='checkbox']{
     border: 3px solid #569377;
     float: right;
 }
-.submit:visited, .submit:hover{
+.submit:hover{
 	color: #569377; 
 	background-color: white; 
 	text-decoration: none;

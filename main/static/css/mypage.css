@@ -79,7 +79,7 @@ img.mypage-prof-img:hover {
     font-family: 'NanumSquareRound';
     width: 100%;
 }
-.mypage-submit-btn, .quitbtn {
+.mypage-submit-btn, .quitbtn, .quitbtn:visited, .mypage-submit-btn:visited{
     text-align: center;
     color: white;
     background-color: #569377;
@@ -92,10 +92,10 @@ img.mypage-prof-img:hover {
     letter-spacing: 2rem;
     border: 2px solid #569377;
 }
-.mypage-submit-btn{
+.mypage-submit-btn, .mypage-submit-btn:visited{
     width: 100%;
 }
-.mypage-submit-btn:visited, .mypage-submit-btn:hover, .quitbtn:visited, .quitbtn:hover {
+.mypage-submit-btn:hover, .quitbtn:hover {
     color: #569377;
     background-color: white;
     text-decoration: none;
@@ -249,7 +249,9 @@ img.mypage-prof-img:hover {
     height: 40vh;
     margin: 0 3rem; 
     background-color: rgb(255, 251, 248);
+    overflow: auto;
 }
+.mypage-tab::-webkit-scrollbar{ display: none;}
 .nav-pills .nav-link{
     font-family: 'JSDongkang-Regular';   
     color: #1d3128;
@@ -272,9 +274,14 @@ img.mypage-prof-img:hover {
     border-top-right-radius: 200px !important;
     border-bottom-right-radius: 200px !important;
 }
-.scraplist a{
+.scraplist a, .scraplist a:visited{
     font-family: 'JSDongkang-Regular';
     color: #402719;
+    text-decoration: none;
+}
+.scraplist a:hover{
+    color: #569377;
+    text-decoration: none;
 }
 .postlist table, .commentlist table{
     padding: 0 50px;
@@ -305,7 +312,6 @@ img.mypage-prof-img:hover {
         width: 80%;
         height: 60vh;
         margin: 0px auto;
-        overflow: auto;
     }
     .nav-item-bookmark a, .nav-item-mypost a, .nav-item-mycomment a{
         font-size: 1.5rem;

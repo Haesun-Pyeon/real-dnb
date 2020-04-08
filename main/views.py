@@ -9,7 +9,6 @@ from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Q
-from message.models import Group
 
 
 # Create your views here.

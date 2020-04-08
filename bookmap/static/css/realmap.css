@@ -56,7 +56,7 @@ input.search-box:focus + span {
     left: 830px;
 }
 
-.seeall{
+.seeall, .seeall:visited{
     width: 80px;
     height: 80px;
     background: #569377;
@@ -77,10 +77,10 @@ input.search-box:focus + span {
     z-index: 2;
     color: white;
 }
-.seeall:visited, .seeall:hover{
+.seeall:hover{
     background-color: white; color: #569377;
 }
-.seetheme{
+.seetheme, .seetheme:visited{
     width: 80px;
     height: 80px;
     background: #E29B78;
@@ -101,13 +101,13 @@ input.search-box:focus + span {
     color: white;
 }
 
-.seetheme:visited, .seetheme:hover{
+.seetheme:hover{
     background-color: white; color: #E29B78;
 }
 
 .map{
     width:100%;
-    height:900px;
+    height:750px;
     position:relative;
     z-index:0;
     margin-bottom: 10px;
@@ -120,7 +120,7 @@ input.search-box:focus + span {
 .list{
     overflow:auto;
     width: 100%;
-    height: 600px;
+    height: 500px;
     font-family: 'JSDongkang-Regular';
     padding-left: 40px;
     padding-right: 40px;
@@ -166,7 +166,7 @@ table {
     /* border-top: 2px solid #615136; */
 }
 
-.sub-btn{
+.sub-btn, .sub-btn:visited{
     font-family: 'JSDongkang-Regular';
     background-color: white;
     border: 2px solid #569377;
@@ -175,7 +175,7 @@ table {
     padding: 7px;
     cursor: pointer;
 }
-.sub-btn:visited, .sub-btn:hover{
+.sub-btn:hover{
     color: white;
     background-color: #569377;
     text-decoration: none;
@@ -208,7 +208,7 @@ table {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.det-btn{
+.det-btn, .det-btn:visited{
     font-family: 'JSDongkang-Regular';
     background-color: #569377;
     border: 2px solid #569377;
@@ -218,7 +218,7 @@ table {
     margin-top: 15px;
     cursor: pointer;
 }
-.det-btn:visited, .det-btn:hover{
+.det-btn:hover{
 	color: #569377; 
 	background-color: white; 
     text-decoration: none;
@@ -328,13 +328,17 @@ input.search-box-pc:focus + span {
     font-size: 15px;
     margin: 0px 5px;
 }
-
+.source{
+    bottom:0px;
+    font-family: 'JSDongkang-Regular';
+    font-size: 1.3rem;
+}
 
 @media only screen and (min-width: 1025px){
     .realmap{
         padding: 0px 100px;
         position: relative;
-        height: 550px;
+        height: 500px;
     }
     .map-container{
         display: inline;
@@ -344,13 +348,13 @@ input.search-box-pc:focus + span {
         display: inline;
         float: left;
         width: 50%;
-        height: 90%;
+        height: 88%;
     }
     .list{
         display: inline;
         float: left;
         width: 50%;
-        height: 88%;
+        height: 85%;
         padding-left: 10px;
         padding-right: 0px;
     }
@@ -392,8 +396,8 @@ input.search-box-pc:focus + span {
     .table tr{
         font-size: 0.8rem;
     }
-}
-.source{
-    position:absolute; bottom:0px;
-    font-family: 'JSDongkang-Regular';
+    .source{
+        position: absolute;
+        font-size: 1rem;
+    }
 }

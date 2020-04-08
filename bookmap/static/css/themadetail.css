@@ -49,7 +49,7 @@ p{
     padding-right: 40px;
 }
 
-.loc{
+.loc, .loc:visited{
     width: 80px;
     height: 80px;
     background: #569377;
@@ -108,7 +108,7 @@ table {
     font-family: 'JSDongkang-Bold';
     /* border-top: 2px solid #615136; */
 }
-.sub-btn{
+.sub-btn, .sub-btn:visited{
     font-family: 'JSDongkang-Regular';
     background-color: white;
     border: 2px solid #569377;
@@ -117,7 +117,7 @@ table {
     border-radius: 100px;
     padding: 7px;
 }
-.sub-btn:visited, .sub-btn:hover{
+.sub-btn:hover{
     color: white;
     background-color: #569377;
     text-decoration: none;
@@ -150,7 +150,7 @@ table {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.det-btn{
+.det-btn, .det-btn:visited{
     font-family: 'JSDongkang-Regular';
     background-color: #569377;
     border: 2px solid #569377;
@@ -165,7 +165,7 @@ table {
     padding: 1.5rem 3rem 1rem 3rem;
     font-size: 1.8rem;
 }
-.update, .delete{
+.update, .delete, .update:visited, .delete:visited{
     background-color: #FFD757;
     border: 3px solid #FFD757;
     color:white;
@@ -173,12 +173,12 @@ table {
     padding: 10px;
     cursor: pointer;
 }
-.update:visited, .update:hover, .delete:visited, .delete:hover{
+.update:hover, .delete:hover{
 	color: #FFD757; 
 	background-color: white; 
 	text-decoration: none;
 }
-.seelist{
+.seelist, .seelist:visited{
     float: right;
     background-color: #569377;
     border: 2px solid #569377;
@@ -192,12 +192,12 @@ table {
     width: 100%;
 }
 /* det-btn loc seelist 초록버튼*/
-.det-btn:visited, .det-btn:hover, .loc:visited, .loc:hover, .seelist:visited, .seelist:hover{
+.det-btn:hover, .loc:hover, .seelist:hover{
 	color: #569377; 
 	background-color: white; 
     text-decoration: none;
 }
-.send-btn{
+.send-btn, .send-btn:visited{
     background-color: #E29B78;
     font-family: 'JSDongkang-Regular';
     padding: 10px 15px;
@@ -211,7 +211,7 @@ table {
     float: right;
     right: 10px;
 }
-.send-btn:visited, .send-btn:hover{
+.send-btn:hover{
     color: #E29B78; 
 	background-color: white; 
 	text-decoration: none;
