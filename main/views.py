@@ -88,15 +88,19 @@ def signup(request):
                 content="<script type='text/javascript'>alert('이미 존재하는 아이디입니다.');history.back();</script>"
                 return HttpResponse(content)
             except User.DoesNotExist:
-                user = User.objects.create_user(
-                    username=request.POST['username'],
-                    password=request.POST['password1'])
                 nickname=request.POST['nickname']
-                email = request.POST['email']
-                profile = Profile(user=user, nickname=nickname, email=email)
-                profile.save()
-                auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                return redirect('tag')
+                if len(nickname) > 10:
+                    content="<script type='text/javascript'>alert('닉네임은 10자 이하로 작성해주세요.');history.back();</script>"
+                    return HttpResponse(content)
+                else:
+                    user = User.objects.create_user(
+                        username=request.POST['username'],
+                        password=request.POST['password1'])
+                    email = request.POST['email']
+                    profile = Profile(user=user, nickname=nickname, email=email)
+                    profile.save()
+                    auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                    return redirect('tag')
         else:
             content="<script type='text/javascript'>alert('비밀번호가 일치하지 않습니다.');history.back();</script>"
             return HttpResponse(content)
@@ -154,6 +158,10 @@ def user_change(request):
         user = request.user
         profile = Profile.objects.get(user=user)
         nickname = request.POST.get('nickname')
+        if len(nickname) > 10:
+            content="<script type='text/javascript'>alert('닉네임은 10자 이하로 작성해주세요.');history.back();</script>"
+            return HttpResponse(content)
+
         if (nickname != profile.nickname) and (nickname != ""): #닉네임변경
             nick = True
             profile.nickname = nickname

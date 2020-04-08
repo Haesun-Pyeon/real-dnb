@@ -10,6 +10,10 @@
 
 <body>
 <div class="chat-title"><i class="fas fa-envelope"></i> 쪽지함</div>
+    {% if not msglist %}
+    <img src="{% static 'images/dnbsymbol.png' %}" alt=""><br>
+    <div class="no-chat"><span class='nono'>쪽지가 없습니다!</span><br>쪽지는 가게 상세정보창의 리뷰 작성자나<br>테마 지도의 작성자에게 보낼 수 있습니다.</div>
+    {% endif %}
 <div class="mlist">
     <table>
         <tbody>
