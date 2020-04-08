@@ -35,6 +35,8 @@ def chat_list(request):
         if request.user in group.participants.all():
             msg = Message.objects.filter(room=group)[0]
             msglist.append(msg)
+    if len(msglist) == 0:
+        msglist = None
     return render(request, 'chat_list.html', {'msglist':msglist})
 
 def room(request, room_name):
