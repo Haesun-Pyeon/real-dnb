@@ -20,9 +20,9 @@ def dangol(request, bookstore_id):
         profile = Profile.objects.get(user=s.user)
         name = profile.nickname
         if name in dangol.keys():
-            dangol[name] += 1
+            dangol[name] += s.count
         else:
-            dangol[name] = 1
+            dangol[name] = s.count
     dangol_sort = sorted(dangol.items(), key=lambda x: x[1], reverse=True)
     return dangol_sort
 
