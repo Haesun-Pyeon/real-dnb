@@ -49,7 +49,7 @@
 
 <script>
     function new_open(id){
-        window.open("{% url 'tag_search' 123 %}".replace('123',id));
+        window.open("https://dnbook.live/bookmap/tag_search/"+id);
     }
     function right(){
         let mytag_box = document.getElementsByName('mytag');
