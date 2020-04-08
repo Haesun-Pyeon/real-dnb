@@ -12,7 +12,7 @@ html, body {width: 100%; height: 100%;}
     widows: 100%;
     text-align: center;
 }
-.publicthema-btn, .addthema-btn, .mythema-btn {
+.publicthema-btn, .addthema-btn, .mythema-btn, .publicthema-btn:visited, .mythema-btn:visited, .addthema-btn:visited{
     background-color: #569377;
     font-family: 'JSDongkang-Regular';
     padding: 15px 30px;
@@ -26,16 +26,16 @@ html, body {width: 100%; height: 100%;}
     cursor: pointer;
     border-radius: 90px;
 }
-.publicthema-btn:visited, .publicthema-btn:hover, .mythema-btn:visited, .mythema-btn:hover{
+.publicthema-btn:hover, .mythema-btn:hover{
 	color: #569377; 
 	background-color: white; 
 	text-decoration: none;
 }
-.addthema-btn{
+.addthema-btn, .addthema-btn:visited{
     background-color: #FFD757;
     border: 3px solid #FFD757;
 }
-.addthema-btn:visited, .addthema-btn:hover{
+.addthema-btn:hover{
     color: #FFD757;
     background-color: white; 
 	text-decoration: none;
@@ -82,13 +82,6 @@ i.fas.fa-heart, i.far.fa-heart{
     margin: auto;
     width: 90%;
 }
-.publicthema-btn a:visited{color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
-.publicthema-btn a:hover {color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
-.mythema-btn a:visited{color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377; }
-.mythema-btn a:hover { color: #569377; text-decoration: none; background-color: #FFFFFF; border: 2px solid #569377;}
-.addthema-btn a:visited{color: #FFD757; text-decoration: none; background-color: #FFFFFF; border: 2px solid #FFD757;}
-.addthema-btn a:hover{color: #FFD757; text-decoration: none; background-color: #FFFFFF; border: 2px solid #FFD757;}
-
 .like{
     float: right;
     margin-top: 20px;

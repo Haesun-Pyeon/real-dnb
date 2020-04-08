@@ -24,15 +24,17 @@
         <div class="col infobody">
             <form method="POST" action="{% url 'user_change' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class='mypage-profile-info'>닉네임
-                    <input class='mypage-profile-input' style="width: fit-content;" type='text' value='{{profile.nickname}}' name='nickname'/>
+                <div class='mypage-profile-info'>&nbsp;&nbsp;닉네임&nbsp;
+                    <input class='mypage-profile-input' type='text' value='{{profile.nickname}}' name='nickname'/>
                 </div>
-                <div class='mypage-profile-info'>이메일 {{profile.email}}</div>
-                <div class='mypage-profile-info'>
-                    <input class='mypage-profile-input' type='password' name='password1' placeholder='비밀번호 변경' {%if kakao %}readonly{% endif %}/>
+                <div class='mypage-profile-info'>&nbsp;&nbsp;이메일&nbsp;
+                    <input class='mypage-profile-input' type='text' value='{{profile.email}}' readonly/>
                 </div>
                 <div class='mypage-profile-info'>
-                    <input class='mypage-profile-input' type='password' name='password2' placeholder='비밀번호 확인' {%if kakao %}readonly{% endif %}/>
+                    <input class='mypage-profile-input pwd' type='password' name='password1' placeholder=' 비밀번호 변경' {%if kakao %}readonly{% endif %}/>
+                </div>
+                <div class='mypage-profile-info'>
+                    <input class='mypage-profile-input pwd' type='password' name='password2' placeholder=' 비밀번호 확인' {%if kakao %}readonly{% endif %}/>
                 </div>
                 <input type="file" name="img_file" id="img_file" style="display:none" accept=".jpg,.jpeg,.png,.gif"/>
                 <input type='submit' class='mypage-submit-btn' value='SAVE'/>
@@ -87,14 +89,14 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="scraplist tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
             {% for scrap in scraps %}
-            <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart fa-2x"></i></span> &nbsp;&nbsp;&nbsp;
+            <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart"></i></span> &nbsp;
             <a href="javascript:detail('{{scrap.store.bookstore_id}}',0);">{{scrap.store}}</a><br>
             {% endfor %}
         </div>
         <!--내가쓴 댓글 있던자리 (좋아요 누른 테마로 변경)-->
         <div class="scraplist tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
             {%for thema in user.like.all%}
-            <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart fa-2x"></i></span> &nbsp;&nbsp;&nbsp;
+            <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart"></i></span> &nbsp;
             <a href="javascript:detail('{{thema.id}}',1);">{{thema.title}}</a><br>
             {% endfor %}
         </div>

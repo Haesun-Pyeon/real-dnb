@@ -1,4 +1,5 @@
 @font-face { font-family: 'JSDongkang-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
 
 .title_mypage{
     padding-left: 40px;
@@ -31,11 +32,10 @@
 .editprofile{
     padding: 0 50px;
 }
-
 img.mypage-prof-img {
     border-radius: 100%;
-    width: 200px;
-    height: 200px;
+    width: 225px;
+    height: 225px;
     margin: 40px 0px;
     cursor: pointer;
 }
@@ -64,11 +64,22 @@ img.mypage-prof-img:hover {
     margin-bottom: 0.6rem;
 }
 .mypage-profile-input {
-    width: 100%;
+    width: 75%;
     outline: none;
-    border: none;
+    border-bottom: 0.5px solid #402719;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    -webkit-border-radius:0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.mypage-submit-btn, .quitbtn {
+.mypage-profile-input.pwd {
+    font-family: 'NanumSquareRound';
+    width: 100%;
+}
+.mypage-submit-btn, .quitbtn, .quitbtn:visited, .mypage-submit-btn:visited{
     text-align: center;
     color: white;
     background-color: #569377;
@@ -81,10 +92,10 @@ img.mypage-prof-img:hover {
     letter-spacing: 2rem;
     border: 2px solid #569377;
 }
-.mypage-submit-btn{
+.mypage-submit-btn, .mypage-submit-btn:visited{
     width: 100%;
 }
-.mypage-submit-btn:visited, .mypage-submit-btn:hover, .quitbtn:visited, .quitbtn:hover {
+.mypage-submit-btn:hover, .quitbtn:hover {
     color: #569377;
     background-color: white;
     text-decoration: none;
@@ -109,9 +120,12 @@ img.mypage-prof-img:hover {
     .mypage-profile-info {
         width: 70%;
         text-align: left;
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 1.7rem;
         border-bottom: 1.5px solid #402719;
+    }
+    .mypage-profile-input {
+        border: none;
     }
     .mypage-submit-btn {
         font-family: 'JSDongkang-Regular';
@@ -235,7 +249,9 @@ img.mypage-prof-img:hover {
     height: 40vh;
     margin: 0 3rem; 
     background-color: rgb(255, 251, 248);
+    overflow: auto;
 }
+.mypage-tab::-webkit-scrollbar{ display: none;}
 .nav-pills .nav-link{
     font-family: 'JSDongkang-Regular';   
     color: #1d3128;
@@ -258,10 +274,14 @@ img.mypage-prof-img:hover {
     border-top-right-radius: 200px !important;
     border-bottom-right-radius: 200px !important;
 }
-.scraplist a{
+.scraplist a, .scraplist a:visited{
     font-family: 'JSDongkang-Regular';
-    font-size: 2.7rem;
     color: #402719;
+    text-decoration: none;
+}
+.scraplist a:hover{
+    color: #569377;
+    text-decoration: none;
 }
 .postlist table, .commentlist table{
     padding: 0 50px;
@@ -276,18 +296,28 @@ img.mypage-prof-img:hover {
     color: #402719;
     border-bottom: 1px solid #402719;
 }
+.quitwrapper{
+    text-align:center;
+    margin: 20px 80px;
+}
+.tab-content>.active{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 2.7rem;
+}
+
 @media (min-width: 1025px){
     .mypage-tab {
         width: 80%;
         height: 60vh;
         margin: 0px auto;
-        overflow: auto;
     }
     .nav-item-bookmark a, .nav-item-mypost a, .nav-item-mycomment a{
         font-size: 1.5rem;
         letter-spacing: 0.2rem;
     }
-    .scraplist a{
+    .tab-content>.active{
         font-size: 1.8rem;
     }
     .postlist table, .commentlist table{
@@ -300,13 +330,6 @@ img.mypage-prof-img:hover {
     .postlist th, .postlist td, .commentlist th, .commentlist td{
         font-size: 1.5rem;
     }
-}
-.quitwrapper{
-    text-align:center;
-    margin: 20px 80px;
-}
-
-@media (min-width: 1025px){
     .quitwrapper{
         margin: 20px 80px;
     }

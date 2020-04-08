@@ -101,7 +101,7 @@ input#chat-message-input.sending-box:focus{
     width: 100px;
     height:100px;
     font-family: 'JSDongkang-Regular';
-    font-size: 30px;
+    font-size: 25px;
     color: #3c281b;
     padding-top:60px;
     margin-right: 40px;
@@ -121,9 +121,11 @@ input#chat-message-input.sending-box:focus{
     z-index: 0; 
     top: 10px; 
     left: 30px;
+    text-decoration: none;
 }
-.fa-chevron-left:hover, .fa-chevron-left:visited{
+.listlink:hover{
     color: #569377;
+    text-decoration: none;
 }
 @media only screen and (min-width: 1025px){
     .chatcontent, .chatcontent_r{
@@ -151,10 +153,6 @@ input#chat-message-input.sending-box:focus{
         font-size: 1.2rem;
         margin-right: 180px;
         margin-top: 10px;
-    }
-    .listlink:hover, .listlink:visited{
-        text-decoration: none;
-        color: white;
     }
     .listlink{
         font-size: 2rem;

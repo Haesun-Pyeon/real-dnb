@@ -89,8 +89,10 @@ li.items{
 }
 .signbox a{
     font-family: 'BBTreeGL';
-    font-size: 30px;
+    font-size: 35px;
     color: #FFFFFF;
+    transition: all 0.2s ease-in-out;
+
 }
 .items-login-box{
   width: 100%;
@@ -100,7 +102,16 @@ li.items{
     font-family: 'BBTreeGL';
     font-size: 35px;
     color: #FFFFFF;
+    transition: all 0.2s ease-in-out;
 }
+
+.items-login-box a:hover, .signbox a:hover {
+  text-decoration: none;
+  color: #E29B78;
+  background-color: white;
+  border-radius: 200px;
+  padding: 5px 10px;
+} 
 #toggle:checked ~ nav.openmenu{
   opacity: 1;
   visibility: visible;

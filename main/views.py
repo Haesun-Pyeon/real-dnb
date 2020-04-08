@@ -141,6 +141,12 @@ def del_user(request):
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
         s3_delete(profile.profileimg)
+    try:
+        group = request.user.participants.all()
+        for g in group:
+            g.delete()
+    except:
+        pass
     user.delete()
     auth.logout(request)
     return redirect('home')
