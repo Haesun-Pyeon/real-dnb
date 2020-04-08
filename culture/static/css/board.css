@@ -36,6 +36,13 @@ span{
     font-size: 1.8rem;
     font-family: 'NanumSquareRound';
     padding: 10px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    padding-bottom: 0px;
 }
 .instagram_gallery > a {
 /* 피드 개별 이미지 하이퍼링크 */

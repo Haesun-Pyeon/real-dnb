@@ -142,7 +142,7 @@
                         html += "<img src='" + image +"'" + styles.gallery_image +" />";
                         html += "</a>";
                         html += "<strong>" + options.username + "</strong>";
-                        html += "<span>" + caption.slice(0,50) + "...</span>";
+                        html += "<span>" + caption + "</span>";
                     }
                     html += "</div>";
                 }
