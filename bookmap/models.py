@@ -84,7 +84,7 @@ class Review(models.Model):
 class Stamp(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     store = models.ForeignKey(BookStore, on_delete=models.CASCADE)
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
     count = models.IntegerField(default=1)
 
     def __str__(self):
