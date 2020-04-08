@@ -76,6 +76,7 @@ table {
     font-size: 25px;
     table-layout: fixed;
     word-break: break-all;
+    font-family: 'JSDongkang-Regular';
 }
 .table-seemore{
     width: 20%;
@@ -274,7 +275,6 @@ table {
     }
     .table{
         font-size: 1rem;
-        font-family: 'JSDongkang-Regular';
 
     }
     .smallinfo{
