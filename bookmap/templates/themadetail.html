@@ -37,9 +37,9 @@
         <div class="col-6">
             <div class="description2">
                 {% if thema.img %}
-                    <img src="{{thema.img.url}}" alt="" class="thema-img">
+                    <img src="{{thema.img.url}}" alt="" id='img' class="thema-img">
                 {% else %}
-                    <img src="{% static 'images/textlogo.jpg' %}" alt="" class="thema-img">
+                    <img src="{% static 'images/textlogo.jpg' %}" id='img' alt="" class="thema-img">
                 {% endif %}      
             </div> 
         </div>
@@ -228,7 +228,18 @@ function list_click(addr){
 
 for(let i=0; i<addrArr.length;i++){
     addrStoN(addrArr[i],nameArr[i],pkArr[i]);
-};  
+};
+
+{% if request.user_agent.is_pc %} //pc버전 지도 높이 조절
+$(document).ready(function(){
+    $(window).resize(resizeContents);
+    resizeContents();
+})
+function resizeContents() {
+    $("#map").height($("#img").height());
+    map.relayout();
+}
+{% endif %}
 </script>
 </html>
 {% endblock %}
