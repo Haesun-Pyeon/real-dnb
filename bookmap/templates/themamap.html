@@ -19,6 +19,10 @@
 {% endif %}
 </div>
 
+{% if not thema %}
+<img src="{% static 'images/dnbsymbol.png' %}" class='symbol' alt=""><br>
+<div class="no-chat"><span class='nono'>테마가 없습니다!</span><br>직접 나만의 테마를 만들어보세요!</div>
+{% endif %}
 
 <div class="allthema-box">
 {% for i in thema %}
