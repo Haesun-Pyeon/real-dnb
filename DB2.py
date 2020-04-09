@@ -18,6 +18,7 @@ request.add_header("X-Naver-Client-Secret",client_secret)
 
 if __name__ == '__main__':
     f = pd.read_excel('bookDB2.xlsx')
+    order=0
     for l in range(len(f)):
         name = f.loc[l, 'name']
         print(name)
@@ -44,6 +45,7 @@ if __name__ == '__main__':
         openhour=oh.replace(';','\n')
         tag = str(f.loc[l, 'tag_set'])
         tag = tag.split(';')
+        order += 1
         BookStore.objects.create(
         name=name,
         addr=addr,
@@ -52,7 +54,8 @@ if __name__ == '__main__':
         email=email,
         phone_number=phone_number,
         openhour=openhour,
-        img=img)
+        img=img,
+        order=order)
         
         try:
             store = BookStore.objects.get(name=name)

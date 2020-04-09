@@ -17,9 +17,10 @@ class BookStore(models.Model):
     users = models.ManyToManyField(User, through='Scrap', related_name='%(app_label)s_%(class)s_related')
     thema_set = models.ManyToManyField('Thema', blank=True)
     tag_set = models.ManyToManyField('Tag', blank=True)
+    order= models.IntegerField(default=0)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['order']
 
     def __str__(self):
         return self.name
