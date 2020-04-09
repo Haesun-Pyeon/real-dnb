@@ -90,7 +90,7 @@
         <div class="scraplist tab-pane fade show active" id="pills-bookmark" role="tabpanel" aria-labelledby="pills-bookmark-tab">
             {% for scrap in scraps %}
             <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart"></i></span> &nbsp;
-            <a href="{%url 'storedetail' scrap.store.bookstore_id%}">{{scrap.store}}</a><br>
+            <a href="javascript:detail('{{scrap.store.bookstore_id}}',0);">{{scrap.store}}</a><br>
             {% endfor %}
         </div>
         <!--내가쓴 댓글 있던자리 (좋아요 누른 테마로 변경)-->
@@ -98,13 +98,22 @@
             {%for thema in user.like.all%}
             {% if thema.private == False %}
             <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart"></i></span> &nbsp;
-            <a href="{% url 'themadetail' thema.id%}">{{thema.title}}</a><br>
+            <a href="javascript:detail('{{thema.id}}',1);">{{thema.title}}</a><br>
             {% endif %}
             {% endfor %}
         </div>
     </div>
 </div>
-
+<script>
+    function detail(id,tf){
+        let url="https://dnbook.live/bookmap/themadetail/";
+        if (tf === 0){
+            url="https://dnbook.live/bookmap/store/";
+        }
+        let result=url.concat(id);
+        location.href=result;
+    }
+</script>
 </div>
 <div class="quitwrapper">
     <button onclick="del_user();" class="quitbtn">탈퇴하기</button>
