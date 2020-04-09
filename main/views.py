@@ -232,9 +232,6 @@ def mypage(request):
                         'kakao':kakao,
                         })
 
-def test(request):
-    return render(request, 'test.html')
-
 def social(request):
     if request.method == 'POST':
         img_url = request.POST['img_url']
@@ -273,18 +270,22 @@ def tag_change(request):
         profile.tag_set.add(temp)
     return redirect('mytag')
 
-def non_log(request, addr):
-    if addr == '123': #현위치 못받아올때는 랜덤 5개
-        stores = BookStore.objects.all().order_by('?')[:5]
-        return render(request, 'home.html', {'stores': stores,})
-    else:
-        address = addr.split()
-        if len(address[0]) > 2:
-            address[0] = address[0][:2]
-        bookstore = BookStore.objects.filter(addr__startswith=address[0], addr__contains=address[1])
-        if len(bookstore) <= 5:
-            bookstore = BookStore.objects.filter(addr__startswith=address[0])
-            stores = bookstore.order_by('?')
+def non_log(request):
+    if request.method == 'POST':
+        addr = request.POST['loc']
+        if addr == '123': #현위치 못받아올때는 랜덤 5개
+            stores = BookStore.objects.all().order_by('?')[:5]
+            return render(request, 'home.html', {'stores': stores,})
         else:
-            stores = bookstore.order_by('?')[:5]
-        return render(request, 'home.html', {'stores':stores,})
+            address = addr.split()
+            if len(address[0]) > 2:
+                address[0] = address[0][:2]
+            bookstore = BookStore.objects.filter(addr__startswith=address[0], addr__contains=address[1])
+            if len(bookstore) <= 5:
+                bookstore = BookStore.objects.filter(addr__startswith=address[0])
+                stores = bookstore.order_by('?')
+            else:
+                stores = bookstore.order_by('?')[:5]
+            return render(request, 'home.html', {'stores': stores,})
+    else:
+        return redirect('home')

@@ -2,14 +2,19 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load staticfiles %}
-<!-- 아무것도 안뜨는 임시페이지 -->
+<!-- 로딩중 임시페이지 -->
 <html>
-    <img src="{% static 'images/textlogo.jpg' %}" alt="" style="width: 100%;">  
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    </head>
+    <body>
+    <img src="{% static 'images/textlogo.jpg' %}" alt="" style="width: 77%; display:block; margin: 0 auto;">
+    <div style="text-align: center; font-size:3rem; color:#E29B78"><i class="fas fa-spinner fa-spin fa-3x"></i></div>
+
     {% if tf %}
     <!-- 카카오 로그인 시 최초1회 프사 저장 -->
     {% load socialaccount %}
     {% providers_media_js %}
-    <body>
         <form method="POST" action="{% url 'social' %}" class="form">
             {% csrf_token %}
             <input name='img_url' id="url" type="text" value="{{ user.socialaccount_set.all.first.get_avatar_url }}" style="display:none"/>
@@ -18,24 +23,26 @@
                 document.getElementById("click").click();
             </script>
         </form>
-    </body>
 
     {% else %}
-    <body>
     <!-- 내위치 값 넘김 -->
-    <a href="#" style="display: none;" id='non-login'></a>
+    <form action="{% url 'non_log' %}" name='nonlog' method='POST'>
+        {% csrf_token %}
+        <input type="hidden" name='loc' id='input'>
+    </form>
+
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2da39c20f0c16cddf9d044b0011770fe&libraries=services"></script>
     <script type="text/javascript">
     var callback = function(result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var addr=result[0].address.address_name;
-            document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}".replace('123',addr));
-            document.getElementById('non-login').click();  
+            document.getElementById('input').setAttribute('value',addr);
+            document.nonlog.submit();
         }
     };
     function error(e){
-        document.getElementById('non-login').setAttribute('href',"{%url 'non_log' 123%}");
-        document.getElementById('non-login').click();  
+        document.getElementById('input').setAttribute('value','123');
+        document.nonlog.submit();
     }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
@@ -46,7 +53,7 @@
         },error)
     } else { error('e') }
     </script>
-    </body>
     {% endif %}
+    </body>
     {% endblock %}
 </html>
