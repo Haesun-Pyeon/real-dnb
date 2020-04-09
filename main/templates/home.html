@@ -27,13 +27,12 @@
       <div class="post-wrapper">
         {% for s in stores %}
         <div class="post">
-          <a href="{%url 'storedetail' s.bookstore_id%}">
+          <a href="javascript:detail('{{s.bookstore_id}}');">
             {% if s.img == 'nan' %}
             <img src="{% static 'images/textlogo.jpg' %}" alt="" class="slider-image">  
             {% else %}
             <img src="{{s.img}}" alt="" class="slider-image">
             {% endif %}
-          
             <div class="post-info">
               <h4>{{s.name}}</h4>
               <div class="p">{%for t in s.tag_set.all%} #{{t}} {% endfor %}</div>
@@ -49,7 +48,7 @@
       <div class="post-wrapper-pc">
         {% for s in stores %}
         <div class="post">
-          <a href="{%url 'storedetail' s.bookstore_id%}">
+          <a href="javascript:detail('{{s.bookstore_id}}');">
             {% if s.img == 'nan' %}
             <img src="{% static 'images/textlogo.jpg' %}" alt="" class="slider-image">  
             {% else %}
@@ -69,7 +68,13 @@
 
     </div>
   </div>
-
+  <script>
+    function detail(id){
+      let url="https://dnbook.live/bookmap/store/";
+      let result=url.concat(id);
+      location.href=result;
+    }
+  </script>
 <!-- Slick 코드 데려오기 -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 

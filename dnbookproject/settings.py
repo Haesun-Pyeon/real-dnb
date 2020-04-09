@@ -5,17 +5,16 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')3!!@n+12c_$uij^kqu@k023c9pdxcvo87o9ym)!bw5rvw1s@p'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -129,19 +128,35 @@ USE_L10N = True
 
 USE_TZ = False
 
+# S3 Storage
+DEFAULT_FILE_STORAGE = 'dnbookproject.asset_storage.MediaStorage'
+STATICFILES_STORAGE = 'dnbookproject.asset_storage.StaticStorage'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+# AWS Access
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
-STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
-STATIC_URL = '/static/'
+AWS_REGION = 'ap-northeast-2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = 'static'
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    STATIC_DIR,
 ]
+MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
 
+# Heroku: Update database configuration from $DATABASE_URL. 
+import dj_database_url 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ASGI_APPLICATION = 'dnbookproject.routing.application'
@@ -150,7 +165,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }

@@ -9,9 +9,14 @@ from urllib.parse import urlparse
 import requests
 from django.core.files.base import ContentFile
 from django.db.models import Q
+import boto3
 
+def s3_delete(key):
+    s3 = boto3.resource('s3')
+    bucket_name = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+    path='media/'+str(key)
+    s3.Object(bucket_name, path).delete()
 
-# Create your views here.
 def home(request):
     tf = False
     if request.user.is_authenticated:
@@ -139,7 +144,7 @@ def del_user(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     if profile.profileimg:
-        os.remove(profile.profileimg.path)
+        s3_delete(profile.profileimg)
     try:
         group = request.user.participants.all()
         for g in group:
@@ -169,7 +174,7 @@ def user_change(request):
         try:
             new_img = request.FILES['img_file']
             if profile.profileimg:
-                os.remove(profile.profileimg.path)
+                s3_delete(profile.profileimg)
             profile.profileimg = new_img
             profile.save()
         except:
