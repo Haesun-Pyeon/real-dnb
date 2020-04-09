@@ -90,7 +90,7 @@ i.fas.fa-heart, i.far.fa-heart{
 .symbol{
     display: block;
     width: 300px;
-    margin: 10% auto;
+    margin: 13% auto;
 }
 .no-chat{
     font-size: 2.7rem;
@@ -136,7 +136,7 @@ i.fas.fa-heart, i.far.fa-heart{
         font-size: 1.5rem;
     }
     .symbol{
-        margin: 2% auto;
+        margin: 4% auto;
         width: 200px;
     }
     .no-chat{
