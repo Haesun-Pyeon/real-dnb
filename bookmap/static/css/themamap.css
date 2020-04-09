@@ -87,6 +87,21 @@ i.fas.fa-heart, i.far.fa-heart{
     margin-top: 20px;
     margin-right: 5px;
 }
+.symbol{
+    display: block;
+    width: 300px;
+    margin: 13% auto;
+}
+.no-chat{
+    font-size: 2.7rem;
+    font-family: 'JSDongkang-Regular';
+    text-align: center;
+}
+.nono{
+    font-size: 3.3rem;
+    font-family: 'JSDongkang-Bold';
+}
+
 
 @media only screen and (min-width: 1025px){
     .eachthema{
@@ -120,4 +135,16 @@ i.fas.fa-heart, i.far.fa-heart{
     i.fas.fa-heart, i.far.fa-heart, .count{
         font-size: 1.5rem;
     }
+    .symbol{
+        margin: 4% auto;
+        width: 200px;
+    }
+    .no-chat{
+        font-size: 1.4rem;
+    }
+    .nono{
+        font-size:2rem;
+
+    }
+
 }

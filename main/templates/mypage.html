@@ -96,8 +96,10 @@
         <!--내가쓴 댓글 있던자리 (좋아요 누른 테마로 변경)-->
         <div class="scraplist tab-pane fade" id="pills-mycomment" role="tabpanel" aria-labelledby="pills-mycomment-tab">
             {%for thema in user.like.all%}
+            {% if thema.private == False %}
             <span style="color:#E29B78;margin-left:50px;"><i class="fas fa-heart"></i></span> &nbsp;
             <a href="javascript:detail('{{thema.id}}',1);">{{thema.title}}</a><br>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
