@@ -284,6 +284,8 @@ def non_log(request):
             if len(bookstore) <= 5:
                 bookstore = BookStore.objects.filter(addr__startswith=address[0])
                 stores = bookstore.order_by('?')
+                if len(stores) > 5:
+                    stores = stores[:5]
             else:
                 stores = bookstore.order_by('?')[:5]
             return render(request, 'home.html', {'stores': stores,})
