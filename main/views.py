@@ -264,6 +264,7 @@ def mytag(request):
     mytag = request.user.profile.tag_set.all()
     alltag = Tag.objects.all()
     alltag = alltag.difference(mytag)
+    mytag = mytag.order_by('?')
     return render(request, 'mytag.html',{'alltag':alltag, 'mytag':mytag})
 
 def tag_change(request):

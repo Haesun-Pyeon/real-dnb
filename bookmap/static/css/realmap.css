@@ -296,7 +296,7 @@ input.search-box-pc:focus + span {
 .rbtn-pc{
     display: inline-block;
     margin-top: 10px;
-    margin-left: 290px;
+    margin-left: 22%;
     /* z-index: -1; */
     position: absolute;
     left: 30%;
@@ -348,13 +348,13 @@ input.search-box-pc:focus + span {
         display: inline;
         float: left;
         width: 50%;
-        height: 88%;
+        height: 83%;
     }
     .list{
         display: inline;
         float: left;
         width: 50%;
-        height: 85%;
+        height: 81%;
         padding-left: 10px;
         padding-right: 0px;
     }
