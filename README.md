@@ -10,16 +10,26 @@
 - simplejson
 - django-bootstrap4
 - pillow
+- (wheel)
 - requests
 - request
 - django-detect
 - django-allauth
 - channels
-- channels_redis
+- channels-redis
+- websockets
+- redis
 - pandas
 - xlrd
 - pyyaml ua-parser user-agents
 - django-user-agents
+
+## 배포 시 추가 pip
+- daphne
+- boto3
+- django-storages
+- dj-database-url
+- psycopg2-binary
 
 ## 모델 불러오기
 - $python manage.py migrate
