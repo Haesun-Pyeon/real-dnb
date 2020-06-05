@@ -8,23 +8,8 @@ https://www.youtube.com/watch?v=hhzypFIDI6s
 ## 기술
 - Django
 
-## pip
-- django
-- bs4
-- simplejson
-- django-bootstrap4
-- pillow
-- requests
-- selenium
-- django-el-pagination
-- django-detect
-- django-allauth
-- channels
-- channels_redis
-- pandas
-- xlrd
-- pyyaml ua-parser user-agents
-- django-user-agents
+## install packages
+- `pip install -r requirements.txt`
 
 ## 모델 불러오기
 - `$python manage.py migrate`
