@@ -8,11 +8,14 @@ https://www.youtube.com/watch?v=hhzypFIDI6s
 ## 기술
 - Django
 
-## install packages
-- `pip install -r requirements.txt`
-
-## 모델 불러오기
-- `$python manage.py migrate`
+## manual
+1. 가상환경 생성 `$ python -m venv myvenv`
+2. 가상환경 활성화
+  Mac: `$ source myvenv/bin/activate`
+  Windows: `$ . myvenv/Script/activate`
+3. 필요한 패키지 설치 `$ pip install -r requirements.txt`
+4. 모델 불러오기 `$ python manage.py migrate`
+5. 
 
 ## 책방 DB 불러오기
 - bookDB2.xlsx 파일 있는지 확인
