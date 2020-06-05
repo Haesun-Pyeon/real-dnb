@@ -1,9 +1,9 @@
 # DNBOOK📚
-독립서점, 독립출판물 정보 사이트 **졸업작품으로 업그레이드**
-https://dnbook.live/main/
+- 독립서점, 독립출판물 정보 사이트 **졸업작품으로 업그레이드**
+- [동네북 보러가기](https://dnbook.live/main/)
 
 ## Youtube link
-https://www.youtube.com/watch?v=hhzypFIDI6s
+- [유튜브 보러가기](https://www.youtube.com/watch?v=hhzypFIDI6s)
 
 ## 기술
 - Django
