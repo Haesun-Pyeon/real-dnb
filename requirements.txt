@@ -26,6 +26,7 @@ Django==2.2.13
 django-allauth==0.41.0
 django-bootstrap4==1.0.1
 django-detect==1.0.16
+django-request==1.5.5
 django-six==1.0.4
 django-storages==1.8
 django-user-agents==0.4.0
