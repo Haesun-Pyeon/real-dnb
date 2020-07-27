@@ -10,7 +10,7 @@ class BookStore(models.Model):
     addr = models.TextField('책방주소',unique=True)
     phone_number = models.CharField('전화번호', blank=True, max_length=15, null=True)
     site = models.URLField('웹사이트',null=True, blank=True)
-    img = models.URLField(null=True, blank=True)
+    img = models.URLField(null=True, blank=True, max_length=300)
     insta = models.CharField('인스타그램',null=True, blank=True, max_length=50)
     email = models.EmailField('이메일', null=True, blank=True)
     openhour = models.TextField('영업시간',null=True, blank=True)

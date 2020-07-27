@@ -1,18 +1,10 @@
 import os
 import sys
-import urllib.request
 os.environ.setdefault("DJANGO_SETTINGS_MODULE","dnbookproject.settings")
 import django
 django.setup()
 from bookmap.models import BookStore, Tag
 import simplejson
-client_id = "T8MZqPcXGrKd5jgkfQqD"
-client_secret = "WwJGey2Jx8"
-url = "https://openapi.naver.com/v1/util/shorturl"
-request = urllib.request.Request(url)
-request.add_header("X-Naver-Client-Id",client_id)
-request.add_header("X-Naver-Client-Secret",client_secret)
-
 
 
 if __name__ == '__main__':
@@ -30,19 +22,6 @@ if __name__ == '__main__':
     tag = input("수정할 책방 태그(;로 구분)-바꿀거면 일부말고 전체다입력: ")
     if tag:
         tag = tag.split(';')
-    else:
-        pass
-    if img:
-        encText = urllib.parse.quote(img)
-        data = "url=" + encText
-        response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-        rescode = response.getcode()
-        if(rescode==200):
-            response_body = response.read()
-            sim = simplejson.loads(response_body.decode('utf-8'))
-            img = sim['result']['url'].replace('http://','https://')
-        else:
-            print("Error Code:" + rescode)
     else:
         pass
 
