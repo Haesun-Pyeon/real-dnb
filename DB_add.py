@@ -1,17 +1,10 @@
 import os
 import sys
-import urllib.request
 os.environ.setdefault("DJANGO_SETTINGS_MODULE","dnbookproject.settings")
 import django
 django.setup()
 from bookmap.models import BookStore, Tag
 import simplejson
-client_id = "T8MZqPcXGrKd5jgkfQqD"
-client_secret = "WwJGey2Jx8"
-url = "https://openapi.naver.com/v1/util/shorturl"
-request = urllib.request.Request(url)
-request.add_header("X-Naver-Client-Id",client_id)
-request.add_header("X-Naver-Client-Secret",client_secret)
 
 if __name__ == '__main__':
     order1 = int(input("저장할 책방의 오더: "))
@@ -27,19 +20,6 @@ if __name__ == '__main__':
     openhour1=oh.replace(';','\n')
     tag = input("저장할 책방 태그(;로 구분)-필수입력: ")
     tag = tag.split(';')
-    if img1:
-        encText = urllib.parse.quote(img1)
-        data = "url=" + encText
-        response = urllib.request.urlopen(request, data=data.encode("utf-8"))
-        rescode = response.getcode()
-        if(rescode==200):
-            response_body = response.read()
-            sim = simplejson.loads(response_body.decode('utf-8'))
-            img1 = sim['result']['url'].replace('http://','https://')
-        else:
-            print("Error Code:" + rescode)
-    else:
-        pass
     all_num=len(BookStore.objects.all())
     if order1 <= all_num:
         idx = all_num - order1 + 1
