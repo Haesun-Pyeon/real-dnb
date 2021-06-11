@@ -74,6 +74,6 @@ ua-parser==0.10.0
 urllib3==1.25.6
 user-agents==2.1
 uvicorn==0.11.7
-websockets==8.1
+websockets==9.1
 xlrd==1.2.0
 zope.interface==4.7.1
